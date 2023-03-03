@@ -10,4 +10,6 @@
     <string name="home_username_default">Hello, Emmanuel</string>
     <string name="home_card_title">Energy consumption</string>
     <string name="home_card_date">16 Nov, 2022</string>
+    <string name="home_tab1">Rooms</string>
+    <string name="home_tab2">Devices</string>
 </resources>
