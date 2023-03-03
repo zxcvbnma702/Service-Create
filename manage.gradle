@@ -1,9 +1,9 @@
 ext {
     android = [
-            "compileSdkVersion": 31,
+            "compileSdkVersion": 32,
             "buildToolsVersion": "29.0.0",
             "minSdkVersion"    : 21,
-            "targetSdkVersion" : 31,
+            "targetSdkVersion" : 32,
             "applicationId"    : "com.example.fish",
             "versionCode"      : 1,
             "versionName"      : '1.1',

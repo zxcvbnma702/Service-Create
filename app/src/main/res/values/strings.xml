@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">ServiceCreate</string>
-    <string name="nav_home">设备</string>
     <string name="nav_message">场景</string>
-    <string name="nav_person">我的</string>
+    <string name="nav_setting">设置</string>
     <string name="nav_null">" "</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="float_add_device">添加设备</string>
+    <string name="nav_home">主页</string>
 </resources>

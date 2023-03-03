@@ -49,7 +49,7 @@ object StatusUtil {
                 isAppearanceLightStatusBars = false
                 hide(WindowInsetsCompat.Type.statusBars())
             }
-            WindowCompat.setDecorFitsSystemWindows(window, true)
+            WindowCompat.setDecorFitsSystemWindows(window, isImmerse)
 
             val params = window.attributes
             params.layoutInDisplayCutoutMode =
