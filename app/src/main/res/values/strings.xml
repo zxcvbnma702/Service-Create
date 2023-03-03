@@ -7,4 +7,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="float_add_device">添加设备</string>
     <string name="nav_home">主页</string>
+    <string name="home_username_default">Hello, Emmanuel</string>
+    <string name="home_card_title">Energy consumption</string>
+    <string name="home_card_date">16 Nov, 2022</string>
 </resources>

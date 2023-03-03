@@ -6,28 +6,15 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:orientation="vertical"
-        tools:context=".ui.MainActivity"
-        android:background="@android:color/transparent">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                app:title="@string/app_name"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"/>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        tools:context=".ui.MainActivity">
 
         <FrameLayout
             android:id="@+id/container_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="11"/>
+            android:layout_weight="11" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
@@ -35,19 +22,19 @@
             android:layout_height="56dp"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/white"
-            app:hideOnScroll="true"
             android:outlineProvider="none"
-            app:fabCradleMargin="10dp">
+            app:fabCradleMargin="10dp"
+            app:hideOnScroll="true">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                app:itemRippleColor="@color/main_color"
-                android:background="@android:color/transparent"
-                app:labelVisibilityMode="auto"
-                android:outlineProvider="none"
                 android:layout_marginHorizontal="16dp"
+                android:background="@android:color/transparent"
+                android:outlineProvider="none"
+                app:itemRippleColor="@color/main_color"
+                app:labelVisibilityMode="auto"
                 app:menu="@menu/nav_menu" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
@@ -56,13 +43,13 @@
             android:id="@+id/float_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_round_add_24"
-            app:borderWidth="0dp"
-            android:outlineProvider="none"
-            android:contentDescription="@string/float_add_device"
             android:background="@color/main_color"
             android:backgroundTint="@color/main_color"
             android:backgroundTintMode="screen"
+            android:contentDescription="@string/float_add_device"
+            android:outlineProvider="none"
+            android:src="@drawable/ic_round_add_24"
+            app:borderWidth="0dp"
             app:layout_anchor="@id/bottomAppBar">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
@@ -71,4 +58,3 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
-
