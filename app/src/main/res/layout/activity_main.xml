@@ -24,7 +24,7 @@
             android:backgroundTint="@color/white"
             android:outlineProvider="none"
             app:fabCradleMargin="10dp"
-            app:hideOnScroll="true">
+            app:hideOnScroll="false">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
@@ -49,6 +49,7 @@
             android:contentDescription="@string/float_add_device"
             android:outlineProvider="none"
             android:src="@drawable/ic_round_add_24"
+            app:hideMotionSpec="@anim/ps_anim_album_dismiss"
             app:borderWidth="0dp"
             app:layout_anchor="@id/bottomAppBar">
 
