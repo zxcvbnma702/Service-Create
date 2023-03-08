@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.auth.AuthActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/auth_welcome_text"
+            android:text="@string/auth_welcome_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/main_color_primary_secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/auth_welcome_description"
+            android:text="@string/auth_welcome_description"
+            app:layout_constraintTop_toBottomOf="@id/auth_welcome_text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="28dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/icon_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/home_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/retangle_bg"
+            android:backgroundTint="#f4f7ff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/auth_welcome_description"
+            app:tabIndicator="@drawable/retangle_bg"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorGravity="center"
+            app:tabIndicatorHeight="40dp"
+            app:tabIndicatorFullWidth="true"
+            app:tabMinWidth="100dp"
+            app:tabMode="auto"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/second_color"
+            app:tabTextColor="@color/black">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/auth_tab_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/auth_tab1" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/auth_tab_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:text="@string/auth_tab2" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

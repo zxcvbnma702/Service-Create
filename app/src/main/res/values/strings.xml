@@ -12,4 +12,8 @@
     <string name="home_card_date">16 Nov, 2022</string>
     <string name="home_tab1">Rooms</string>
     <string name="home_tab2">Devices</string>
+    <string name="auth_welcome_back">欢迎您使用我们的软件</string>
+    <string name="auth_welcome_description">为了获得更好的用户体验,请先登录</string>
+    <string name="auth_tab1">Email</string>
+    <string name="auth_tab2">Phone Number</string>
 </resources>
