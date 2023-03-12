@@ -1,6 +1,7 @@
 package com.example.servicecreate.logic.network
 
 import android.util.Log
+import com.example.servicecreate.logic.network.api.AuthService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,15 +16,14 @@ import kotlin.coroutines.suspendCoroutine
  */
 object NetworkCenter {
 
+    private val authServer = ServiceCreator.create<AuthService>()
 
+    suspend fun sendVerifiedCode(requestBody: Map<String, String>)
+        = authServer.sendVerifiedCode(requestBody).await()
 
+    fun checkVerifiedCode(request: Map<String, String>): Any {
 
-
-
-
-
-
-
+    }
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
@@ -43,4 +43,5 @@ object NetworkCenter {
             })
         }
     }
+
 }

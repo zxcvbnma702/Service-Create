@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/auth_constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         tools:context=".ui.auth.AuthActivity">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:elevation="1dp"
             android:id="@+id/auth_welcome_text"
-            android:text="@string/auth_welcome_back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/auth_welcome_back"
+            android:textColor="@color/main_color_primary_secondary"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/main_color_primary_secondary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:elevation="1dp"
             android:id="@+id/auth_welcome_description"
-            android:text="@string/auth_welcome_description"
-            app:layout_constraintTop_toBottomOf="@id/auth_welcome_text"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/auth_welcome_description"
+            android:textColor="@color/icon_color"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="@color/icon_color"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/auth_welcome_text" />
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/home_tablayout"
+            android:elevation="1dp"
+            android:id="@+id/auth_tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/retangle_bg"
             android:backgroundTint="#f4f7ff"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,29 +52,129 @@
             app:layout_constraintTop_toBottomOf="@+id/auth_welcome_description"
             app:tabIndicator="@drawable/retangle_bg"
             app:tabIndicatorColor="@color/white"
+            app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="center"
             app:tabIndicatorHeight="40dp"
-            app:tabIndicatorFullWidth="true"
-            app:tabMinWidth="100dp"
+            app:tabMinWidth="150dp"
             app:tabMode="auto"
             app:tabRippleColor="@android:color/transparent"
             app:tabSelectedTextColor="@color/second_color"
             app:tabTextColor="@color/black">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/auth_tab_email"
-                android:layout_width="wrap_content"
+                android:elevation="1dp"
+                android:id="@+id/auth_tab_login"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/auth_tab1" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/auth_tab_phone"
-                android:layout_width="wrap_content"
+                android:elevation="1dp"
+                android:id="@+id/auth_tab_register"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
                 android:text="@string/auth_tab2" />
 
         </com.google.android.material.tabs.TabLayout>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:elevation="1dp"
+            android:id="@+id/auth_ed_email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/retangle_bg"
+            android:backgroundTint="#f4f7ff"
+            android:drawableStart="@drawable/ic_outline_email_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/icon_color"
+            android:fadingEdge="horizontal"
+            android:hint="@string/auth_et_email_hint_text"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/icon_color"
+            android:textCursorDrawable="@color/second_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/auth_tablayout" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:elevation="1dp"
+            android:id="@+id/auth_ed_confidence"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/retangle_bg"
+            android:backgroundTint="#f4f7ff"
+            android:drawableStart="@drawable/ic_outline_lock_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/icon_color"
+            android:fadingEdge="horizontal"
+            android:hint="@string/auth_et_confidence_hint_text"
+            android:inputType="numberPassword"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/icon_color"
+            android:textCursorDrawable="@color/second_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/auth_ed_email" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:elevation="1dp"
+            android:id="@+id/auth_ed_verify"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/retangle_bg"
+            android:backgroundTint="#f4f7ff"
+            android:drawableStart="@drawable/ic_outline_verified_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/icon_color"
+            android:fadingEdge="horizontal"
+            android:hint="@string/auth_et_verified_hint_text"
+            android:inputType="number"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/icon_color"
+            android:textCursorDrawable="@color/second_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/auth_ed_confidence"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:animateLayoutChanges="true"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:shadowColor="@color/main_color_primary_variant"
+            android:background="@drawable/retangle_bg"
+            android:id="@+id/auth_bt_login"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="23dp"
+            android:layout_marginTop="40dp"
+            android:height="60dp"
+            android:text="@string/auth_tab1"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/auth_ed_verify"
+            android:animateLayoutChanges="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/auth_change"
+            android:text="用户协议"
+            android:textColor="@color/main_color_primary_secondary"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

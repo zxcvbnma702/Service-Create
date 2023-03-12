@@ -9,8 +9,8 @@
         android:layout_margin="5dp"
         android:padding="5dp"
         android:layout_height="190dp"
-        style="@style/MaterialAlertDialog.Material3"
-        app:cardElevation="0dp">
+        android:elevation="1dp"
+        style="@style/MaterialAlertDialog.Material3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

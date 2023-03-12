@@ -38,6 +38,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:elevation="1dp"
                         android:id="@+id/home_icon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -49,6 +50,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
+                        android:elevation="1dp"
                         android:id="@+id/home_notification"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -86,7 +88,7 @@
                     android:layout_marginHorizontal="20dp"
                     app:cardBackgroundColor="@color/main_color"
                     app:cardCornerRadius="15dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="1dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_appbar">
@@ -156,6 +158,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.tabs.TabLayout
+                    android:elevation="1dp"
                     android:id="@+id/home_tablayout"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
