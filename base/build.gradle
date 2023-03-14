@@ -40,6 +40,8 @@ dependencies {
     implementation rootProject.ext.depsLibs["appcompact"]
     implementation rootProject.ext.depsLibs["picture-selector"]
     implementation rootProject.ext.depsLibs["picture-compress"]
+    implementation rootProject.ext.depsLibs["coroutines-core"]
+    implementation rootProject.ext.depsLibs["coroutines-android"]
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

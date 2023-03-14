@@ -1,5 +1,6 @@
 package com.example.servicecreate.logic.network.api
 
+import com.example.servicecreate.logic.network.model.LoginResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -23,4 +24,12 @@ interface AuthService {
 
     @POST("user/checkCode")
     fun checkVerifiedCode(@Body requestBody: Map<String, String>):Call<SendVerifiedResponse>
+
+    @POST("user/login")
+    fun login(@Body requestBody: Map<String, String>):Call<LoginResponse>
+
+    @POST("user/register")
+    fun register(@Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
+
+
 }

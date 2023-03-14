@@ -29,6 +29,22 @@ object Repository {
         }
     }
 
+    fun login(email: String, password: String) = fire(Dispatchers.IO){
+        val request = mapOf("qq" to email, "password" to password)
+        val response = NetworkCenter.login(request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun register(email: String, phone: String, password: String, code: String) = fire(Dispatchers.IO){
+        val request = mapOf("qq" to email, "phone" to phone, "password" to password, "code" to code)
+        val response = NetworkCenter.register(request)
+        run {
+            Result.success(response)
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

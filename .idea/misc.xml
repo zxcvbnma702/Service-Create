@@ -14,6 +14,7 @@
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2275" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.1" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_outline_notifications_active_24.xml" value="0.213" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_outline_verified_24.xml" value="0.2135" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_round_add_24.xml" value="0.213" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_round_home_24.xml" value="0.213" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_round_notifications_active_24.xml" value="0.213" />
@@ -25,7 +26,7 @@
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/switch_thumb.xml" value="0.2135" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout-v23/activity_auth.xml" value="0.24320652173913043" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout-v28/activity_main.xml" value="0.1" />
-        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/activity_auth.xml" value="0.4033613316075515" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/activity_auth.xml" value="0.20168066580377575" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragemnt_setting.xml" value="0.2418478260869565" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_device.xml" value="0.10462962962962963" />

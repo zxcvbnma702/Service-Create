@@ -28,7 +28,7 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseBin
             }
         }
 
-    private val binding: VB by lazy(mode = LazyThreadSafetyMode.NONE) {
+    protected val binding: VB by lazy(mode = LazyThreadSafetyMode.NONE) {
         getViewBinding(layoutInflater)
     }
 

@@ -18,12 +18,17 @@ object NetworkCenter {
 
     private val authServer = ServiceCreator.create<AuthService>()
 
-    suspend fun sendVerifiedCode(requestBody: Map<String, String>)
-        = authServer.sendVerifiedCode(requestBody).await()
+    suspend fun sendVerifiedCode(request: Map<String, String>)
+        = authServer.sendVerifiedCode(request).await()
 
-    fun checkVerifiedCode(request: Map<String, String>): Any {
+    suspend fun checkVerifiedCode(request: Map<String, String>)
+        = authServer.checkVerifiedCode(request).await()
 
-    }
+    suspend fun login(request: Map<String, String>)
+        = authServer.login(request).await()
+
+    suspend fun register(request: Map<String, String>)
+        = authServer.register(request).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
