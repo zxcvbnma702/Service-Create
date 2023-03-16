@@ -1,6 +1,8 @@
 package com.example.servicecreate.ui.auth
 
 import android.animation.LayoutTransition
+import android.content.Context
+import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.Transition
@@ -13,7 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.base.activity.BaseActivity
 import com.example.base.kxt.toast
 import com.example.base.ui.util.StatusUtil.countDownCoroutines
+import com.example.servicecreate.MainActivity
 import com.example.servicecreate.R
+import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.ActivityAuthBinding
 import com.example.servicecreate.logic.network.model.LoginResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
@@ -105,7 +109,9 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() , AuthListener{
             if(response != null){
                 if(response.code == 1){
                     toast(R.string.auth_verified_login_success)
-                    Log.e("gg", response.data.toString())
+                    saveLoginStatus(userId = response.data.id, isLogin = true, isStore = false)
+                    MainActivity.startActivity(this@AuthActivity)
+                    finish()
                 }else{
                     toast(response.msg)
                 }
@@ -222,6 +228,26 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() , AuthListener{
                 binding.authBtSendCode.text  = "发送"
                 binding.authBtSendCode.isClickable = true
             })
+    }
+
+    private fun saveLoginStatus(userId: String, isLogin: Boolean, isStore: Boolean) {
+        ServiceCreateApplication.sp.edit().apply {
+            clear()
+            putString(ServiceCreateApplication.userID, userId)
+            putBoolean(ServiceCreateApplication.isLogin, isLogin)
+            putBoolean(ServiceCreateApplication.isStore, isStore)
+            apply()
+        }
+    }
+
+    /*
+    To launch this activity
+     */
+    companion object{
+        fun startActivity(context: Context){
+            val intent = Intent(context, AuthActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
 }

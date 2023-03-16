@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.example.base.activity.BaseActivity
+import com.example.base.kxt.toast
 import com.example.servicecreate.databinding.ActivityMainBinding
+import com.example.servicecreate.ui.auth.AuthActivity
 import com.example.servicecreate.ui.home.HomeFragment
 import com.example.servicecreate.ui.setting.SettingFragment
 
@@ -14,7 +16,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private lateinit var homeFragment: HomeFragment
 
     override fun ActivityMainBinding.initBindingView() {
+
         initFragment()
+        initUserData()
 
         setCurrentFragment(homeFragment)
 
@@ -38,6 +42,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     else -> true
                 }
             }
+        }
+    }
+
+    /**
+     * Verify Login Status
+     */
+    private fun initUserData() {
+        if(!ServiceCreateApplication.sp.getBoolean(ServiceCreateApplication.isLogin, false)){
+            toast(R.string.home_login_status_warning)
+            AuthActivity.startActivity(this@MainActivity)
+            finish()
         }
     }
 
