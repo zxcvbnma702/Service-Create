@@ -9,7 +9,7 @@
         android:layout_margin="5dp"
         android:padding="5dp"
         android:layout_height="190dp"
-        android:elevation="1dp"
+        android:elevation="@dimen/ui_elevation_height"
         style="@style/MaterialAlertDialog.Material3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
 
             <androidx.appcompat.widget.SwitchCompat
                 app:track="@drawable/switch_bg"
-               app:thumbTint="@color/white"
+                app:thumbTint="@color/white"
                 app:thumbTextPadding="1dp"
                 android:id="@+id/item_card_room_switch"
                 android:layout_width="wrap_content"

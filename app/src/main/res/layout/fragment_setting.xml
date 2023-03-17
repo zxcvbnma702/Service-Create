@@ -1,17 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <FrameLayout
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servicecreate.ui.setting.SettingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background_color"
         tools:context=".ui.setting.SettingFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/setting_user_show"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/ui_elevation_height"
+            android:paddingHorizontal="30dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/setting_usericon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:elevation="@dimen/ui_elevation_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/RoundedStyle"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp" />
+
+            <TextView
+                android:id="@+id/setting_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:elevation="@dimen/ui_elevation_height"
+                android:maxLines="1"
+                android:text="@string/home_username_default"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/setting_usericon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/setting_user_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:maxLines="1"
+                android:text="@string/home_username_default"
+                android:textColor="@color/icon_color"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/setting_usericon"
+                app:layout_constraintTop_toBottomOf="@id/setting_username" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/setting_user_show"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="25dp"
+            android:background="@color/fill_bg_color"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
