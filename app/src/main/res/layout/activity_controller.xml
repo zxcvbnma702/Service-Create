@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        tools:context=".ui.controller.ControllerActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/controller_toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/white"
+            app:navigationIconTint="@color/main_color_primary_secondary"
+            app:title="xxx device"
+            app:titleCentered="true"
+            android:elevation="@dimen/ui_elevation_height"
+            app:navigationContentDescription="返回上一级"
+            app:navigationIcon="@drawable/ic_outline_navigate_before_24"
+            app:titleTextColor="@color/main_color_primary_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/controller_container_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/controller_toolbar"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

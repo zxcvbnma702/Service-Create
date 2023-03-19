@@ -59,6 +59,9 @@ dependencies {
     implementation rootProject.ext.depsLibs["lifecycle-ext"]
     implementation rootProject.ext.depsLibs["circleImageView"]
     implementation rootProject.ext.depsLibs["lifecycle-livedata"]
+    implementation rootProject.ext.depsLibs["cir-seekbar"]
+    implementation rootProject.ext.depsLibs["cirollor"]
+    implementation rootProject.ext.depsLibs["rangeseekbar"]
 
     annotationProcessor rootProject.ext.depsLibs["room-compiler" ]
     kapt(rootProject.ext.depsLibs["room-compiler" ])

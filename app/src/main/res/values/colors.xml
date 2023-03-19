@@ -13,6 +13,7 @@
     <color name="main_color_primary_variant">#8c92fb</color>
     <color name="main_color_primary_secondary">#5e64bf</color>
     <color name="second_color">#F9B23D</color>
+    <color name="second_color_variant">#fbdfaf</color>
     <color name="text_color">#171935</color>
     <color name="icon_color">#A2A9B8</color>
     <color name="fill_bg_color">#EAEDF2</color>

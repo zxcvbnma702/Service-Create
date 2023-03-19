@@ -9,10 +9,12 @@
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.213" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_baseline_device_24.xml" value="0.127" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_baseline_devices_24.xml" value="0.213" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_baseline_horizontal_rule_24.xml" value="0.2135" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.127" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.213" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2275" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.1" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_outline_navigate_before_24.xml" value="0.2135" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_outline_notifications_active_24.xml" value="0.213" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_outline_verified_24.xml" value="0.2135" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/drawable/ic_round_add_24.xml" value="0.213" />
@@ -27,15 +29,18 @@
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout-v23/activity_auth.xml" value="0.24320652173913043" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout-v28/activity_main.xml" value="0.1" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/activity_auth.xml" value="0.1" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/activity_controller.xml" value="0.20168066580377575" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/air_conditioner_controller.xml" value="0.1" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragemnt_setting.xml" value="0.2418478260869565" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_air_condition.xml" value="0.26621847886098404" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_device.xml" value="0.10462962962962963" />
-        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_home.xml" value="0.17747898590732267" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_personage.xml" value="0.10462962962962963" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_scene.xml" value="0.10462962962962963" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_setting.xml" value="0.17747898590732267" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/home_cardview.xml" value="0.2418478260869565" />
-        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/item_home_room_card.xml" value="0.1" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/item_home_room_card.xml" value="0.20168066580377575" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/menu/nav_menu.xml" value="0.1" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.107" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.107" />

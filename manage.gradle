@@ -2,7 +2,7 @@ ext {
     android = [
             "compileSdkVersion": 32,
             "buildToolsVersion": "29.0.0",
-            "minSdkVersion"    : 21,
+            "minSdkVersion"    : 23,
             "targetSdkVersion" : 32,
             "applicationId"    : "com.example.fish",
             "versionCode"      : 1,
@@ -36,6 +36,10 @@ ext {
             "picture-selector": 'io.github.lucksiege:pictureselector:v3.10.6',
             "picture-compress": 'io.github.lucksiege:compress:v3.10.6',
             "coroutines-core" : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2',
-            "coroutines-android": 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+            "coroutines-android": 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1',
+            "cir-seekbar": 'com.github.feeeei:CircleSeekbar:v1.1.2',
+            "cirollor": 'com.seosh817:circularseekbar:1.0.0',
+            "rangeseekbar": 'com.github.Jay-Goo:RangeSeekBar:v3.0.0'
+
     ]
 }

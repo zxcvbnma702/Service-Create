@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servicecreate.ui.controller.air.AirConditionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/air_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:paddingTop="20dp"
+        tools:context=".ui.controller.air.AirConditionFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/air_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/air_icon"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/RoundedStyle"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+
+                <TextView
+                    android:id="@+id/controller_device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="电源: 开"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/air_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/controller_device_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Bedroom"
+                    android:textColor="@color/icon_color"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/air_icon"
+                    app:layout_constraintTop_toBottomOf="@id/controller_device_name" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/item_card_room_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTextPadding="1dp"
+                    app:thumbTint="@color/white"
+                    app:track="@drawable/switch_bg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/air_temperature_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/air_cardView">
+
+            <com.seosh817.circularseekbar.CircularSeekBar
+                android:id="@+id/air_cir_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="40dp"
+                app:circularSeekBar_animation="bounce"
+                app:circularSeekBar_animationDurationMillis="1000"
+                app:circularSeekBar_barStrokeCap="butt"
+                app:circularSeekBar_barWidth="9dp"
+                app:circularSeekBar_dashGap="0"
+                app:circularSeekBar_dashWidth="3"
+                app:circularSeekBar_innerThumbColor="@color/second_color"
+                app:circularSeekBar_innerThumbRadius="5dp"
+                app:circularSeekBar_innerThumbStrokeWidth="5dp"
+                app:circularSeekBar_interactive="true"
+                app:circularSeekBar_max="40"
+                app:circularSeekBar_min="0"
+                app:circularSeekBar_outerThumbColor="@color/main_color"
+                app:circularSeekBar_outerThumbRadius="8dp"
+                app:circularSeekBar_outerThumbStrokeWidth="8dp"
+                app:circularSeekBar_progressColor="@color/main_color"
+                app:circularSeekBar_showAnimation="true"
+                app:circularSeekBar_startAngle="60"
+                app:circularSeekBar_sweepAngle="240"
+                app:circularSeekBar_trackColor="@color/fill_bg_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/air_cir_bg"
+                android:layout_width="245dp"
+                android:layout_height="245dp"
+                android:layout_marginTop="65dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="@color/second_color_variant"
+                android:elevation="@dimen/ui_elevation_height"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/CircleStyle"
+                app:strokeColor="@color/second_color_variant"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/air_cir_progress"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="88dp"
+                android:height="200dp"
+                android:background="@drawable/circle_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:shadowColor="@color/main_color_primary_variant"
+                android:shadowRadius="5"
+                android:text="0"
+                android:textColor="@color/main_color"
+                android:textSize="60sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.seosh817.circularseekbar.CircularSeekBar
+                android:id="@+id/air_cir_progress_inner"
+                android:layout_width="192dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="88dp"
+                android:elevation="5dp"
+                app:circularSeekBar_barStrokeCap="butt"
+                app:circularSeekBar_barWidth="8dp"
+                app:circularSeekBar_dashGap="4"
+                app:circularSeekBar_dashWidth="1"
+                app:circularSeekBar_interactive="false"
+                app:circularSeekBar_max="40"
+                app:circularSeekBar_min="0"
+                app:circularSeekBar_progressGradientColors="@array/rainbow"
+                app:circularSeekBar_startAngle="45"
+                app:circularSeekBar_sweepAngle="360"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/air_temperature_sub"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="@color/white"
+                android:elevation="@dimen/ui_elevation_height"
+                android:src="@drawable/ic_baseline_horizontal_rule_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/air_cir_progress" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/air_temperature_add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="75dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="@color/white"
+                android:elevation="@dimen/ui_elevation_height"
+                android:src="@drawable/ic_baseline_add_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/air_cir_progress" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/air_mode_shift"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/retangle_bg"
+            android:backgroundTint="@color/fill_bg_color"
+            android:elevation="-1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/air_temperature_show"
+            app:tabIndicator="@drawable/retangle_bg"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorGravity="center"
+            app:tabIndicatorHeight="50dp"
+            app:tabMinWidth="80dp"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/main_color"
+            app:tabTextColor="@color/black">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/air_mode_tab_roast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:shadowColor="@color/main_color"
+                android:text="@string/air_mode_tab1" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/air_mode_tab_cool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:shadowColor="@color/main_color"
+                android:text="@string/air_mode_tab2" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/air_mode_tab_dehumidification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:shadowColor="@color/main_color"
+                android:text="@string/air_mode_tab4" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/air_mode_tab_ventilation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:shadowColor="@color/main_color"
+                android:text="@string/air_mode_tab3" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+
+        <com.jaygoo.widget.RangeSeekBar
+            android:elevation="-1dp"
+            android:paddingHorizontal="5dp"
+            app:rsb_indicator_show_mode="showWhenTouch"
+            app:rsb_indicator_width="35dp"
+            app:rsb_indicator_height="25dp"
+            app:rsb_indicator_margin="5dp"
+            app:rsb_indicator_background_color="@color/main_color_primary_variant"
+            app:rsb_indicator_radius="10dp"
+            app:rsb_indicator_text_color="@color/white"
+            app:rsb_indicator_arrow_size="5dp"
+            app:rsb_indicator_text_size="13sp"
+            android:id="@+id/air_wind_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            app:rsb_thumb_height="25dp"
+            app:rsb_thumb_width="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/air_mode_shift"
+            app:rsb_mode="single"
+            app:rsb_progress_color="@color/main_color"
+            app:rsb_progress_default_color="@color/fill_bg_color"
+            app:rsb_progress_radius="4dp"
+            app:rsb_step_auto_bonding="true"
+            app:rsb_step_height="20dp"
+            app:rsb_step_radius="10dp"
+            app:rsb_step_width="20dp"
+            app:rsb_step_color="@color/main_color"
+            app:rsb_steps="3"
+            app:rsb_tick_mark_text_size="15sp"
+            app:rsb_tick_mark_mode="other"
+            app:rsb_tick_mark_gravity="center"
+            app:rsb_tick_mark_layout_gravity="bottom"
+            app:rsb_tick_mark_text_margin="15dp"
+            app:rsb_tick_mark_text_color="@color/icon_color"
+            app:rsb_tick_mark_text_array="@array/seekbar"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/air_wind_shift"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/retangle_bg"
+            android:backgroundTint="@color/fill_bg_color"
+            android:elevation="-1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/air_wind_speed"
+            app:tabIndicator="@drawable/retangle_bg"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorGravity="center"
+            app:tabIndicatorHeight="50dp"
+            app:tabMinWidth="80dp"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/main_color"
+            app:tabTextColor="@color/black"
+            android:visibility="gone">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/air_wind_tab_left_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:shadowColor="@color/main_color"
+                android:text="@string/air_wind_tab_left_right" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/air_wind_tab_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:shadowColor="@color/main_color"
+                android:text="@string/air_wind_tab_auto" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/air_wind_tab_up_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:shadowColor="@color/main_color"
+                android:text="@string/air_wind_tab_up_down" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -38,4 +38,14 @@
     <string name="auth_verified_login_success">登录成功</string>
     <string name="auth_verified_login_failure">登陆失败,请重试</string>
 
+<!--    airCondition -->
+    <string name="air_mode_tab1">制热</string>
+    <string name="air_mode_tab2">制冷</string>
+    <string name="air_mode_tab3">通风</string>
+    <string name="air_mode_tab4">除湿</string>
+    <string name="air_speed_tip">风速</string>
+    <string name="air_wind_tab_left_right">左右扫风</string>
+    <string name="air_wind_tab_auto">自动扫风</string>
+    <string name="air_wind_tab_up_down">上下扫风</string>
+
 </resources>

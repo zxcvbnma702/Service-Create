@@ -2,6 +2,7 @@ package com.example.servicecreate.ui.home.adapter
 
 import com.example.base.ui.activity.BaseAdapter
 import com.example.servicecreate.databinding.ItemHomeRoomCardBinding
+import com.example.servicecreate.ui.controller.ControllerActivity
 import com.example.servicecreate.ui.home.HomeFragment
 
 /**
@@ -13,6 +14,8 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
     BaseAdapter<Int, ItemHomeRoomCardBinding>() {
 
     override fun ItemHomeRoomCardBinding.onBindViewHolder(bean: Int, position: Int) {
-
+        itemCardHome.setOnClickListener {
+            ControllerActivity.startActivity(fragment.requireContext())
+        }
     }
 }

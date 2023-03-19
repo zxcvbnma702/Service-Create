@@ -31,7 +31,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeListener, SwipeRef
         adapter = HomeRecyclerAdapter(this@HomeFragment)
 
         homeRecyclerview.adapter = adapter
-
         adapter.setData(arrayListOf(0, 1, 2, 3, 4, 6, 5, 2, 8, 9, 7))
 
         homeUsername.text = "Hello, ${ServiceCreateApplication.sp.getString(ServiceCreateApplication.userID, "&&%&")}"

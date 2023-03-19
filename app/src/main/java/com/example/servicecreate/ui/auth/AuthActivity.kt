@@ -216,6 +216,9 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() , AuthListener{
         binding.authBtSendCode.visibility = View.VISIBLE
     }
 
+    /**
+     * Timer in button
+     */
     private fun downTimer(){
         mCountdownJob = countDownCoroutines(30, lifecycleScope,
             onTick = { second ->
@@ -230,6 +233,9 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() , AuthListener{
             })
     }
 
+    /**
+     * Save login state in sp
+     */
     private fun saveLoginStatus(userId: String, isLogin: Boolean, isStore: Boolean) {
         ServiceCreateApplication.sp.edit().apply {
             clear()
