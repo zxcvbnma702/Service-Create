@@ -10,6 +10,7 @@ import com.example.servicecreate.MainActivity
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ActivityControllerBinding
 import com.example.servicecreate.ui.controller.air.AirConditionFragment
+import com.example.servicecreate.ui.controller.light.LightFragment
 import com.example.servicecreate.ui.home.HomeFragment
 import com.example.servicecreate.ui.setting.SettingFragment
 
@@ -17,11 +18,19 @@ import com.example.servicecreate.ui.setting.SettingFragment
 class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
 
     private lateinit var airFragment: AirConditionFragment
+    private lateinit var lightFragment: LightFragment
+
+    private var type: Int = 0;
 
     override fun ActivityControllerBinding.initBindingView() {
+        type = intent.getIntExtra("type", 0)
+
         initFragment()
 
-        setCurrentFragment(airFragment)
+        when(type){
+            1 -> setCurrentFragment(airFragment)
+            2 -> setCurrentFragment(lightFragment)
+        }
 
         controllerToolbar.apply {
             setNavigationOnClickListener {
@@ -35,6 +44,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
     */
     private fun initFragment(){
        airFragment = AirConditionFragment()
+        lightFragment = LightFragment()
     }
 
     /*
@@ -50,8 +60,9 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
     To launch this activity
      */
     companion object{
-        fun startActivity(context: Context){
+        fun startActivity(context: Context, type: Int){
             val intent = Intent(context, ControllerActivity::class.java)
+            intent.putExtra("type", type)
             context.startActivity(intent)
         }
     }

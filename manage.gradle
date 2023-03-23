@@ -39,7 +39,8 @@ ext {
             "coroutines-android": 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1',
             "cir-seekbar": 'com.github.feeeei:CircleSeekbar:v1.1.2',
             "cirollor": 'com.seosh817:circularseekbar:1.0.0',
-            "rangeseekbar": 'com.github.Jay-Goo:RangeSeekBar:v3.0.0'
+            "rangeseekbar": 'com.github.Jay-Goo:RangeSeekBar:v3.0.0',
+            "lottie": 'com.airbnb.android:lottie:3.4.4'
 
     ]
 }

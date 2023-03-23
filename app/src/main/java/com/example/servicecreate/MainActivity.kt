@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.base.activity.BaseActivity
 import com.example.base.kxt.toast
 import com.example.servicecreate.databinding.ActivityMainBinding
+import com.example.servicecreate.ui.append.AppendFragment
 import com.example.servicecreate.ui.auth.AuthActivity
 import com.example.servicecreate.ui.home.HomeFragment
 import com.example.servicecreate.ui.setting.SettingFragment
@@ -23,7 +24,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         setCurrentFragment(homeFragment)
 
         floatButton.setOnClickListener {
-
+            AppendFragment().show(supportFragmentManager, "Append")
         }
 
         bottomNavigationView.apply {

@@ -24,6 +24,7 @@
             android:backgroundTint="@color/white"
             android:outlineProvider="none"
             app:fabCradleMargin="10dp"
+            app:fabAlignmentMode="center"
             app:hideOnScroll="false">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView

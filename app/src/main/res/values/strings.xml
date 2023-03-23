@@ -38,7 +38,7 @@
     <string name="auth_verified_login_success">登录成功</string>
     <string name="auth_verified_login_failure">登陆失败,请重试</string>
 
-<!--    airCondition -->
+    <!--    airCondition -->
     <string name="air_mode_tab1">制热</string>
     <string name="air_mode_tab2">制冷</string>
     <string name="air_mode_tab3">通风</string>
