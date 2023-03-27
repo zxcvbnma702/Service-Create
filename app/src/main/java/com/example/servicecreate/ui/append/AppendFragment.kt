@@ -68,11 +68,12 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
 
             defaultAdapter.setData(
                 listOf(
-                    AppendItem(R.drawable.ic_device_air, "空调"),
-                    AppendItem(R.drawable.ic_device_door_lock, "智能门锁"),
-                    AppendItem(R.drawable.ic_device_lamp, "灯"),
-                    AppendItem(R.drawable.ic_device_air, "空调"),
-                    AppendItem(R.drawable.ic_device_air, "空调")
+                    AppendItem(2, R.drawable.ic_device_air, "空调"),
+                    AppendItem(3, R.drawable.ic_device_door_lock, "智能门锁"),
+                    AppendItem(1, R.drawable.ic_device_lamp, "灯"),
+                    AppendItem(4,R.drawable.ic_device_air, "空调"),
+                    AppendItem(4, R.drawable.ic_device_air, "空调"),
+                    AppendItem(0, R.drawable.ic_room_10, "添加房间")
             ))
 
             appendSearch.setOnClickListener {

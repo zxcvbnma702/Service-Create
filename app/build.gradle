@@ -63,6 +63,7 @@ dependencies {
     implementation rootProject.ext.depsLibs["cirollor"]
     implementation rootProject.ext.depsLibs["rangeseekbar"]
     implementation rootProject.ext.depsLibs["lottie"]
+    implementation rootProject.ext.depsLibs["dialogX"]
 
     annotationProcessor rootProject.ext.depsLibs["room-compiler" ]
     kapt(rootProject.ext.depsLibs["room-compiler" ])

@@ -2,14 +2,22 @@ package com.example.servicecreate
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.base.activity.BaseActivity
 import com.example.base.kxt.toast
 import com.example.servicecreate.databinding.ActivityMainBinding
 import com.example.servicecreate.ui.append.AppendFragment
 import com.example.servicecreate.ui.auth.AuthActivity
+import com.example.servicecreate.ui.dialogMessageInfo
+import com.example.servicecreate.ui.dialogOkInfo
+import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.HomeFragment
 import com.example.servicecreate.ui.setting.SettingFragment
+import com.kongzue.dialogx.dialogs.MessageDialog
+import com.kongzue.dialogx.interfaces.OnDialogButtonClickListener
+import com.kongzue.dialogx.util.TextInfo
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -50,11 +58,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * Verify Login Status
      */
     private fun initUserData() {
+
         if(!ServiceCreateApplication.sp.getBoolean(ServiceCreateApplication.isLogin, false)){
-            toast(R.string.home_login_status_warning)
-            AuthActivity.startActivity(this@MainActivity)
-            finish()
+            MessageDialog.show(getString(R.string.auth_state_abnormal), getString(R.string.auth_state_abnormal_tip), "确定")
+                .setMaskColor(getColor(com.kongzue.dialogx.R.color.black30))
+                .setCancelable(false)
+                .setTitleTextInfo(dialogTitleInfo(this))
+                .setOkTextInfo(dialogOkInfo(this))
+                .setMessageTextInfo(dialogMessageInfo(this))
+                .setOkButton { _, _ ->
+                    AuthActivity.startActivity(this@MainActivity)
+                    finish()
+                    false
+                    }
+
         }
+
+        ServiceCreateApplication.appSecret =
+            ServiceCreateApplication.sp.getString(ServiceCreateApplication.userID, "").toString()
+        Log.e("ff", ServiceCreateApplication.appSecret)
     }
 
     /*

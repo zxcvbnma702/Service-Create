@@ -1,6 +1,7 @@
 package com.example.servicecreate.ui.home
 
 import android.annotation.SuppressLint
+import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -33,7 +34,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeListener, SwipeRef
         homeRecyclerview.adapter = adapter
         adapter.setData(arrayListOf(0, 1, 2, 3, 4, 6, 5, 2, 8, 9, 7))
 
-        homeUsername.text = "Hello, ${ServiceCreateApplication.sp.getString(ServiceCreateApplication.userID, "&&%&")}"
+        homeUsername.text = "Hello, ${ServiceCreateApplication.appSecret.split(".")}"
+
 
         homeTablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {

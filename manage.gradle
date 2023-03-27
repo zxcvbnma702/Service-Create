@@ -40,7 +40,8 @@ ext {
             "cir-seekbar": 'com.github.feeeei:CircleSeekbar:v1.1.2',
             "cirollor": 'com.seosh817:circularseekbar:1.0.0',
             "rangeseekbar": 'com.github.Jay-Goo:RangeSeekBar:v3.0.0',
-            "lottie": 'com.airbnb.android:lottie:3.4.4'
+            "lottie": 'com.airbnb.android:lottie:3.4.4',
+            "dialogX": 'com.kongzue.dialogx:DialogX:0.0.47'
 
     ]
 }

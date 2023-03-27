@@ -109,11 +109,11 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() , AuthListener{
             if(response != null){
                 if(response.code == 1){
                     toast(R.string.auth_verified_login_success)
-                    saveLoginStatus(userId = response.data.id, isLogin = true, isStore = false)
+                    saveLoginStatus(userId = response.data, isLogin = true, isStore = false)
                     MainActivity.startActivity(this@AuthActivity)
                     finish()
                 }else{
-                    toast(response.msg)
+                    response.msg?.let { toast(it) }
                 }
             }else{
                 toast(R.string.auth_verified_login_failure)

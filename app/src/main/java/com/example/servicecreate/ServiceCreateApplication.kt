@@ -5,6 +5,14 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.base.kxt.initSp
+import com.example.servicecreate.ui.*
+import com.example.servicecreate.ui.dialogMessageInfo
+import com.example.servicecreate.ui.dialogOkInfo
+import com.example.servicecreate.ui.dialogTitleInfo
+import com.kongzue.dialogx.DialogX
+import com.kongzue.dialogx.dialogs.InputDialog
+import com.kongzue.dialogx.dialogs.MessageDialog
+import com.kongzue.dialogx.style.MaterialStyle
 
 /**
  * @author:SunShibo
@@ -16,8 +24,7 @@ class ServiceCreateApplication : Application(){
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
         lateinit var sp: SharedPreferences
-//        const val appId = "00871f090e174fb7bf20fb1a6a7f71e2"
-//        const val appSecret = "863547048aa7289c0425787b4e8558bb15e68"
+        lateinit var appSecret: String
         const val userID = "userId"
         const val isLogin = "isLogin"
         const val isStore = "isStore"
@@ -26,7 +33,24 @@ class ServiceCreateApplication : Application(){
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-//        AppDatabase.invoke(this)
+        initDialog()
         sp = initSp()
     }
+
+    private fun initDialog() {
+        DialogX.init(this)
+        DialogX.globalStyle = MaterialStyle.style()
+        DialogX.titleTextInfo = dialogTitleInfo(this)
+        DialogX.okButtonTextInfo = dialogOkInfo(this)
+        DialogX.messageTextInfo = dialogMessageInfo(this)
+        DialogX.inputInfo = dialogInputInfo(this)
+        DialogX.implIMPLMode = DialogX.IMPL_MODE.DIALOG_FRAGMENT
+        DialogX.DEBUGMODE = true
+
+        MessageDialog.overrideEnterAnimRes = com.kongzue.dialogx.R.anim.anim_dialogx_bottom_enter
+        MessageDialog.overrideExitAnimRes = com.kongzue.dialogx.R.anim.anim_dialogx_bottom_exit
+
+    }
+
+
 }
