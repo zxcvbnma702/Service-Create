@@ -1,15 +1,19 @@
 package com.example.servicecreate.ui.home.adapter
 
 import com.bumptech.glide.Glide
-import com.example.base.kxt.toast
 import com.example.base.ui.activity.BaseAdapter
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ItemAppendDeviceCardBinding
 import com.example.servicecreate.logic.db.model.AppendItem
-import com.example.servicecreate.ui.home.append.AppendFragment
 import com.example.servicecreate.ui.dialogCancelInfo
+import com.example.servicecreate.ui.dialogMessageInfo
+import com.example.servicecreate.ui.dialogTitleInfo
+import com.example.servicecreate.ui.home.append.AppendFragment
 import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.InputDialog
+import com.kongzue.dialogx.dialogs.MessageDialog
+import com.kongzue.dialogx.dialogs.PopMenu
+
 
 /**
  * @author:SunShibo
@@ -20,6 +24,7 @@ class AppendDefaultRecyclerAdapter(
     private val fragment: AppendFragment,
 ) : BaseAdapter<AppendItem, ItemAppendDeviceCardBinding>() {
 
+    internal var roomList: MutableMap<String, Long> = mutableMapOf("空房间" to 0L)
     private val context = fragment.requireContext()
 
     override fun ItemAppendDeviceCardBinding.onBindViewHolder(bean: AppendItem, position: Int) {
@@ -29,31 +34,90 @@ class AppendDefaultRecyclerAdapter(
 
         }
 
-        if(bean.type == 0){
-            itemCardDeviceName.setTextColor(fragment.requireContext().getColor(R.color.second_color))
-            itemCardAppend.setOnClickListener {
-                InputDialog.show(context.getString(R.string.append_room),
-                    context.getString(R.string.append_room_tip),
-                    "确定",
-                    "取消",
-                    " ")
-                    .setMaskColor(context.getColor(com.kongzue.dialogx.R.color.black30))
-                    .setCancelable(false)
-                    .setCancelTextInfo(dialogCancelInfo(context))
-                    .setOkButton { dialog, v, inputStr ->
-                        if (inputStr.isNullOrBlank() || inputStr.isNullOrEmpty()) {
-                            "房间名不能为空".toast()
+        when (bean.type) {
+            0 -> {
+                itemCardDeviceName.setTextColor(
+                    fragment.requireContext().getColor(R.color.second_color)
+                )
+                itemCardAppend.setOnClickListener {
+                    InputDialog.show(
+                        context.getString(R.string.append_room),
+                        context.getString(R.string.append_room_tip),
+                        "确定",
+                        "取消",
+                        " "
+                    )
+                        .setMaskColor(context.getColor(com.kongzue.dialogx.R.color.black30))
+                        .setCancelable(false)
+                        .setCancelTextInfo(dialogCancelInfo(context))
+                        .setOkButton { dialog, v, inputStr ->
+                            if (inputStr.isNullOrBlank() || inputStr.isNullOrEmpty()) {
+                                "房间名不能为空".toast()
+                            } else {
+                                fragment.mViewModel.addRoom(inputStr)
+                            }
+                            false
                         }
-                        else{
-                            fragment.mViewModel.addRoom(inputStr)
-
+                        .setCancelButton { _, _ ->
+                            false
                         }
-                        false
-                    }
-                    .setCancelButton{_, _ ->
-                        false
-                    }
+                }
+            }
+            1 -> {
+                itemCardAppend.setOnClickListener {
+                    PopMenu.show(roomList.keys.toList())
+                        .setRadius(15f)
+                        .setOnMenuItemClickListener { dialog, text, index ->
+                            addDevice(roomList[text], text, 1)
+                            false
+                        }.menuTextInfo = dialogTitleInfo(context)
+                }
+            }
+            2 -> {
+                itemCardAppend.setOnClickListener {
+                    PopMenu.show(roomList.keys.toList())
+                        .setRadius(15f)
+                        .setOnMenuItemClickListener { dialog, text, index ->
+                            addDevice(roomList[text], text, 2)
+                            false
+                        }.menuTextInfo = dialogTitleInfo(context)
+                }
+            }
+            3 -> {
+                itemCardAppend.setOnClickListener {
+                    PopMenu.show(roomList.keys.toList())
+                        .setRadius(15f)
+                        .setOnMenuItemClickListener { dialog, text, index ->
+                            addDevice(roomList[text], text, 3)
+                            false
+                        }.menuTextInfo = dialogTitleInfo(context)
+                }
             }
         }
+    }
+
+    private fun addDevice(l: Long?, text: CharSequence, deviceType: Int) {
+        InputDialog.show(
+            context.getString(R.string.append_device_to) + " " + text,
+            context.getString(R.string.device_name),
+            "确定",
+            "取消",
+            " "
+        )
+            .setMaskColor(context.getColor(com.kongzue.dialogx.R.color.black30))
+            .setCancelable(false)
+            .setCancelTextInfo(dialogCancelInfo(context))
+            .setOkButton { dialog, v, inputStr ->
+                if (inputStr.isNullOrBlank() || inputStr.isNullOrEmpty()) {
+                    "设备名不能为空".toast()
+                } else {
+
+
+                }
+                false
+            }
+            .setCancelButton { _, _ ->
+                false
+            }
     }
 }

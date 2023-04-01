@@ -59,4 +59,6 @@
     <string name="append_room_tip">请输入房间名</string>
     <string name="home_delete_title">房间删除</string>
     <string name="home_delete_room_content">您确定要删除这个房间?</string>
+    <string name="append_device_to">添加设备到</string>
+    <string name="device_name">请输入设备名</string>
 </resources>

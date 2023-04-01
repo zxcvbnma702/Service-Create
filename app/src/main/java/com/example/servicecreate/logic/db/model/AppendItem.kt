@@ -9,8 +9,8 @@ import androidx.annotation.DrawableRes
  */
 /**
  * type = 0, 添加房间,
- * 1, 灯
- * 2, 空调,
+ * 1, 空调
+ * 2, 灯,
  * 3, 门锁
  * 4, other
  */

@@ -1,8 +1,7 @@
 package com.example.servicecreate.ui.home
 
 import androidx.lifecycle.LiveData
-import com.example.servicecreate.logic.network.model.RoomListResponse
-import com.example.servicecreate.logic.network.model.SendVerifiedResponse
+import com.example.servicecreate.logic.network.model.*
 
 /**
  * @author:SunShibo
@@ -11,7 +10,7 @@ import com.example.servicecreate.logic.network.model.SendVerifiedResponse
  */
 interface MainListener {
     fun onGetRoomList(result: LiveData<Result<RoomListResponse>>){}
-    fun onAddRoom(result: LiveData<Result<SendVerifiedResponse>>){}
     fun refreshHomepage(){}
     fun onDeleteRoom(result: LiveData<Result<SendVerifiedResponse>>){}
+    fun onGetDeviceKindList(result: LiveData<Result<RoomListResponse>>) {}
 }

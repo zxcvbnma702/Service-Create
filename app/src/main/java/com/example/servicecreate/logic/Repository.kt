@@ -67,6 +67,21 @@ object Repository {
         }
     }
 
+    fun getDeviceKindList(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.getDeviceKind(token)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun addDevice(token: String, deviceName: String, deviceType: Int) = fire(Dispatchers.IO){
+        val request = mapOf("name" to deviceName, "type" to deviceType.toString())
+        val response = NetworkCenter.addDevice(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

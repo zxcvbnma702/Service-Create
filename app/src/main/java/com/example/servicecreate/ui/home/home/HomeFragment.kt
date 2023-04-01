@@ -19,7 +19,6 @@ import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
-import com.example.servicecreate.ui.toast
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 
@@ -29,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
     private lateinit var deviceAdapter : HomeRecyclerAdapter
     internal val mViewModel: HomeViewModel by lazy {
         ViewModelProvider(
-            this,
+            requireActivity(),
             ViewModelProvider.NewInstanceFactory()
         )[HomeViewModel::class.java]
     }
@@ -104,6 +103,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
 
     private fun initData() {
         mViewModel.getRoomList()
+        mViewModel.getDeviceKind()
     }
 
     override fun onRefresh() {
@@ -135,6 +135,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
                     Log.e("delete", response.msg + response.data)
                 }
             }
+        }
+    }
+
+    override fun onGetDeviceKindList(result: LiveData<Result<RoomListResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            deviceAdapter.setData(response?.data)
         }
     }
 }

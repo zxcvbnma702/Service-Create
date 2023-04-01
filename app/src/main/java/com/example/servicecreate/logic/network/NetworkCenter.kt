@@ -2,6 +2,7 @@ package com.example.servicecreate.logic.network
 
 import android.util.Log
 import com.example.servicecreate.logic.network.api.AuthService
+import com.example.servicecreate.logic.network.api.DeviceService
 import com.example.servicecreate.logic.network.api.RoomService
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,6 +20,7 @@ object NetworkCenter {
 
     private val authServer = ServiceCreator.create<AuthService>()
     private val roomServer = ServiceCreator.create<RoomService>()
+    private val deviceServer = ServiceCreator.create<DeviceService>()
 
     /**
      * Auth
@@ -46,6 +48,16 @@ object NetworkCenter {
 
     suspend fun deleteRoom(token: String, request: Map<String, String>)
             = roomServer.deleteRoom(token, request).await()
+
+    /**
+     * Device
+     */
+    suspend fun getDeviceKind(token: String)
+        = deviceServer.getDeviceKind(token).await()
+
+    suspend fun addDevice(token: String, request: Map<String, String>)
+            = deviceServer.addDevice(token, request).await()
+
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

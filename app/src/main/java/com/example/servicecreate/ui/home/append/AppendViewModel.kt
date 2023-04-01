@@ -12,14 +12,24 @@ import com.example.servicecreate.ui.home.MainListener
  */
 class AppendViewModel: ViewModel() {
 
-    internal var mainListener: MainListener?= null
+    internal var appendListener: AppendListener?=null
     private val repository = Repository
 
     private val token = ServiceCreateApplication.appSecret
 
     fun addRoom(roomName: String){
         val response = repository.addRoom(token, roomName)
-        mainListener?.onAddRoom(response)
+        appendListener?.onAddRoom(response)
+    }
+
+    fun getRoomList(){
+        val result = repository.getRoomList(token)
+        appendListener?.onGetRoomList(result)
+    }
+
+    fun addDevice(deviceName: String, deviceType: Int){
+        val result = repository.addDevice(token, deviceName, deviceType)
+        appendListener?.onAddDevice(result)
     }
 
 

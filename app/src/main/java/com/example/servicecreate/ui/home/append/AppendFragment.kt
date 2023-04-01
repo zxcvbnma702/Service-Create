@@ -3,6 +3,7 @@ package com.example.servicecreate.ui.home.append
 import android.animation.LayoutTransition
 import android.os.Bundle
 import android.transition.Transition
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentAppendBinding
 import com.example.servicecreate.logic.db.model.AppendItem
+import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.AppendDefaultRecyclerAdapter
@@ -26,7 +28,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
  * @date:2023-03-21 21:54
  * @feature:
  */
-class AppendFragment: BottomSheetDialogFragment(), MainListener {
+class AppendFragment: BottomSheetDialogFragment(), AppendListener {
     private lateinit var behavior: BottomSheetBehavior<View>
     private lateinit var binding: FragmentAppendBinding
     private lateinit var defaultAdapter: AppendDefaultRecyclerAdapter
@@ -52,7 +54,7 @@ class AppendFragment: BottomSheetDialogFragment(), MainListener {
     ): View {
         binding = FragmentAppendBinding.inflate(inflater)
         binding.viewModel = mViewModel
-        mViewModel.mainListener = this@AppendFragment
+        mViewModel.appendListener = this@AppendFragment
 
         initView()
 
@@ -99,17 +101,13 @@ class AppendFragment: BottomSheetDialogFragment(), MainListener {
                     check = ! check
                 }
             }
-
         }
+        mViewModel.getRoomList()
     }
 
     override fun onStart() {
         super.onStart()
         initBottomSheet()
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
     //初始化bottomSheet状态
@@ -120,7 +118,7 @@ class AppendFragment: BottomSheetDialogFragment(), MainListener {
         behavior = BottomSheetBehavior.from(view)
         behavior.apply {
             state = BottomSheetBehavior.STATE_EXPANDED
-            isDraggable = false
+            isDraggable = true
         }
     }
 
@@ -132,6 +130,38 @@ class AppendFragment: BottomSheetDialogFragment(), MainListener {
                     1-> {
                         requireContext().toast(responses.data)
                         senResult()
+                        behavior.apply {
+                            state = BottomSheetBehavior.STATE_HIDDEN
+                        }
+                    }
+                    else ->{
+                        requireContext().toast(responses.msg)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onGetRoomList(result: LiveData<Result<RoomListResponse>>) {
+        result.observe(this){ re ->
+            val responses = re.getOrNull()
+            if (responses != null) {
+                defaultAdapter.roomList.putAll(responses.data.associate {
+                        it.name to it.id
+                    })
+                }
+            }
+
+    }
+
+    override fun onAddDevice(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val responses = re.getOrNull()
+            if (responses != null) {
+                when(responses.code){
+                    1-> {
+                        requireContext().toast(responses.data)
+
                     }
                     else ->{
                         requireContext().toast(responses.msg)
@@ -145,5 +175,4 @@ class AppendFragment: BottomSheetDialogFragment(), MainListener {
         val result = "result"
         setFragmentResult("refreshKey", bundleOf("bundleKey" to result))
     }
-
 }

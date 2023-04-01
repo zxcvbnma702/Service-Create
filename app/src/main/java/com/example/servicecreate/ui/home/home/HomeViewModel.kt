@@ -21,21 +21,33 @@ class HomeViewModel : ViewModel() {
 
     val _refresh = MutableSharedFlow<Int>()
 
+    val _jumpToExhibit = MutableSharedFlow<Long>()
+
     fun refreshHomePage(random: Int = 0) {
         viewModelScope.launch {
             _refresh.emit(random)
         }
     }
 
+    fun jumpToExhibitPage(jump: Long = 0) {
+        viewModelScope.launch {
+            _jumpToExhibit.emit(jump)
+        }
+    }
+
     fun getRoomList(){
-        Log.e("getRoom", "get")
         val result = repository.getRoomList(token)
         mainListener?.onGetRoomList(result)
     }
 
-    fun delete(roomId: String){
+    fun deleteRoom(roomId: String){
         val response = repository.deleteRoom(token, roomId)
         mainListener?.onDeleteRoom(response)
+    }
+
+    fun getDeviceKind(){
+        val response = repository.getDeviceKindList(token)
+        mainListener?.onGetDeviceKindList(response)
     }
 
 }
