@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.base.kxt.addOnBackPressed
 import com.example.base.ui.activity.BaseFragment
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentExhibitBinding
@@ -15,6 +16,7 @@ import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.ExhibitRecyclerAdapter
 import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
 import com.example.servicecreate.ui.home.home.HomeViewModel
+import com.example.servicecreate.ui.toast
 
 class ExhibitFragment(private val l: Long) : BaseFragment<FragmentExhibitBinding>() , MainListener{
 

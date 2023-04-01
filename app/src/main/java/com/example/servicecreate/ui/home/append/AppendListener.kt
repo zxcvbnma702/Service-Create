@@ -13,4 +13,5 @@ interface AppendListener {
     fun onGetRoomList(result: LiveData<Result<RoomListResponse>>)
     fun onAddDevice(result: LiveData<Result<SendVerifiedResponse>>)
     fun onAddRoom(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onAddDeviceToRoom(result: LiveData<Result<SendVerifiedResponse>>, roomId: Long)
 }

@@ -3,7 +3,6 @@ package com.example.servicecreate.ui.home.append
 import android.animation.LayoutTransition
 import android.os.Bundle
 import android.transition.Transition
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.example.servicecreate.databinding.FragmentAppendBinding
 import com.example.servicecreate.logic.db.model.AppendItem
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
-import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.AppendDefaultRecyclerAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -110,6 +108,10 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         initBottomSheet()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     //初始化bottomSheet状态
     private fun initBottomSheet() {
         val view: View = dialog?.findViewById(R.id.design_bottom_sheet)!!
@@ -122,8 +124,8 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         }
     }
 
-    override fun onAddRoom(response: LiveData<Result<SendVerifiedResponse>>) {
-        response.observe(this){ re ->
+    override fun onAddRoom(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
             val responses = re.getOrNull()
             if (responses != null) {
                 when(responses.code){
@@ -161,7 +163,23 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
                 when(responses.code){
                     1-> {
                         requireContext().toast(responses.data)
+                    }
+                    else ->{
+                        requireContext().toast(responses.msg)
+                    }
+                }
+            }
+        }
+    }
 
+    override fun onAddDeviceToRoom(result: LiveData<Result<SendVerifiedResponse>>, roomId: Long) {
+        result.observe(this){ re ->
+            val responses = re.getOrNull()
+            if (responses != null) {
+                when(responses.code){
+                    1-> {
+                        // TODO: 添加设备的同时添加房间 
+//                        mViewModel.addDeviceToRoom(res)
                     }
                     else ->{
                         requireContext().toast(responses.msg)

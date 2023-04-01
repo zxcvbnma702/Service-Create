@@ -32,5 +32,10 @@ class AppendViewModel: ViewModel() {
         appendListener?.onAddDevice(result)
     }
 
+    fun addDeviceToRoom(roomId: Long, deviceName: String, deviceType: Int) {
+        val result = repository.addDevice(token, deviceName, deviceType)
+        appendListener?.onAddDeviceToRoom(result, roomId)
+    }
+
 
 }

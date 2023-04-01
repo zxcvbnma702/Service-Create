@@ -58,6 +58,9 @@ object NetworkCenter {
     suspend fun addDevice(token: String, request: Map<String, String>)
             = deviceServer.addDevice(token, request).await()
 
+    suspend fun addDeviceToRoom(token: String, request: Map<String, String>)
+            = deviceServer.addDeviceToRoom(token, request).await()
+
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

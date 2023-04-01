@@ -82,6 +82,14 @@ object Repository {
         }
     }
 
+    fun addDeviceToRoom(token: String, deviceId: String, roomId: String) = fire(Dispatchers.IO){
+        val request = mapOf("roomId" to roomId, "equipmentId" to deviceId)
+        val response = NetworkCenter.addDeviceToRoom(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

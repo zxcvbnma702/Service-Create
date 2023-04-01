@@ -20,5 +20,7 @@ interface DeviceService {
     @POST("equipment/new")
     fun addDevice(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
+    @POST("equipment/add")
+    fun addDeviceToRoom(@Header("token") token: String, @Body requestBody: Map<String, String>):  Call<SendVerifiedResponse>
 
 }

@@ -96,7 +96,7 @@ class AppendDefaultRecyclerAdapter(
         }
     }
 
-    private fun addDevice(l: Long?, text: CharSequence, deviceType: Int) {
+    private fun addDevice(roomId: Long?, text: CharSequence, deviceType: Int) {
         InputDialog.show(
             context.getString(R.string.append_device_to) + " " + text,
             context.getString(R.string.device_name),
@@ -111,10 +111,23 @@ class AppendDefaultRecyclerAdapter(
                 if (inputStr.isNullOrBlank() || inputStr.isNullOrEmpty()) {
                     "设备名不能为空".toast()
                 } else {
-
+                    if(roomId == 0L){
+                        fragment.mViewModel.addDevice(inputStr, deviceType)
+                        return@setOkButton false
+                    }else{
+                        when {
+                            roomId != null -> {
+                                // TODO: 添加设备和房间
+//                                fragment.mViewModel.addDeviceToRoom(roomId, inputStr, deviceType)
+                            }
+                            else -> {
+                                "未知错误".toast()
+                            }
+                        }
+                    }
 
                 }
-                false
+                true
             }
             .setCancelButton { _, _ ->
                 false
