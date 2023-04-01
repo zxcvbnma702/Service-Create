@@ -1,4 +1,4 @@
-package com.example.servicecreate.ui.append
+package com.example.servicecreate.ui.home.append
 
 import android.animation.LayoutTransition
 import android.os.Bundle
@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentAppendBinding
 import com.example.servicecreate.logic.db.model.AppendItem
-import com.example.servicecreate.ui.append.adapter.AppendDefaultRecyclerAdapter
+import com.example.servicecreate.logic.network.model.SendVerifiedResponse
+import com.example.servicecreate.ui.home.MainListener
+import com.example.servicecreate.ui.home.adapter.AppendDefaultRecyclerAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -20,18 +26,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
  * @date:2023-03-21 21:54
  * @feature:
  */
-class AppendFragment: BottomSheetDialogFragment(), AppendListener {
+class AppendFragment: BottomSheetDialogFragment(), MainListener {
     private lateinit var behavior: BottomSheetBehavior<View>
     private lateinit var binding: FragmentAppendBinding
     private lateinit var defaultAdapter: AppendDefaultRecyclerAdapter
     private lateinit var netAdapter: AppendDefaultRecyclerAdapter
     private var check: Boolean = false
 
-    internal val viewModel: AppendViewModel by lazy {
+    internal val mViewModel: AppendViewModel by lazy {
         ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(AppendViewModel::class.java)
+        )[AppendViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +51,8 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAppendBinding.inflate(inflater)
-        binding.viewModel = viewModel
-        viewModel.appendListener = this@AppendFragment
+        binding.viewModel = mViewModel
+        mViewModel.mainListener = this@AppendFragment
 
         initView()
 
@@ -102,6 +108,10 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         initBottomSheet()
     }
 
+    override fun onStop() {
+        super.onStop()
+    }
+
     //初始化bottomSheet状态
     private fun initBottomSheet() {
         val view: View = dialog?.findViewById(R.id.design_bottom_sheet)!!
@@ -113,4 +123,27 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
             isDraggable = false
         }
     }
+
+    override fun onAddRoom(response: LiveData<Result<SendVerifiedResponse>>) {
+        response.observe(this){ re ->
+            val responses = re.getOrNull()
+            if (responses != null) {
+                when(responses.code){
+                    1-> {
+                        requireContext().toast(responses.data)
+                        senResult()
+                    }
+                    else ->{
+                        requireContext().toast(responses.msg)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun senResult(){
+        val result = "result"
+        setFragmentResult("refreshKey", bundleOf("bundleKey" to result))
+    }
+
 }

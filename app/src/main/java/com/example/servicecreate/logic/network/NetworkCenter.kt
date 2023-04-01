@@ -2,6 +2,7 @@ package com.example.servicecreate.logic.network
 
 import android.util.Log
 import com.example.servicecreate.logic.network.api.AuthService
+import com.example.servicecreate.logic.network.api.RoomService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +18,11 @@ import kotlin.coroutines.suspendCoroutine
 object NetworkCenter {
 
     private val authServer = ServiceCreator.create<AuthService>()
+    private val roomServer = ServiceCreator.create<RoomService>()
 
+    /**
+     * Auth
+     */
     suspend fun sendVerifiedCode(request: Map<String, String>)
         = authServer.sendVerifiedCode(request).await()
 
@@ -30,13 +35,25 @@ object NetworkCenter {
     suspend fun register(request: Map<String, String>)
         = authServer.register(request).await()
 
+    /**
+     * Room
+     */
+    suspend fun getRoomList(token: String)
+        = roomServer.getRoomList(token).await()
+
+    suspend fun addRoom(token: String, request: Map<String, String>)
+        = roomServer.addRoom(token, request).await()
+
+    suspend fun deleteRoom(token: String, request: Map<String, String>)
+            = roomServer.deleteRoom(token, request).await()
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
                     val body = response.body()
 //                    ToDo: delete this
-                    Log.e("data", response.toString())
+                    Log.e("NetworkCenter", response.toString())
                     if (body != null) continuation.resume(body)
                     else continuation.resumeWithException(
                         RuntimeException("response body is null")

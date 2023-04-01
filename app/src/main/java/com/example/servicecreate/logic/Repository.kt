@@ -1,6 +1,5 @@
 package com.example.servicecreate.logic
 
-import android.accounts.NetworkErrorException
 import androidx.lifecycle.liveData
 import com.example.servicecreate.logic.network.NetworkCenter
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +44,29 @@ object Repository {
         }
     }
 
+    fun getRoomList(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.getRoomList(token)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun addRoom(token: String, roomName: String) = fire(Dispatchers.IO){
+        val request = mapOf("name" to roomName)
+        val response = NetworkCenter.addRoom(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun deleteRoom(token: String, roomId: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to roomId)
+        val response = NetworkCenter.deleteRoom(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {
@@ -54,4 +76,5 @@ object Repository {
             }
             emit(result)
         }
+
 }

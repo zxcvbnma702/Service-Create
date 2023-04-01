@@ -15,7 +15,6 @@ import com.example.base.ui.activity.BaseFragment
 import com.example.servicecreate.R
 import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.FragmentAirConditionBinding
-import com.example.servicecreate.ui.home.HomeViewModel
 import com.google.android.material.tabs.TabLayout
 import com.jaygoo.widget.OnRangeChangedListener
 import com.jaygoo.widget.RangeSeekBar

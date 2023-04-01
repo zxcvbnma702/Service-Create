@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:padding="5dp"
-        android:layout_height="190dp"
+        android:layout_height="180dp"
         android:elevation="@dimen/ui_elevation_height"
         style="@style/MaterialAlertDialog.Material3">
 
@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/item_card_room_image"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/circle_bg"
@@ -43,11 +43,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="10dp"
                 android:text="Bedroom"
                 android:textColor="@color/black"
                 android:textSize="19sp"
                 android:textStyle="bold"
+                android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_card_room_image"/>
 
@@ -58,6 +59,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="1dp"
                 android:text="6 Devices"
+                android:gravity="center"
                 android:textColor="@color/icon_color"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -69,10 +71,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:text="No Comsumption"
                 android:textColor="@color/icon_color"
                 android:textSize="14sp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_card_room_number"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

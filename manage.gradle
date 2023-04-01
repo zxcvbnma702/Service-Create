@@ -41,7 +41,9 @@ ext {
             "cirollor": 'com.seosh817:circularseekbar:1.0.0',
             "rangeseekbar": 'com.github.Jay-Goo:RangeSeekBar:v3.0.0',
             "lottie": 'com.airbnb.android:lottie:3.4.4',
-            "dialogX": 'com.kongzue.dialogx:DialogX:0.0.47'
+            "dialogX": 'com.kongzue.dialogx:DialogX:0.0.47',
+            "lifecycle":'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+
 
     ]
 }

@@ -13,6 +13,7 @@
     <string name="home_tab1">房间</string>
     <string name="home_tab2">设备</string>
     <string name="home_login_status_warning">登录状态异常</string>
+    <string name="home_room_delete">房间删除成功</string>
 
     <!--    auth    -->
     <string name="auth_welcome_back">欢迎您使用我们的软件</string>
@@ -56,4 +57,6 @@
     <string name="append_search_cancel">取消</string>
     <string name="append_room">添加房间</string>
     <string name="append_room_tip">请输入房间名</string>
+    <string name="home_delete_title">房间删除</string>
+    <string name="home_delete_room_content">您确定要删除这个房间?</string>
 </resources>

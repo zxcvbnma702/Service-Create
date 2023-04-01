@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.servicecreate.ui.append.AppendViewModel" />
+            type="com.example.servicecreate.ui.home.append.AppendViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -2,22 +2,17 @@ package com.example.servicecreate
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.base.activity.BaseActivity
-import com.example.base.kxt.toast
 import com.example.servicecreate.databinding.ActivityMainBinding
-import com.example.servicecreate.ui.append.AppendFragment
+import com.example.servicecreate.ui.home.append.AppendFragment
 import com.example.servicecreate.ui.auth.AuthActivity
 import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogOkInfo
 import com.example.servicecreate.ui.dialogTitleInfo
-import com.example.servicecreate.ui.home.HomeFragment
+import com.example.servicecreate.ui.home.home.HomeFragment
 import com.example.servicecreate.ui.setting.SettingFragment
 import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.interfaces.OnDialogButtonClickListener
-import com.kongzue.dialogx.util.TextInfo
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -76,7 +71,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         ServiceCreateApplication.appSecret =
             ServiceCreateApplication.sp.getString(ServiceCreateApplication.userID, "").toString()
-        Log.e("ff", ServiceCreateApplication.appSecret)
     }
 
     /*

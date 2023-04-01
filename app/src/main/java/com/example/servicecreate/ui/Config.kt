@@ -1,6 +1,7 @@
 package com.example.servicecreate.ui
 
 import android.content.Context
+import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.ServiceCreateApplication
 import com.kongzue.dialogx.util.InputInfo
@@ -46,6 +47,12 @@ internal fun dialogInputInfo(context: Context): InputInfo? {
     }
     return inputInfo
 }
+
+fun String.toast(){
+    ServiceCreateApplication.context.toast(this)
+}
+
+var token = ""
 
 
 
