@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.servicecreate.ui.controller.ControllerViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,6 +24,9 @@
             app:navigationIconTint="@color/main_color_primary_secondary"
             app:title="xxx device"
             app:titleCentered="true"
+            app:subtitle="xx 房间"
+            app:subtitleCentered="true"
+            app:subtitleTextColor="@color/main_color_primary_variant"
             android:elevation="@dimen/ui_elevation_height"
             app:navigationContentDescription="返回上一级"
             app:navigationIcon="@drawable/ic_outline_navigate_before_24"

@@ -20,8 +20,8 @@ import com.example.servicecreate.ui.toast
 
 class ExhibitFragment(private val l: Long) : BaseFragment<FragmentExhibitBinding>() , MainListener{
 
-    private lateinit var roomAdapter : ExhibitRecyclerAdapter
-    private lateinit var deviceAdapter : ExhibitRecyclerAdapter
+    private lateinit var roomsDeviceAdapter : ExhibitRecyclerAdapter
+    private lateinit var kindDeviceAdapter : ExhibitRecyclerAdapter
     internal val mViewModel: ExhibitViewModel by lazy {
         ViewModelProvider(
             this,
@@ -33,15 +33,29 @@ class ExhibitFragment(private val l: Long) : BaseFragment<FragmentExhibitBinding
         binding.viewModel = mViewModel
         mViewModel.mainListener = this@ExhibitFragment
 
-        initData()
+        roomsDeviceAdapter = ExhibitRecyclerAdapter(this@ExhibitFragment)
+        kindDeviceAdapter = ExhibitRecyclerAdapter(this@ExhibitFragment)
+        exhibitRecyclerview.adapter = roomsDeviceAdapter
 
-        roomAdapter = ExhibitRecyclerAdapter(this@ExhibitFragment)
-        deviceAdapter = ExhibitRecyclerAdapter(this@ExhibitFragment)
-        exhibitRecyclerview.adapter = roomAdapter
+        when(l){
+            1L -> exhibitToolbar.title = "所有的空调"
+            2L -> exhibitToolbar.title = "所有的灯"
+            3L -> exhibitToolbar.title = "所有的门锁"
+            else ->{
+                exhibitToolbar.title = "先谢谢房间"
+            }
+        }
+
+        exhibitToolbar.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
+        initData()
 
     }
 
     private fun initData() {
+        roomsDeviceAdapter.setData(arrayListOf(1, 2, 3, l))
         Log.e("id", l.toString())
     }
 

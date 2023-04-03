@@ -13,4 +13,6 @@ interface MainListener {
     fun refreshHomepage(){}
     fun onDeleteRoom(result: LiveData<Result<SendVerifiedResponse>>){}
     fun onGetDeviceKindList(result: LiveData<Result<RoomListResponse>>) {}
+    fun onGetDeviceList(result: LiveData<Result<DeviceListResponse>>) {}
+    fun onDeleteDevice(result: LiveData<Result<SendVerifiedResponse>>){}
 }

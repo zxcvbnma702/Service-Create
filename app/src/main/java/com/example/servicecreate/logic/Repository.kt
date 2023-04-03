@@ -89,6 +89,20 @@ object Repository {
             Result.success(response)
         }
     }
+    fun getDeviceList(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.getDeviceList(token)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun deleteDevice(token: String, deviceId: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to deviceId)
+        val response = NetworkCenter.deleteDevice(token, request)
+        run {
+            Result.success(response)
+        }
+    }
 
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {

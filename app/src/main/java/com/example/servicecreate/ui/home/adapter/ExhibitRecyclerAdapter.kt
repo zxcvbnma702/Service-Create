@@ -8,11 +8,12 @@ import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
 /**
  * @author:SunShibo
  * @date:2023-04-01 11:32
- * @feature:
+ * @feature: 展示设备界面adapter
  */
 class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
-    BaseAdapter<Int, ItemExhibitRoomCardBinding>() {
-    override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: Int, position: Int) {
+    BaseAdapter<Long, ItemExhibitRoomCardBinding>() {
+    override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: Long, position: Int) {
+
 
     }
 }

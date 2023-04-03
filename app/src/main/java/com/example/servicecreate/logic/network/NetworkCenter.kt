@@ -61,6 +61,12 @@ object NetworkCenter {
     suspend fun addDeviceToRoom(token: String, request: Map<String, String>)
             = deviceServer.addDeviceToRoom(token, request).await()
 
+    suspend fun getDeviceList(token: String)
+            = deviceServer.getDeviceList(token).await()
+
+    suspend fun deleteDevice(token: String, request: Map<String, String>)
+            = deviceServer.deleteDevice(token, request).await()
+
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

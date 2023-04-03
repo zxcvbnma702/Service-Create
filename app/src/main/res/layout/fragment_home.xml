@@ -182,7 +182,8 @@
                     app:tabMaxWidth="90dp"
                     app:tabMinWidth="80dp"
                     app:tabMode="auto"
-                    app:tabRippleColor="@android:color/transparent"
+                    app:tabUnboundedRipple="true"
+                    app:tabRippleColor="@color/second_color_variant"
                     app:tabSelectedTextColor="@color/white"
                     app:tabTextColor="@color/black">
 
@@ -202,6 +203,20 @@
                         android:text="@string/home_tab2" />
 
                 </com.google.android.material.tabs.TabLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:visibility="gone"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/home_mode"
+                    android:background="@drawable/circle_bg"
+                    android:backgroundTint="@color/second_color_variant"
+                    app:shapeAppearance="@drawable/circle_bg"
+                    app:layoutDescription="@string/home_shift_mode"
+                    app:layout_constraintTop_toBottomOf="@+id/home_cardView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_recyclerview"

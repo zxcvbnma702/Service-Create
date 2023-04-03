@@ -35,4 +35,9 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="editTextLine" parent="Theme.Material3.Light">
+        <item name="colorControlNormal">@color/main_color_primary_variant</item>
+        <item name="colorControlActivated">@color/second_color_variant</item>
+    </style>
+
 </resources>

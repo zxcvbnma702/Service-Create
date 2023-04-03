@@ -5,11 +5,21 @@ package com.example.servicecreate.logic.network.model
  * @date:2023-04-01 11:44
  * @feature:
  */
-data class DeviceKindListResponse(
+data class DeviceListResponse(
     val code: Int,
-    val `data`: List<DeviceKindData>,
+    val `data`: List<DeviceData>,
     val map: Map,
-    val msg: Any
+    val msg: String?
+)
+
+data class DeviceData(
+    val createTime: String,
+    val id: Long,
+    val isDeleted: Int,
+    val name: String,
+    val roomList: List<RoomData>,
+    val type: Int,
+    val updateTime: String
 )
 
 data class DeviceKindData(
@@ -17,3 +27,5 @@ data class DeviceKindData(
     val id: Int,
     val name: String
 )
+
+

@@ -23,7 +23,6 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
     override fun ItemHomeRoomCardBinding.onBindViewHolder(bean: RoomData, position: Int) {
 
         if(bean.id < 100){
-
             itemCardHome.setOnClickListener {
                 fragment.mViewModel.jumpToExhibitPage(bean.id)
             }

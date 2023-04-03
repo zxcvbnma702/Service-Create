@@ -23,6 +23,8 @@ interface RoomService {
     @HTTP(method = "DELETE", path = "room/delete", hasBody = true)
     fun deleteRoom(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
+    fun getDevicesByRoomId(@Header("token") token: String, @Query("id")id: String)
+
 //    @GET("room")
 //    fun getRoomDevices(@Query("id") id: String):
 }

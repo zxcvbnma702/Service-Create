@@ -52,7 +52,9 @@ fun String.toast(){
     ServiceCreateApplication.context.toast(this)
 }
 
-var token = ""
+enum class DeviceType{
+   None, Air, Lamp, DoorLock
+}
 
 
 
