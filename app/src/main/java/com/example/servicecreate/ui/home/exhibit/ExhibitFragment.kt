@@ -17,7 +17,7 @@ import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
 import com.example.servicecreate.ui.home.home.HomeViewModel
 import com.example.servicecreate.ui.toast
 
-class ExhibitFragment(private val l: Long) : BaseFragment<FragmentExhibitBinding>() , ExhibitListener{
+class ExhibitFragment(private val l: Long, private val roomName: String) : BaseFragment<FragmentExhibitBinding>() , ExhibitListener{
 
     private lateinit var roomsDeviceAdapter : ExhibitRecyclerAdapter
     private lateinit var kindDeviceAdapter : ExhibitRecyclerAdapter
@@ -41,7 +41,7 @@ class ExhibitFragment(private val l: Long) : BaseFragment<FragmentExhibitBinding
             2L -> exhibitToolbar.title = "所有的灯"
             3L -> exhibitToolbar.title = "所有的门锁"
             else ->{
-                exhibitToolbar.title = "默认房间"
+                exhibitToolbar.title = roomName
                 exhibitToolbar.subtitle = l.toString()
             }
         }
@@ -55,8 +55,13 @@ class ExhibitFragment(private val l: Long) : BaseFragment<FragmentExhibitBinding
     }
 
     private fun initData() {
-        mViewModel.getRoomDetail(l)
-        mViewModel.getRoomDevices(l)
+        if(l < 100){
+            mViewModel.getDeviceListByType(l.toInt())
+        }else{
+            mViewModel.getRoomDetail(l)
+            mViewModel.getRoomDevices(l)
+        }
+
         Log.e("id", l.toString())
     }
 
@@ -87,6 +92,21 @@ class ExhibitFragment(private val l: Long) : BaseFragment<FragmentExhibitBinding
                 }
             }else{
                 requireContext().toast(R.string.exhibit_room_device_failure)
+            }
+        }
+    }
+
+    override fun onDeviceListByType(result: LiveData<Result<DeviceListResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if(response != null){
+                if(response.code == 1){
+                    roomsDeviceAdapter.setData(response.data)
+                }else{
+                    requireContext().toast(R.string.exhibit_kind_device_failure)
+                }
+            }else{
+                requireContext().toast(R.string.exhibit_kind_device_failure)
             }
         }
     }

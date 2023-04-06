@@ -22,6 +22,8 @@ class HomeViewModel : ViewModel() {
 
     private var v: Boolean = false
 
+    internal var roomName: String = "默认房间"
+
     val _refresh = MutableSharedFlow<Int>()
 
     val _jumpToExhibit = MutableSharedFlow<Long>()
@@ -42,6 +44,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun jumpToExhibitPage(jump: Long = 0, name: String) {
+        roomName = name
         viewModelScope.launch {
             _jumpToExhibit.emit(jump)
         }

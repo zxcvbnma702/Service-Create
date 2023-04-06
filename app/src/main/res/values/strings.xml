@@ -76,6 +76,7 @@
 
     <string name="custom_input_device_id">请输入设备id</string>
     <string name="custom_input_device_name">请输入您喜欢的设备名</string>
+    <string name="exhibit_kind_device_failure">设备获取失败</string>
 
 
 </resources>

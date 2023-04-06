@@ -112,6 +112,13 @@ object Repository {
         }
     }
 
+    fun getDeviceListByType(token: String, type: Int) = fire(Dispatchers.IO){
+        val response = NetworkCenter.getDeviceListByType(token, type)
+        run {
+            Result.success(response)
+        }
+    }
+
     fun deleteDevice(token: String, deviceId: String) = fire(Dispatchers.IO){
         val request = mapOf("id" to deviceId)
         val response = NetworkCenter.deleteDevice(token, request)

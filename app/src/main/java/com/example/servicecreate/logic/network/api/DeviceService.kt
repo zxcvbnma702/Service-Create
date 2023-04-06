@@ -23,6 +23,9 @@ interface DeviceService {
     @GET("equipment/list")
     fun getDeviceList(@Header("token") token: String): Call<DeviceListResponse>
 
+    @GET("equipment/list")
+    fun getDeviceListByType(@Header("token") token: String, @Query("type") type: Int): Call<DeviceListResponse>
+
     @HTTP(method = "DELETE", path = "equipment", hasBody = true)
     fun deleteDevice(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 }

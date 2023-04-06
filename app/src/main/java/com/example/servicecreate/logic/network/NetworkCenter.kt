@@ -71,6 +71,9 @@ object NetworkCenter {
     suspend fun getDeviceList(token: String)
             = deviceServer.getDeviceList(token).await()
 
+    suspend fun getDeviceListByType(token: String, type: Int)
+            = deviceServer.getDeviceListByType(token, type).await()
+
     suspend fun deleteDevice(token: String, request: Map<String, String>)
             = deviceServer.deleteDevice(token, request).await()
 

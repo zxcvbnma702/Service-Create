@@ -12,4 +12,6 @@ import com.example.servicecreate.logic.network.model.RoomListResponse
 interface ExhibitListener {
     fun onRoomDetail(result: LiveData<Result<RoomListResponse>>)
     fun onRoomDevice(result: LiveData<Result<DeviceListResponse>>)
+    fun onDeviceListByType(result: LiveData<Result<DeviceListResponse>>)
+
 }

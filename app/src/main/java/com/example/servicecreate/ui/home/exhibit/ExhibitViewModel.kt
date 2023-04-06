@@ -27,5 +27,10 @@ class ExhibitViewModel :ViewModel(){
         exhibitListener?.onRoomDevice(result)
     }
 
+    fun getDeviceListByType(type: Int){
+        val result = repository.getDeviceListByType(token, type)
+        exhibitListener?.onDeviceListByType(result)
+    }
+
 
 }

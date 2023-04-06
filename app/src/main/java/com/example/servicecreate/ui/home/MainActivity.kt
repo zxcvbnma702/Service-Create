@@ -70,7 +70,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 mViewModel._jumpToExhibit.collect{
                    when(it){
                        0L -> "错误".toast()
-                       else -> exhibitFragment(it)
+                       else -> exhibitFragment(it, this@with.roomName)
                     }
                 }
             }
@@ -122,9 +122,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     /**
      * Jump to ExhibitFragment
      */
-    private fun exhibitFragment(l: Long) {
+    private fun exhibitFragment(l: Long, roomName: String) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.top_container, ExhibitFragment(l))
+            replace(R.id.top_container, ExhibitFragment(l, roomName))
             setReorderingAllowed(true)
             addToBackStack("name")
         }.commit()
