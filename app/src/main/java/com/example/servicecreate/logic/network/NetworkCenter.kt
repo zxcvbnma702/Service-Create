@@ -7,6 +7,7 @@ import com.example.servicecreate.logic.network.api.RoomService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Body
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -48,6 +49,12 @@ object NetworkCenter {
 
     suspend fun deleteRoom(token: String, request: Map<String, String>)
             = roomServer.deleteRoom(token, request).await()
+
+    suspend fun getRoomDetail(token: String, request: Map<String, String>)
+            = roomServer.getRoomDetail(token, request).await()
+
+    suspend fun getRoomDevices(token: String, request: Map<String, String>)
+            = roomServer.getRoomDevices(token, request).await()
 
     /**
      * Device

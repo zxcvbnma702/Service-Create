@@ -41,7 +41,7 @@ class HomeViewModel : ViewModel() {
         v = !v
     }
 
-    fun jumpToExhibitPage(jump: Long = 0) {
+    fun jumpToExhibitPage(jump: Long = 0, name: String) {
         viewModelScope.launch {
             _jumpToExhibit.emit(jump)
         }

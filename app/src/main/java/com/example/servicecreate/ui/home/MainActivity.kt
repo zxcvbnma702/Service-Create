@@ -1,4 +1,4 @@
-package com.example.servicecreate
+package com.example.servicecreate.ui.home
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.base.activity.BaseActivity
+import com.example.servicecreate.R
+import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.ActivityMainBinding
 import com.example.servicecreate.ui.home.append.AppendFragment
 import com.example.servicecreate.ui.auth.AuthActivity
@@ -117,6 +119,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             commit()
         }
 
+    /**
+     * Jump to ExhibitFragment
+     */
     private fun exhibitFragment(l: Long) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.top_container, ExhibitFragment(l))

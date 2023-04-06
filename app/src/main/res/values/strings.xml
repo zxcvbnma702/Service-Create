@@ -54,6 +54,11 @@
     <string name="air_wind_tab_auto">自动扫风</string>
     <string name="air_wind_tab_up_down">上下扫风</string>
 
+    <!--    Exhibition -->
+    <string name="exhibit_room_detail_failure">房间信息获取失败</string>
+    <string name="exhibit_room_device_failure">房间设备获取失败</string>
+
+    <!--    AppendFragment -->
     <string name="append_search">点击搜索设备</string>
     <string name="append_search_tip">点击设备图标或点击搜索按钮添加设备</string>
     <string name="append_search_running">正在搜索中…</string>

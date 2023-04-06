@@ -206,6 +206,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout
+            app:tabUnboundedRipple="true"
             android:id="@+id/air_mode_shift"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -222,7 +223,7 @@
             app:tabIndicatorGravity="center"
             app:tabIndicatorHeight="50dp"
             app:tabMinWidth="80dp"
-            app:tabRippleColor="@android:color/transparent"
+            app:tabRippleColor="@color/white"
             app:tabSelectedTextColor="@color/main_color"
             app:tabTextColor="@color/black">
 
@@ -307,7 +308,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/retangle_bg"
             android:backgroundTint="@color/fill_bg_color"
             android:elevation="-1dp"
@@ -317,9 +318,10 @@
             app:tabIndicator="@drawable/retangle_bg"
             app:tabIndicatorColor="@color/white"
             app:tabIndicatorGravity="center"
+            app:tabRippleColor="@color/white"
             app:tabIndicatorHeight="50dp"
             app:tabMinWidth="80dp"
-            app:tabRippleColor="@android:color/transparent"
+            app:tabUnboundedRipple="true"
             app:tabSelectedTextColor="@color/main_color"
             app:tabTextColor="@color/black"
             android:visibility="gone">

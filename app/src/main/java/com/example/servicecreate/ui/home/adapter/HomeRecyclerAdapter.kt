@@ -24,7 +24,7 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
 
         if(bean.id < 100){
             itemCardHome.setOnClickListener {
-                fragment.mViewModel.jumpToExhibitPage(bean.id)
+                fragment.mViewModel.jumpToExhibitPage(bean.id, bean.name)
             }
             when(bean.id){
                 1L -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
@@ -35,7 +35,7 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
 
         }else{
             itemCardHome.setOnClickListener {
-                fragment.mViewModel.jumpToExhibitPage(bean.id)
+                fragment.mViewModel.jumpToExhibitPage(bean.id, bean.name)
             }
             itemCardHome.setOnLongClickListener {
                 MessageDialog.show(context.getString(R.string.home_delete_title), context.getString(R.string.home_delete_room_content), "确定", "取消")

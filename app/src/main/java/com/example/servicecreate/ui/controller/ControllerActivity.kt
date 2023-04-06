@@ -8,6 +8,7 @@ import com.example.base.activity.BaseActivity
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ActivityControllerBinding
 import com.example.servicecreate.ui.controller.air.AirConditionFragment
+import com.example.servicecreate.ui.controller.camera.CameraFragment
 import com.example.servicecreate.ui.controller.doorlock.DoorLockFragment
 import com.example.servicecreate.ui.controller.light.LightFragment
 import com.example.servicecreate.ui.home.home.HomeViewModel
@@ -18,6 +19,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
     private lateinit var airFragment: AirConditionFragment
     private lateinit var lightFragment: LightFragment
     private lateinit var doorLockFragment: DoorLockFragment
+    private lateinit var cameraFragment: CameraFragment
 
     internal val mViewModel: ControllerViewModel by lazy {
         ViewModelProvider(
@@ -40,8 +42,11 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
 
         when(mViewModel.type){
             1 -> setCurrentFragment(airFragment)
-            2 -> setCurrentFragment(lightFragment)
+//            2 -> setCurrentFragment(lightFragment)
             3 -> setCurrentFragment(doorLockFragment)
+            else ->{
+                setCurrentFragment(cameraFragment)
+            }
         }
 
         controllerToolbar.apply {
@@ -60,6 +65,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
        airFragment = AirConditionFragment()
         lightFragment = LightFragment()
         doorLockFragment = DoorLockFragment()
+        cameraFragment = CameraFragment()
     }
 
     /*

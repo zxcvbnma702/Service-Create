@@ -6,7 +6,6 @@ import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.Transition
-import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.lifecycle.LiveData
@@ -15,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.base.activity.BaseActivity
 import com.example.base.kxt.toast
 import com.example.base.ui.util.StatusUtil.countDownCoroutines
-import com.example.servicecreate.MainActivity
+import com.example.servicecreate.ui.home.MainActivity
 import com.example.servicecreate.R
 import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.ActivityAuthBinding
@@ -23,7 +22,6 @@ import com.example.servicecreate.logic.network.model.LoginResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.Job
-import retrofit2.Call
 
 
 class AuthActivity : BaseActivity<ActivityAuthBinding>() , AuthListener{

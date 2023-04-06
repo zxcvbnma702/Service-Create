@@ -1,8 +1,12 @@
 package com.example.servicecreate.ui.home.adapter
 
+import com.bumptech.glide.Glide
 import com.example.base.ui.activity.BaseAdapter
+import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ItemExhibitRoomCardBinding
 import com.example.servicecreate.databinding.ItemHomeRoomCardBinding
+import com.example.servicecreate.logic.network.model.DeviceData
+import com.example.servicecreate.ui.controller.ControllerActivity
 import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
 
 /**
@@ -11,9 +15,31 @@ import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
  * @feature: 展示设备界面adapter
  */
 class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
-    BaseAdapter<Long, ItemExhibitRoomCardBinding>() {
-    override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: Long, position: Int) {
+    BaseAdapter<DeviceData, ItemExhibitRoomCardBinding>() {
 
+    private val context = fragment.requireContext()
+
+    override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
+        itemCardRoomName.text = bean.name
+        itemCardRoomDescription.text = "上次使用: ${bean.updateTime}"
+        when(bean.type){
+            1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
+            2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
+            3 -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
+        }
+        if(bean.roomList.isNotEmpty()){
+            itemCardRoomNumber.text = bean.roomList.first().name
+        }else{
+            itemCardRoomNumber.text = "默认房间"
+        }
+
+        itemCardExhibit.setOnClickListener {
+            if(bean.roomList.isNotEmpty()){
+                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, bean.roomList.first().name)
+            }else{
+                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "默认房间")
+            }
+        }
 
     }
 }

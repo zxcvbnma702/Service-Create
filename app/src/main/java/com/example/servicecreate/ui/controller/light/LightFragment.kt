@@ -17,7 +17,7 @@ class LightFragment : BaseFragment<FragmentLightBinding>(), LightListener{
         ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(LightViewModel::class.java)
+        )[LightViewModel::class.java]
     }
 
     override fun FragmentLightBinding.initBindingView() {

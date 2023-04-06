@@ -66,6 +66,7 @@ dependencies {
     implementation rootProject.ext.depsLibs["dialogX"]
     implementation rootProject.ext.depsLibs["lifecycle"]
     implementation rootProject.ext.depsLibs["fragment"]
+    implementation rootProject.ext.depsLibs["videoplayer"]
 
     annotationProcessor rootProject.ext.depsLibs["room-compiler" ]
     kapt(rootProject.ext.depsLibs["room-compiler" ])

@@ -1,5 +1,6 @@
 package com.example.servicecreate.ui.home.exhibit
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.logic.Repository
@@ -11,10 +12,20 @@ import com.example.servicecreate.ui.home.MainListener
  * @feature:
  */
 class ExhibitViewModel :ViewModel(){
-    internal var mainListener: MainListener?= null
+    internal var exhibitListener: ExhibitListener?= null
     private val repository = Repository
 
     private val token = ServiceCreateApplication.appSecret
+
+    fun getRoomDetail(id : Long){
+        val result = repository.getRoomDetail(token, id)
+        exhibitListener?.onRoomDetail(result)
+    }
+
+    fun getRoomDevices(id: Long){
+        val result = repository.getRoomDevices(token, id)
+        exhibitListener?.onRoomDevice(result)
+    }
 
 
 }

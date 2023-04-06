@@ -169,7 +169,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
     override fun onGetDeviceList(result: LiveData<Result<DeviceListResponse>>) {
         result.observe(this){ re ->
             val response = re.getOrNull()
-            Log.e("gg", response.toString())
             devicesAdapter.setData(response?.data)
         }
     }
@@ -183,7 +182,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
                     mViewModel.refreshHomePage()
                 }else{
                     requireContext().toast(R.string.home_device_delete_failure)
-                    Log.e("delete", response.msg + response.data)
                 }
             }
         }

@@ -67,6 +67,22 @@ object Repository {
         }
     }
 
+    fun getRoomDetail(token: String, roomId: Long) = fire(Dispatchers.IO){
+        val request = mapOf("id" to roomId.toString())
+        val response = NetworkCenter.getRoomDetail(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun getRoomDevices(token: String, roomId: Long) = fire(Dispatchers.IO){
+        val request = mapOf("id" to roomId.toString())
+        val response = NetworkCenter.getRoomDevices(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
     fun getDeviceKindList(token: String) = fire(Dispatchers.IO){
         val response = NetworkCenter.getDeviceKind(token)
         run {

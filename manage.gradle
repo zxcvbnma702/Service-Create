@@ -1,6 +1,6 @@
 ext {
     android = [
-            "compileSdkVersion": 32,
+            "compileSdkVersion": 33,
             "buildToolsVersion": "29.0.0",
             "minSdkVersion"    : 23,
             "targetSdkVersion" : 32,
@@ -37,12 +37,15 @@ ext {
             "picture-compress": 'io.github.lucksiege:compress:v3.10.6',
             "coroutines-core" : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2',
             "coroutines-android": 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1',
-            "cir-seekbar": 'com.github.feeeei:CircleSeekbar:v1.1.2',
-            "cirollor": 'com.seosh817:circularseekbar:1.0.0',
-            "rangeseekbar": 'com.github.Jay-Goo:RangeSeekBar:v3.0.0',
-            "lottie": 'com.airbnb.android:lottie:3.4.4',
-            "dialogX": 'com.kongzue.dialogx:DialogX:0.0.47',
-            "lifecycle":'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+            "cir-seekbar"   : 'com.github.feeeei:CircleSeekbar:v1.1.2',
+            "cirollor"      : 'com.seosh817:circularseekbar:1.0.0',
+            "rangeseekbar"  : 'com.github.Jay-Goo:RangeSeekBar:v3.0.0',
+            "lottie"        : 'com.airbnb.android:lottie:3.4.4',
+            "dialogX"       : 'com.kongzue.dialogx:DialogX:0.0.47',
+            "lifecycle"     : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1',
+            "videoplayer"   : 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.3.5-release-jitpack',
+            "videokernel"   : 'cn.yc:VideoKernel:3.0.6',
+            "videocache"    : 'cn.yc:VideoCache:3.0.5'
 
 
     ]
