@@ -53,7 +53,7 @@ class AirConditionFragment(private val id: Long) : BaseFragment<FragmentAirCondi
             lifecycleScope.launch {
                 _airController.collect{
                     mViewModel.sendControllerToNet()
-                    Log.e("air", it.toString())
+                    Log.e("airControllerData", it.toString())
                 }
             }
         }

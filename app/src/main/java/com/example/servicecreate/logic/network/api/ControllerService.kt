@@ -25,5 +25,7 @@ interface ControllerService {
     @POST("controller/conditioner")
     fun airController(@Header("token") token: String, @Body requestBody: Map<String, Int>): Call<SendVerifiedResponse>
 
+    @POST("controller/light")
+    fun lampController(@Header("token") token: String, @Body requestBody: Map<String, Int>): Call<SendVerifiedResponse>
 
 }

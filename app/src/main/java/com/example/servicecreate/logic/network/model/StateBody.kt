@@ -24,3 +24,19 @@ data class AirStateData(
     val updateTime: String
 )
 
+data class LampDetailResponse(
+    val code: Int,
+    val `data`: LampStateData,
+    val map: Map,
+    val msg: Any
+)
+
+data class LampStateData(
+    val createTime: String,
+    val id: Long,
+    val is_deleted: Any,
+    val state: Int,
+    val updateTime: String
+)
+
+

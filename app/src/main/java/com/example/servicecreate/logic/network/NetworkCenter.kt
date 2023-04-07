@@ -81,11 +81,18 @@ object NetworkCenter {
 
     suspend fun getAirDetail(token: String, id: Int)
             = deviceServer.getAirState(token, id).await()
+
+    suspend fun getLampDetail(token: String, id: Int)
+            = deviceServer.getLampState(token, id).await()
+
     /**
      * Controller
      */
     suspend fun airController(token: String, request: Map<String, Int>)
             = controllerServer.airController(token, request).await()
+
+    suspend fun lampController(token: String, request: Map<String, Int>)
+            = controllerServer.lampController(token, request).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

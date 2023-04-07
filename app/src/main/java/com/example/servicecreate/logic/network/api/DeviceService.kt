@@ -31,4 +31,7 @@ interface DeviceService {
 
     @GET("equipment/conditioner")
     fun getAirState(@Header("token") token: String, @Query("id") id: Int): Call<AirDetailResponse>
+
+    @GET("equipment/led")
+    fun getLampState(@Header("token") token: String, @Query("id") id: Int): Call<LampDetailResponse>
 }

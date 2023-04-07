@@ -2,7 +2,6 @@ package com.example.servicecreate.ui.controller
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.base.activity.BaseActivity
@@ -63,7 +62,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
     */
     private fun initFragment() {
        airFragment = AirConditionFragment(mViewModel.id)
-        lightFragment = LightFragment()
+        lightFragment = LightFragment(mViewModel.id)
         doorLockFragment = DoorLockFragment()
         cameraFragment = CameraFragment()
     }
