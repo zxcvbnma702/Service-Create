@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.base.kxt.addOnBackPressed
 import com.example.base.kxt.toast
 import com.example.base.ui.activity.BaseFragment
@@ -11,13 +12,15 @@ import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentExhibitBinding
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
+import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.ExhibitRecyclerAdapter
 import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
 import com.example.servicecreate.ui.home.home.HomeViewModel
 import com.example.servicecreate.ui.toast
+import kotlinx.coroutines.launch
 
-class ExhibitFragment(private val l: Long, private val roomName: String) : BaseFragment<FragmentExhibitBinding>() , ExhibitListener{
+class ExhibitFragment(internal val l: Long, private val roomName: String) : BaseFragment<FragmentExhibitBinding>() , ExhibitListener{
 
     private lateinit var roomsDeviceAdapter : ExhibitRecyclerAdapter
     private lateinit var kindDeviceAdapter : ExhibitRecyclerAdapter
@@ -52,6 +55,13 @@ class ExhibitFragment(private val l: Long, private val roomName: String) : BaseF
 
         initData()
 
+        with(mViewModel){
+            lifecycleScope.launch {
+                _refresh.collect{
+                    initData()
+                }
+            }
+        }
     }
 
     private fun initData() {
@@ -107,6 +117,20 @@ class ExhibitFragment(private val l: Long, private val roomName: String) : BaseF
                 }
             }else{
                 requireContext().toast(R.string.exhibit_kind_device_failure)
+            }
+        }
+    }
+
+    override fun onDeleteDevice(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast(R.string.home_device_delete_success)
+                    mViewModel.refreshExhibitPage()
+                }else{
+                    requireContext().toast(R.string.home_device_delete_failure)
+                }
             }
         }
     }

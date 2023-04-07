@@ -28,4 +28,7 @@ interface DeviceService {
 
     @HTTP(method = "DELETE", path = "equipment", hasBody = true)
     fun deleteDevice(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
+
+    @GET("equipment/conditioner")
+    fun getAirState(@Header("token") token: String, @Query("id") id: Int): Call<AirDetailResponse>
 }

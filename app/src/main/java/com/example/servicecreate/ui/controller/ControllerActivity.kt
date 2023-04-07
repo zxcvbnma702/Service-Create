@@ -2,6 +2,7 @@ package com.example.servicecreate.ui.controller
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.base.activity.BaseActivity
@@ -11,7 +12,6 @@ import com.example.servicecreate.ui.controller.air.AirConditionFragment
 import com.example.servicecreate.ui.controller.camera.CameraFragment
 import com.example.servicecreate.ui.controller.doorlock.DoorLockFragment
 import com.example.servicecreate.ui.controller.light.LightFragment
-import com.example.servicecreate.ui.home.home.HomeViewModel
 
 
 class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
@@ -42,7 +42,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
 
         when(mViewModel.type){
             1 -> setCurrentFragment(airFragment)
-//            2 -> setCurrentFragment(lightFragment)
+            2 -> setCurrentFragment(lightFragment)
             3 -> setCurrentFragment(doorLockFragment)
             else ->{
                 setCurrentFragment(cameraFragment)
@@ -61,8 +61,8 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
     /*
    Init all fragment
     */
-    private fun initFragment(){
-       airFragment = AirConditionFragment()
+    private fun initFragment() {
+       airFragment = AirConditionFragment(mViewModel.id)
         lightFragment = LightFragment()
         doorLockFragment = DoorLockFragment()
         cameraFragment = CameraFragment()

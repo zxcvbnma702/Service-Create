@@ -41,6 +41,11 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment(), BaseBinding<VB> 
         binding.initBindingView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        StatusUtil.checkNetWork(this.requireContext())
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         if (!::binding.isInitialized) return

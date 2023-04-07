@@ -8,6 +8,7 @@ import com.example.servicecreate.databinding.ItemHomeRoomCardBinding
 import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.ui.controller.ControllerActivity
 import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
+import com.kongzue.dialogx.dialogs.MessageDialog
 
 /**
  * @author:SunShibo
@@ -39,6 +40,23 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
             }else{
                 ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "默认房间")
             }
+        }
+
+        itemCardExhibit.setOnLongClickListener {
+            if(fragment.l< 100){
+                MessageDialog.show(context.getString(R.string.device_delete_title), context.getString(R.string.home_delete_device_content), "确定", "取消")
+                    .setMaskColor(context.getColor(com.kongzue.dialogx.R.color.black30))
+                    .setCancelable(false)
+                    .setOkButton { _, _ ->
+                        fragment.mViewModel.deleteDevice(bean.id.toString())
+                        false
+                    }
+                    .setCancelButton{_, _ ->
+                        false
+                    }
+            }
+
+            false
         }
 
     }

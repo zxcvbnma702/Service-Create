@@ -1,7 +1,10 @@
 package com.example.base.ui.util
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
@@ -9,14 +12,13 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
+import com.example.base.kxt.toast
+import com.example.base.util.NetWorkReceiver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 
 /**
  * @author:SunShibo
@@ -85,4 +87,9 @@ object StatusUtil {
             .launchIn(scope)
     }
 
+    fun checkNetWork(context: Context){
+        when(NetWorkReceiver.getNetWorkState(context)){
+            -1 -> context.toast("网络状态异常, 请检查网络连接")
+        }
+    }
 }

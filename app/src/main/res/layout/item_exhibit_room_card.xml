@@ -8,14 +8,16 @@
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:padding="5dp"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:elevation="@dimen/ui_elevation_height"
         style="@style/MaterialAlertDialog.Material3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+
+            >
 
             <ImageView
                 android:id="@+id/item_card_room_image"

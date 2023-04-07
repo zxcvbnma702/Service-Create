@@ -20,3 +20,18 @@ data class AppendItem(
     var imageId: Int,
     var name: String
 )
+/**
+ * @param state 开 1, 关 0
+ * @param grade 风速 0, 1, 2, 3
+ * @param scaveng 扫风
+ * @param mode 模式
+ * @param temp 温度
+ */
+data class AirControllerData(
+    var state: Int,
+    var grade: Int,
+    var id: Int,
+    var mode: Int,
+    var scaveng: Int,
+    var temp: Int
+)

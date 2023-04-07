@@ -2,6 +2,7 @@ package com.example.servicecreate.logic.network
 
 import android.util.Log
 import com.example.servicecreate.logic.network.api.AuthService
+import com.example.servicecreate.logic.network.api.ControllerService
 import com.example.servicecreate.logic.network.api.DeviceService
 import com.example.servicecreate.logic.network.api.RoomService
 import retrofit2.Call
@@ -22,6 +23,7 @@ object NetworkCenter {
     private val authServer = ServiceCreator.create<AuthService>()
     private val roomServer = ServiceCreator.create<RoomService>()
     private val deviceServer = ServiceCreator.create<DeviceService>()
+    private val controllerServer = ServiceCreator.create<ControllerService>()
 
     /**
      * Auth
@@ -77,6 +79,13 @@ object NetworkCenter {
     suspend fun deleteDevice(token: String, request: Map<String, String>)
             = deviceServer.deleteDevice(token, request).await()
 
+    suspend fun getAirDetail(token: String, id: Int)
+            = deviceServer.getAirState(token, id).await()
+    /**
+     * Controller
+     */
+    suspend fun airController(token: String, request: Map<String, Int>)
+            = controllerServer.airController(token, request).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

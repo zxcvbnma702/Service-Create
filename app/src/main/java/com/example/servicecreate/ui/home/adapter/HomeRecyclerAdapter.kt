@@ -32,11 +32,11 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                 3L -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
             }
             itemCardRoomDescription.visibility = View.GONE
-
         }else{
             itemCardHome.setOnClickListener {
                 fragment.mViewModel.jumpToExhibitPage(bean.id, bean.name)
             }
+
             itemCardHome.setOnLongClickListener {
                 MessageDialog.show(context.getString(R.string.home_delete_title), context.getString(R.string.home_delete_room_content), "确定", "取消")
                     .setMaskColor(context.getColor(com.kongzue.dialogx.R.color.black30))
@@ -51,6 +51,9 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                     }
                 false
             }
+
+            itemCardRoomNumber.text = "设备数: ${bean.equipmentNum}"
+            itemCardRoomDescription.text = "上次操作时间: ${bean.updateTime}"
             /**
              * Load random image
              */

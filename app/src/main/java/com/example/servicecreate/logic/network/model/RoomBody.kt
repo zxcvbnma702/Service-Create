@@ -17,5 +17,6 @@ data class RoomData(
     val id: Long,
     val isDeleted: Int,
     val name: String,
-    val updateTime: String
+    val updateTime: String,
+    val equipmentNum: Int
 )

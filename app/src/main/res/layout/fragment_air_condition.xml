@@ -110,7 +110,7 @@
                 app:circularSeekBar_innerThumbColor="@color/second_color"
                 app:circularSeekBar_innerThumbRadius="5dp"
                 app:circularSeekBar_innerThumbStrokeWidth="5dp"
-                app:circularSeekBar_interactive="true"
+                app:circularSeekBar_interactive="false"
                 app:circularSeekBar_max="40"
                 app:circularSeekBar_min="0"
                 app:circularSeekBar_outerThumbColor="@color/main_color"
