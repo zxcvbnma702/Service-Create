@@ -46,5 +46,16 @@ class ExhibitViewModel :ViewModel(){
         viewModelScope.launch { _refresh.emit(random) }
     }
 
+    fun lampState(id: Int, state: Int){
+        val result = repository.lampController(token, id, state)
+        exhibitListener?.onSendLampState(result)
+    }
+
+    fun airState(id: Int, state: Int){
+        val result = repository.airController(token, id, state,
+            0, 0, 0, 0)
+        exhibitListener?.onSendAirState(result)
+    }
+
 
 }

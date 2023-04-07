@@ -186,4 +186,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
             }
         }
     }
+
+    override fun onSendLampState(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+//                    requireContext().toast(response.msg + response.data)
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
+    override fun onSendAirState(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+//                    requireContext().toast(response.msg + response.data)
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
 }

@@ -75,4 +75,15 @@ class HomeViewModel : ViewModel() {
         mainListener?.onDeleteDevice(result)
     }
 
+    fun lampState(id: Int, state: Int){
+        val result = repository.lampController(token, id, state)
+        mainListener?.onSendLampState(result)
+    }
+
+    fun airState(id: Int, state: Int){
+        val result = repository.airController(token, id, state,
+            0, 0, 0, 0)
+        mainListener?.onSendAirState(result)
+    }
+
 }

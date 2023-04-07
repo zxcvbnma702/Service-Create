@@ -9,6 +9,7 @@ import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.ui.controller.ControllerActivity
 import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
 import com.kongzue.dialogx.dialogs.MessageDialog
+import kotlin.math.absoluteValue
 
 /**
  * @author:SunShibo
@@ -57,6 +58,20 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
             }
 
             false
+        }
+
+        itemCardRoomSwitch.setOnCheckedChangeListener { _, b ->
+            if(b){
+                when(bean.type){
+                    1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 1)
+                    2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 1)
+                }
+            }else{
+                when(bean.type){
+                    1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 0)
+                    2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 0)
+                }
+            }
         }
 
     }

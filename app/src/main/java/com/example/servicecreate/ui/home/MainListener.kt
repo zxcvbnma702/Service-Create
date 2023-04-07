@@ -15,4 +15,6 @@ interface MainListener {
     fun onGetDeviceKindList(result: LiveData<Result<RoomListResponse>>) {}
     fun onGetDeviceList(result: LiveData<Result<DeviceListResponse>>) {}
     fun onDeleteDevice(result: LiveData<Result<SendVerifiedResponse>>){}
+    fun onSendLampState(result: LiveData<Result<SendVerifiedResponse>>) {}
+    fun onSendAirState(result: LiveData<Result<SendVerifiedResponse>>) {}
 }

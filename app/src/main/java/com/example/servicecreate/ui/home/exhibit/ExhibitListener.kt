@@ -15,5 +15,7 @@ interface ExhibitListener {
     fun onRoomDevice(result: LiveData<Result<DeviceListResponse>>)
     fun onDeviceListByType(result: LiveData<Result<DeviceListResponse>>)
     fun onDeleteDevice(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onSendLampState(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onSendAirState(result: LiveData<Result<SendVerifiedResponse>>)
 
 }
