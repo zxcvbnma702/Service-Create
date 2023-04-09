@@ -142,7 +142,7 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-//                    requireContext().toast(response.msg + response.data)
+                    requireContext().toast("灯: ${response.data}")
                 }else{
                     requireContext().toast(response.msg)
                 }
@@ -155,7 +155,7 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-//                    requireContext().toast(response.msg + response.data)
+                    requireContext().toast("空调: ${response.data}")
                 }else{
                     requireContext().toast(response.msg)
                 }

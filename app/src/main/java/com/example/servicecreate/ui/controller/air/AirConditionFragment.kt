@@ -247,7 +247,7 @@ class AirConditionFragment(private val id: Long) : BaseFragment<FragmentAirCondi
                         airWindShift.getTabAt(response.data.scaveng)?.select()
                     }
                 }else{
-                    "未知错误".toast()
+                    "空调信息初始化失败".toast()
                 }
             }
         }

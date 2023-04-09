@@ -90,7 +90,7 @@ class LightFragment(private val id: Long) : BaseFragment<FragmentLightBinding>()
                         lightSwitch.isChecked = response.data.state == 1
                     }
                 }else{
-                    "未知错误".toast()
+                    "灯信息初始化失败".toast()
                 }
             }
         }

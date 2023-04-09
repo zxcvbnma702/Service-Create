@@ -27,6 +27,8 @@ class DevicesRecyclerAdapter(private val fragment: HomeFragment):
             1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
             2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
             3 -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
+            4 -> Glide.with(context).load(R.drawable.ic_device_led).into(itemCardRoomImage)
+            5 -> Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
         }
 
         if(bean.roomList.isNotEmpty()){

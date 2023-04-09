@@ -9,9 +9,9 @@ import com.example.base.ui.activity.BaseFragment
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentDoorLockBinding
 
-class DoorLockFragment : BaseFragment<FragmentDoorLockBinding>() {
+class DoorLockFragment(id: Long) : BaseFragment<FragmentDoorLockBinding>() {
     override fun FragmentDoorLockBinding.initBindingView() {
-        TODO("Not yet implemented")
+
     }
 
 

@@ -14,7 +14,7 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import tv.danmaku.ijk.media.player.IjkMediaPlayer
 
 
-class CameraFragment : BaseFragment<FragmentCameraBinding>() {
+class CameraFragment(id: Long) : BaseFragment<FragmentCameraBinding>() {
 
     private val mViewModel: CameraViewModel by lazy {
         ViewModelProvider(

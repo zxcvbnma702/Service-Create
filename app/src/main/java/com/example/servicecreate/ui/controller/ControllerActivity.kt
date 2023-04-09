@@ -10,11 +10,13 @@ import com.example.servicecreate.databinding.ActivityControllerBinding
 import com.example.servicecreate.ui.controller.air.AirConditionFragment
 import com.example.servicecreate.ui.controller.camera.CameraFragment
 import com.example.servicecreate.ui.controller.doorlock.DoorLockFragment
+import com.example.servicecreate.ui.controller.led.LedFragment
 import com.example.servicecreate.ui.controller.light.LightFragment
 
 
 class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
 
+    private lateinit var ledFragment: LedFragment
     private lateinit var airFragment: AirConditionFragment
     private lateinit var lightFragment: LightFragment
     private lateinit var doorLockFragment: DoorLockFragment
@@ -43,6 +45,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
             1 -> setCurrentFragment(airFragment)
             2 -> setCurrentFragment(lightFragment)
             3 -> setCurrentFragment(doorLockFragment)
+            4 -> setCurrentFragment(ledFragment)
             else ->{
                 setCurrentFragment(cameraFragment)
             }
@@ -63,8 +66,9 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
     private fun initFragment() {
        airFragment = AirConditionFragment(mViewModel.id)
         lightFragment = LightFragment(mViewModel.id)
-        doorLockFragment = DoorLockFragment()
-        cameraFragment = CameraFragment()
+        doorLockFragment = DoorLockFragment(mViewModel.id)
+        cameraFragment = CameraFragment(mViewModel.id)
+        ledFragment = LedFragment()
     }
 
     /*
