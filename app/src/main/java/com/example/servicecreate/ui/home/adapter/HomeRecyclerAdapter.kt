@@ -30,6 +30,8 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                 1L -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
                 2L -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
                 3L -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
+                4L -> Glide.with(context).load(R.drawable.ic_device_led).into(itemCardRoomImage)
+                5L -> Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
             }
             itemCardRoomDescription.visibility = View.GONE
         }else{

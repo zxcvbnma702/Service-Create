@@ -67,6 +67,7 @@ dependencies {
     implementation rootProject.ext.depsLibs["lifecycle"]
     implementation rootProject.ext.depsLibs["fragment"]
     implementation rootProject.ext.depsLibs["videoplayer"]
+    implementation 'com.sdwfqin.cbt:cbt:1.1.1'
 
     annotationProcessor rootProject.ext.depsLibs["room-compiler" ]
     kapt(rootProject.ext.depsLibs["room-compiler" ])

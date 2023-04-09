@@ -43,6 +43,8 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             1L -> exhibitToolbar.title = "所有的空调"
             2L -> exhibitToolbar.title = "所有的灯"
             3L -> exhibitToolbar.title = "所有的门锁"
+            4L -> exhibitToolbar.title = "所有的彩灯"
+            5L -> exhibitToolbar.title = "所有的摄像头"
             else ->{
                 exhibitToolbar.title = roomName
                 exhibitToolbar.subtitle = l.toString()

@@ -44,6 +44,14 @@ object Repository {
         }
     }
 
+    fun sendMac(token: String, username: String, password: String) = fire(Dispatchers.IO){
+        val request = mapOf("username" to username, "password" to password)
+        val response = NetworkCenter.sendMac(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
     fun getRoomList(token: String) = fire(Dispatchers.IO){
         val response = NetworkCenter.getRoomList(token)
         run {

@@ -17,6 +17,10 @@
     <string name="home_room_delete_failure">房间删除失败</string>
     <string name="home_device_delete_success">设备删除成功</string>
     <string name="home_device_delete_failure">设备删除失败</string>
+    <string name="home_shift_mode">切换显示模式</string>
+    <string name="home_delete_title">房间删除</string>
+    <string name="home_delete_room_content">您确定要删除这个房间?</string>
+    <string name="home_delete_device_content">您确定要删除这个设备?</string>
 
     <!--    auth    -->
     <string name="auth_welcome_back">欢迎您使用我们的软件</string>
@@ -65,18 +69,20 @@
     <string name="append_search_cancel">取消</string>
     <string name="append_room">添加房间</string>
     <string name="append_room_tip">请输入房间名</string>
-
-    <string name="home_delete_title">房间删除</string>
-    <string name="home_delete_room_content">您确定要删除这个房间?</string>
-    <string name="device_delete_title">设备删除</string>
-    <string name="home_delete_device_content">您确定要删除这个设备?</string>
     <string name="append_device_to">添加设备到</string>
-    <string name="device_name">请输入设备名</string>
-    <string name="home_shift_mode">切换显示模式</string>
 
-    <string name="custom_input_device_id">请输入设备id</string>
-    <string name="custom_input_device_name">请输入您喜欢的设备名</string>
+    <!--    SettingFragment -->
+    <string name="setting_person_text">账户管理</string>
+    <string name="setting_gateway_text">网关管理</string>
+
+    <string name="device_name">请输入设备名</string>
+    <string name="device_delete_title">设备删除</string>
+
+    <string name="custom_input_device_id">账号</string>
+    <string name="custom_input_device_name">密码</string>
     <string name="exhibit_kind_device_failure">设备获取失败</string>
+
+    <string name="gateway_add">点击添加新的网关</string>
 
 
 </resources>

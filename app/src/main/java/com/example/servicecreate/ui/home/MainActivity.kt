@@ -2,6 +2,7 @@ package com.example.servicecreate.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -15,9 +16,10 @@ import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogOkInfo
 import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
+import com.example.servicecreate.ui.home.gateway.GatewayFragment
 import com.example.servicecreate.ui.home.home.HomeFragment
 import com.example.servicecreate.ui.home.home.HomeViewModel
-import com.example.servicecreate.ui.setting.SettingFragment
+import com.example.servicecreate.ui.home.setting.SettingFragment
 import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.MessageDialog
 import kotlinx.coroutines.launch
@@ -74,6 +76,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
                 }
             }
+            lifecycleScope.launch {
+                mViewModel._jumpTogateWay.collect{
+                    when(it){
+                        1 -> gatewayFragment()
+                    }
+
+                }
+            }
         }
     }
 
@@ -94,7 +104,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     finish()
                     false
                     }
-
         }
 
         ServiceCreateApplication.appSecret =
@@ -127,6 +136,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             replace(R.id.top_container, ExhibitFragment(l, roomName))
             setReorderingAllowed(true)
             addToBackStack("name")
+        }.commit()
+    }
+
+    /**
+     * Jump to GateWayFragment
+     */
+    private fun gatewayFragment() {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.top_container, GatewayFragment())
+            setReorderingAllowed(true)
+            addToBackStack("gateway")
         }.commit()
     }
 

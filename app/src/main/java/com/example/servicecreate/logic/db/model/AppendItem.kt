@@ -1,5 +1,6 @@
 package com.example.servicecreate.logic.db.model
 
+import android.bluetooth.BluetoothDevice
 import androidx.annotation.DrawableRes
 
 /**
@@ -35,3 +36,5 @@ data class AirControllerData(
     var scaveng: Int,
     var temp: Int
 )
+
+data class MyDevice(val device: BluetoothDevice, var rssi: Int)

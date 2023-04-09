@@ -13,6 +13,9 @@ import com.kongzue.dialogx.DialogX
 import com.kongzue.dialogx.dialogs.InputDialog
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.style.MaterialStyle
+import com.sdwfqin.cbt.CbtManager
+import com.sdwfqin.cbt.utils.CbtConstant
+import java.util.*
 
 /**
  * @author:SunShibo
@@ -34,7 +37,14 @@ class ServiceCreateApplication : Application(){
         super.onCreate()
         context = applicationContext
         initDialog()
+        initBlueTooth()
         sp = initSp()
+    }
+
+    private fun initBlueTooth() {
+        CbtManager.getInstance().init(this).enableLog(true)
+        CbtConstant.CBT_UUID = UUID.randomUUID()
+        CbtConstant.CBT_NAME = "ServiceCreate"
     }
 
     private fun initDialog() {

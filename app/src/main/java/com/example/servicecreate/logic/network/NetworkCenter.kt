@@ -40,6 +40,9 @@ object NetworkCenter {
     suspend fun register(request: Map<String, String>)
         = authServer.register(request).await()
 
+    suspend fun sendMac(token: String, request: Map<String, String>)
+        = authServer.sendMac(token, request).await()
+
     /**
      * Room
      */

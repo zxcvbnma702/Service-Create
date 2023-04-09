@@ -27,6 +27,7 @@ class HomeViewModel : ViewModel() {
     val _refresh = MutableSharedFlow<Int>()
 
     val _jumpToExhibit = MutableSharedFlow<Long>()
+    val _jumpTogateWay = MutableSharedFlow<Int>()
 
     val _modeShift = MutableSharedFlow<Boolean>()
 
@@ -47,6 +48,12 @@ class HomeViewModel : ViewModel() {
         roomName = name
         viewModelScope.launch {
             _jumpToExhibit.emit(jump)
+        }
+    }
+
+    fun jumpToGateWayPage(random: Int = 0) {
+        viewModelScope.launch {
+            _jumpTogateWay.emit(random)
         }
     }
 

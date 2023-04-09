@@ -5,6 +5,7 @@ import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -31,5 +32,7 @@ interface AuthService {
     @POST("user/register")
     fun register(@Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
+    @POST("userMAC")
+    fun sendMac(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
 }
