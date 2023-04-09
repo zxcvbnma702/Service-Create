@@ -2,6 +2,7 @@ package com.example.servicecreate.logic
 
 import androidx.lifecycle.liveData
 import com.example.servicecreate.logic.network.NetworkCenter
+import com.example.servicecreate.logic.network.model.DeviceKindData
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
@@ -106,13 +107,21 @@ object Repository {
         }
     }
 
-    fun addDeviceToRoom(token: String, deviceId: String, roomId: String) = fire(Dispatchers.IO){
-        val request = mapOf("roomId" to roomId, "equipmentId" to deviceId)
+    fun addDeviceToRoom(token: String, deviceId: String, roomId: String, deviceType: Int, deviceName: String) = fire(Dispatchers.IO){
+        val request = mapOf("roomIdList" to roomId, "id" to deviceId, "type" to deviceType.toString(), "name" to deviceName)
         val response = NetworkCenter.addDeviceToRoom(token, request)
         run {
             Result.success(response)
         }
     }
+
+    fun findDevice(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.findDevice(token)
+        run {
+            Result.success(response)
+        }
+    }
+
     fun getDeviceList(token: String) = fire(Dispatchers.IO){
         val response = NetworkCenter.getDeviceList(token)
         run {
@@ -163,6 +172,14 @@ object Repository {
     fun lampController(token: String,  id: Int, state: Int)= fire(Dispatchers.IO){
         val request = mapOf("id" to id, "state" to state)
         val response = NetworkCenter.lampController(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun controllerRoomAllDevice(token: String, roomId: String, kindData: String, state: String)= fire(Dispatchers.IO){
+        val request = mapOf("roomId" to roomId, "state" to state, "kindId" to kindData)
+        val response = NetworkCenter.controllerRoomAllDevice(token, request)
         run {
             Result.success(response)
         }

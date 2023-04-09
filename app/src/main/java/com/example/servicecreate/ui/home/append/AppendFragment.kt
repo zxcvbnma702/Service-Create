@@ -15,6 +15,8 @@ import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentAppendBinding
 import com.example.servicecreate.logic.db.model.AppendItem
+import com.example.servicecreate.logic.network.model.DeviceData
+import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import com.example.servicecreate.ui.home.adapter.AppendDefaultRecyclerAdapter
@@ -74,12 +76,7 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
 
             defaultAdapter.setData(
                 listOf(
-                    AppendItem(2, R.drawable.ic_device_air, "空调"),
-                    AppendItem(3, R.drawable.ic_device_door_lock, "智能门锁"),
-                    AppendItem(1, R.drawable.ic_device_lamp, "灯"),
-                    AppendItem(4,R.drawable.ic_device_air, "空调"),
-                    AppendItem(4, R.drawable.ic_device_air, "空调"),
-                    AppendItem(0, R.drawable.ic_room_10, "添加房间")
+                    DeviceData("", 0L, 0, "添加房间", mutableListOf(), 0, "")
             ))
 
             appendSearch.setOnClickListener {
@@ -95,6 +92,7 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
                     appendSearchAnim.playAnimation()
                     appendSearchTip.text = getString(R.string.append_search_running)
                     appendSearch.text = getString(R.string.append_search_cancel)
+                    mViewModel.findDevice()
                     appendRecycler.adapter = netAdapter
                     check = ! check
                 }
@@ -106,10 +104,6 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
     override fun onStart() {
         super.onStart()
         initBottomSheet()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     //初始化bottomSheet状态
@@ -148,7 +142,7 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         result.observe(this){ re ->
             val responses = re.getOrNull()
             if (responses != null) {
-                defaultAdapter.roomList.putAll(responses.data.associate {
+                netAdapter.roomList.putAll(responses.data.associate {
                         it.name to it.id
                     })
                 }
@@ -156,13 +150,14 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
 
     }
 
-    override fun onAddDevice(result: LiveData<Result<SendVerifiedResponse>>) {
+    override fun onAddDeviceToRoom(result: LiveData<Result<SendVerifiedResponse>>) {
         result.observe(this){ re ->
             val responses = re.getOrNull()
             if (responses != null) {
                 when(responses.code){
                     1-> {
                         requireContext().toast(responses.data)
+                        mViewModel.findDevice()
                     }
                     else ->{
                         requireContext().toast(responses.msg)
@@ -172,17 +167,16 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         }
     }
 
-    override fun onAddDeviceToRoom(result: LiveData<Result<SendVerifiedResponse>>, roomId: Long) {
+    override fun onFindDevice(result: LiveData<Result<DeviceListResponse>>) {
         result.observe(this){ re ->
             val responses = re.getOrNull()
             if (responses != null) {
                 when(responses.code){
                     1-> {
-                        // TODO: 添加设备的同时添加房间 
-//                        mViewModel.addDeviceToRoom(res)
+                        netAdapter.setData(responses.data)
                     }
                     else ->{
-                        requireContext().toast(responses.msg)
+                        responses.msg?.let { requireContext().toast(it) }
                     }
                 }
             }

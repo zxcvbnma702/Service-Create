@@ -28,4 +28,7 @@ interface ControllerService {
     @POST("controller/light")
     fun lampController(@Header("token") token: String, @Body requestBody: Map<String, Int>): Call<SendVerifiedResponse>
 
+    @POST("controller/room")
+    fun controllerRoomAllDevice(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
+
 }

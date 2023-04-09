@@ -10,6 +10,7 @@ import com.example.base.ui.activity.BaseAdapter
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ItemAppendDeviceCardBinding
 import com.example.servicecreate.logic.db.model.AppendItem
+import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.ui.dialogCancelInfo
 import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogTitleInfo
@@ -28,14 +29,12 @@ import com.kongzue.dialogx.interfaces.OnBindView
  */
 class AppendDefaultRecyclerAdapter(
     private val fragment: AppendFragment,
-) : BaseAdapter<AppendItem, ItemAppendDeviceCardBinding>() {
+) : BaseAdapter<DeviceData, ItemAppendDeviceCardBinding>() {
 
     internal var roomList: MutableMap<String, Long> = mutableMapOf("默认房间" to 0L)
     private val context = fragment.requireContext()
 
-
-    override fun ItemAppendDeviceCardBinding.onBindViewHolder(bean: AppendItem, position: Int) {
-        Glide.with(context).load(bean.imageId).into(itemCardDeviceImage)
+    override fun ItemAppendDeviceCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
         itemCardDeviceName.text = bean.name
         itemCardAppend.setOnClickListener {
 
@@ -69,13 +68,14 @@ class AppendDefaultRecyclerAdapter(
                             false
                         }
                 }
+                Glide.with(context).load(R.drawable.ic_room_10).into(itemCardDeviceImage)
             }
             1 -> {
                 itemCardAppend.setOnClickListener {
                     PopMenu.show(roomList.keys.toList())
                         .setRadius(15f)
                         .setOnMenuItemClickListener { dialog, text, index ->
-                            addDevice(roomList[text], text, 1)
+                            addDevice(bean.id.toString(), roomList[text], text, 1)
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
@@ -85,7 +85,7 @@ class AppendDefaultRecyclerAdapter(
                     PopMenu.show(roomList.keys.toList())
                         .setRadius(15f)
                         .setOnMenuItemClickListener { dialog, text, index ->
-                            addDevice(roomList[text], text, 2)
+                            addDevice(bean.id.toString(), roomList[text], text, 2)
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
@@ -95,7 +95,27 @@ class AppendDefaultRecyclerAdapter(
                     PopMenu.show(roomList.keys.toList())
                         .setRadius(15f)
                         .setOnMenuItemClickListener { dialog, text, index ->
-                            addDevice(roomList[text], text, 3)
+                            addDevice(bean.id.toString(), roomList[text], text, 3)
+                            false
+                        }.menuTextInfo = dialogTitleInfo(context)
+                }
+            }
+            4 -> {
+                itemCardAppend.setOnClickListener {
+                    PopMenu.show(roomList.keys.toList())
+                        .setRadius(15f)
+                        .setOnMenuItemClickListener { dialog, text, index ->
+                            addDevice(bean.id.toString(), roomList[text], text, 4)
+                            false
+                        }.menuTextInfo = dialogTitleInfo(context)
+                }
+            }
+            5 -> {
+                itemCardAppend.setOnClickListener {
+                    PopMenu.show(roomList.keys.toList())
+                        .setRadius(15f)
+                        .setOnMenuItemClickListener { dialog, text, index ->
+                            addDevice(bean.id.toString(), roomList[text], text, 5)
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
@@ -103,8 +123,8 @@ class AppendDefaultRecyclerAdapter(
         }
     }
 
-    private fun addDevice(roomId: Long?, text: CharSequence, deviceType: Int) {
-        MessageDialog.show(
+    private fun addDevice(deviceId: String, roomId: Long?, text: CharSequence, deviceType: Int) {
+        InputDialog.show(
             context.getString(R.string.append_device_to) + " " + text,
             "",
             "确定",
@@ -113,32 +133,19 @@ class AppendDefaultRecyclerAdapter(
         )
             .setMaskColor(context.getColor(com.kongzue.dialogx.R.color.black30))
             .setCancelable(false)
-            .setCustomView(object:OnBindView<MessageDialog>(R.layout.item_extend_view){
-                override fun onBind(dialog: MessageDialog?, v: View?) {
-                    val deviceId = v?.findViewById<EditText>(R.id.custom_input_device_id)
-                    deviceId?.doAfterTextChanged {
-                        fragment.mViewModel.deviceId =  it.toString()
-                    }
-                    val deviceName = v?.findViewById<EditText>(R.id.custom_input_device_name)
-                    deviceName?.doAfterTextChanged {
-                        fragment.mViewModel.deviceName =  it.toString()
-                    }
-                }
-
-            })
             .setCancelTextInfo(dialogCancelInfo(context))
-            .setOkButton { dialog, v ->
-                context.toast(fragment.mViewModel.deviceId + fragment.mViewModel.deviceName)
+            .setOkButton { dialog, v , input->
+                context.toast(fragment.mViewModel.deviceName)
                 if (fragment.mViewModel.checkString()) {
                     if(roomId == 0L){
                             // TODO: 添加设备到默认房间
-//                        fragment.mViewModel.addDevice(inputStr, deviceType)
+                        fragment.mViewModel.addDeviceToRoom(deviceId, "", input, deviceType)
                         return@setOkButton false
                     }else{
                         when {
                             roomId != null -> {
                                 // TODO: 添加设备到指定房间
-//                                fragment.mViewModel.addDeviceToRoom(roomId, inputStr, deviceType)
+                                fragment.mViewModel.addDeviceToRoom(deviceId, roomId.toString(), input, deviceType)
                             }
                             else -> {
                                 "未知错误".toast()

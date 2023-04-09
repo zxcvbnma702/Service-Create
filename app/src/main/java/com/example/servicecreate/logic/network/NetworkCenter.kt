@@ -73,6 +73,9 @@ object NetworkCenter {
     suspend fun addDeviceToRoom(token: String, request: Map<String, String>)
             = deviceServer.addDeviceToRoom(token, request).await()
 
+    suspend fun findDevice(token: String)
+            = deviceServer.findDevice(token).await()
+
     suspend fun getDeviceList(token: String)
             = deviceServer.getDeviceList(token).await()
 
@@ -96,6 +99,9 @@ object NetworkCenter {
 
     suspend fun lampController(token: String, request: Map<String, Int>)
             = controllerServer.lampController(token, request).await()
+
+    suspend fun controllerRoomAllDevice(token: String, request: Map<String, String>)
+            = controllerServer.controllerRoomAllDevice(token, request).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

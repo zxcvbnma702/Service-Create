@@ -31,21 +31,17 @@ class AppendViewModel: ViewModel() {
         appendListener?.onGetRoomList(result)
     }
 
-    fun addDevice(deviceName: String, deviceType: Int){
-        val result = repository.addDevice(token, deviceName, deviceType)
-        appendListener?.onAddDevice(result)
+    fun findDevice(){
+        val result = repository.findDevice(token)
+        appendListener?.onFindDevice(result)
     }
 
-    fun addDeviceToRoom(roomId: Long, deviceName: String, deviceType: Int) {
-        val result = repository.addDevice(token, deviceName, deviceType)
-        appendListener?.onAddDeviceToRoom(result, roomId)
+    fun addDeviceToRoom(deviceId: String, roomId: String, deviceName: String, deviceType: Int) {
+        val result = repository.addDeviceToRoom(token, deviceId, roomId, deviceType, deviceName)
+        appendListener?.onAddDeviceToRoom(result)
     }
 
     fun checkString(): Boolean{
-        if(deviceId.isBlank() || deviceId.isEmpty()){
-            "设备Id不能为空".toast()
-            return false
-        }
         if(deviceName.isBlank() || deviceName.isEmpty()){
             "设备名不能为空".toast()
             return false

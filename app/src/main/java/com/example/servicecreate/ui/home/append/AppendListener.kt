@@ -1,6 +1,7 @@
 package com.example.servicecreate.ui.home.append
 
 import androidx.lifecycle.LiveData
+import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 
@@ -11,7 +12,7 @@ import com.example.servicecreate.logic.network.model.SendVerifiedResponse
  */
 interface AppendListener {
     fun onGetRoomList(result: LiveData<Result<RoomListResponse>>)
-    fun onAddDevice(result: LiveData<Result<SendVerifiedResponse>>)
     fun onAddRoom(result: LiveData<Result<SendVerifiedResponse>>)
-    fun onAddDeviceToRoom(result: LiveData<Result<SendVerifiedResponse>>, roomId: Long)
+    fun onAddDeviceToRoom(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onFindDevice(result: LiveData<Result<DeviceListResponse>>)
 }
