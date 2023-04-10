@@ -74,6 +74,13 @@
     <!--    SettingFragment -->
     <string name="setting_person_text">账户管理</string>
     <string name="setting_gateway_text">网关管理</string>
+    <string name="setting_wisdom_text">智慧生活</string>
+    <string name="setting_logout_text">退出登录</string>
+
+    <!--    WisdomFragment -->
+    <string name="wisdom_indoor_text">一键回家</string>
+    <string name="wisdom_outdoor_text">一键离家</string>
+    <string name="wisdom_sleep_text">一键睡眠</string>
 
     <string name="device_name">请输入设备名</string>
     <string name="device_delete_title">设备删除</string>

@@ -4,18 +4,16 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import cn.wandersnail.bluetooth.BTManager
 import com.example.base.kxt.initSp
-import com.example.servicecreate.ui.*
+import com.example.servicecreate.ui.dialogInputInfo
 import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogOkInfo
 import com.example.servicecreate.ui.dialogTitleInfo
 import com.kongzue.dialogx.DialogX
-import com.kongzue.dialogx.dialogs.InputDialog
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.style.MaterialStyle
-import com.sdwfqin.cbt.CbtManager
-import com.sdwfqin.cbt.utils.CbtConstant
-import java.util.*
+
 
 /**
  * @author:SunShibo
@@ -42,9 +40,10 @@ class ServiceCreateApplication : Application(){
     }
 
     private fun initBlueTooth() {
-        CbtManager.getInstance().init(this).enableLog(true)
-        CbtConstant.CBT_UUID = UUID.randomUUID()
-        CbtConstant.CBT_NAME = "ServiceCreate"
+
+        BTManager.getInstance().initialize(this);
+        BTManager.isDebugMode = true //开启日志打印
+
     }
 
     private fun initDialog() {

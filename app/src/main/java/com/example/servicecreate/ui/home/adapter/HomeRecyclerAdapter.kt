@@ -21,7 +21,7 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
     private val context = fragment.requireContext()
 
     override fun ItemHomeRoomCardBinding.onBindViewHolder(bean: RoomData, position: Int) {
-
+        // <100 类别列表 >100 房间列表
         if(bean.id < 100){
             itemCardHome.setOnClickListener {
                 fragment.mViewModel.jumpToExhibitPage(bean.id, bean.name)
@@ -32,6 +32,13 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                 3L -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
                 4L -> Glide.with(context).load(R.drawable.ic_device_led).into(itemCardRoomImage)
                 5L -> Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
+            }
+            itemCardRoomSwitch.setOnCheckedChangeListener { compoundButton, b ->
+                if(b){
+                    fragment.mViewModel.controllerRoomAllDevice("", bean.id.toString(), "1")
+                }else{
+                    fragment.mViewModel.controllerRoomAllDevice("", bean.id.toString(), "0")
+                }
             }
             itemCardRoomDescription.visibility = View.GONE
         }else{
@@ -52,6 +59,14 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                         false
                     }
                 false
+            }
+
+            itemCardRoomSwitch.setOnCheckedChangeListener { compoundButton, b ->
+                if(b){
+                    fragment.mViewModel.controllerRoomAllDevice(bean.id.toString(), "", "1")
+                }else{
+                    fragment.mViewModel.controllerRoomAllDevice(bean.id.toString(), "", "0")
+                }
             }
 
             itemCardRoomNumber.text = "设备数: ${bean.equipmentNum}"

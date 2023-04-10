@@ -212,4 +212,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
             }
         }
     }
+
+    override fun onControllerResult(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast("房间or classify: ${response.data}")
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
 }

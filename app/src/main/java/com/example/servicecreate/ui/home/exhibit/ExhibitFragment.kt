@@ -1,11 +1,9 @@
 package com.example.servicecreate.ui.home.exhibit
 
 import android.util.Log
-import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.base.kxt.addOnBackPressed
 import com.example.base.kxt.toast
 import com.example.base.ui.activity.BaseFragment
 import com.example.servicecreate.R
@@ -13,11 +11,7 @@ import com.example.servicecreate.databinding.FragmentExhibitBinding
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
-import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.ExhibitRecyclerAdapter
-import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
-import com.example.servicecreate.ui.home.home.HomeViewModel
-import com.example.servicecreate.ui.toast
 import kotlinx.coroutines.launch
 
 class ExhibitFragment(internal val l: Long, private val roomName: String) : BaseFragment<FragmentExhibitBinding>() , ExhibitListener{

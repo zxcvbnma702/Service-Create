@@ -67,7 +67,9 @@ dependencies {
     implementation rootProject.ext.depsLibs["lifecycle"]
     implementation rootProject.ext.depsLibs["fragment"]
     implementation rootProject.ext.depsLibs["videoplayer"]
-    implementation 'com.sdwfqin.cbt:cbt:1.1.1'
+    implementation 'cn.wandersnail:commons-android:1.3.5'
+    implementation 'cn.wandersnail:widget-generic:1.1.0'
+    implementation 'cn.wandersnail:classic-bluetooth:1.1.0'
 
     annotationProcessor rootProject.ext.depsLibs["room-compiler" ]
     kapt(rootProject.ext.depsLibs["room-compiler" ])

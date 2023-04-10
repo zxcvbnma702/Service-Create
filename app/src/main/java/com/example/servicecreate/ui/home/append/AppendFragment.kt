@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentAppendBinding
-import com.example.servicecreate.logic.db.model.AppendItem
 import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse

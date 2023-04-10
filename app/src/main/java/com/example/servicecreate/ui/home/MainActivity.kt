@@ -20,6 +20,7 @@ import com.example.servicecreate.ui.home.gateway.GatewayFragment
 import com.example.servicecreate.ui.home.home.HomeFragment
 import com.example.servicecreate.ui.home.home.HomeViewModel
 import com.example.servicecreate.ui.home.setting.SettingFragment
+import com.example.servicecreate.ui.home.wisdom.WisdomFragment
 import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.MessageDialog
 import kotlinx.coroutines.launch
@@ -81,7 +82,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     when(it){
                         1 -> gatewayFragment()
                     }
-
+                }
+            }
+            lifecycleScope.launch {
+                mViewModel._jumpToWisdom.collect{
+                    when(it){
+                        1 -> wisdomFragment()
+                    }
                 }
             }
         }
@@ -147,6 +154,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             replace(R.id.top_container, GatewayFragment())
             setReorderingAllowed(true)
             addToBackStack("gateway")
+        }.commit()
+    }
+
+    /**
+     * Jump to GateWayFragment
+     */
+    private fun wisdomFragment() {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.top_container, WisdomFragment())
+            setReorderingAllowed(true)
+            addToBackStack("wisdom")
         }.commit()
     }
 

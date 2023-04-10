@@ -25,7 +25,6 @@ class GatewayViewModel: ViewModel() {
 
     internal var deviceList: MutableList<MyDevice> = arrayListOf()
 
-    internal var bytes = "WIFI:${WIFIName},PAWD:${WIFIPassword}".encodeToByteArray()
 
     fun hasBytes(): Boolean{
         if(WIFIName.isBlank() || WIFIName.isEmpty()){

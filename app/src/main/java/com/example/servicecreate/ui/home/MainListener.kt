@@ -17,4 +17,5 @@ interface MainListener {
     fun onDeleteDevice(result: LiveData<Result<SendVerifiedResponse>>){}
     fun onSendLampState(result: LiveData<Result<SendVerifiedResponse>>) {}
     fun onSendAirState(result: LiveData<Result<SendVerifiedResponse>>) {}
+    fun onControllerResult(result: LiveData<Result<SendVerifiedResponse>>) {}
 }

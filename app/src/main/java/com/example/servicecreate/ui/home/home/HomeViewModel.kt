@@ -28,6 +28,7 @@ class HomeViewModel : ViewModel() {
 
     val _jumpToExhibit = MutableSharedFlow<Long>()
     val _jumpTogateWay = MutableSharedFlow<Int>()
+    val _jumpToWisdom = MutableSharedFlow<Int>()
 
     val _modeShift = MutableSharedFlow<Boolean>()
 
@@ -54,6 +55,12 @@ class HomeViewModel : ViewModel() {
     fun jumpToGateWayPage(random: Int = 0) {
         viewModelScope.launch {
             _jumpTogateWay.emit(random)
+        }
+    }
+
+    fun jumpToWisdomPage(random: Int = 0) {
+        viewModelScope.launch {
+            _jumpToWisdom.emit(random)
         }
     }
 
@@ -91,6 +98,11 @@ class HomeViewModel : ViewModel() {
         val result = repository.airController(token, id, state,
             0, 0, 0, 0)
         mainListener?.onSendAirState(result)
+    }
+
+    fun controllerRoomAllDevice(roomId: String, kindData: String, state: String){
+        val result = repository.controllerRoomAllDevice(token, roomId, kindData, state)
+        mainListener?.onControllerResult(result)
     }
 
 }
