@@ -1,4 +1,4 @@
-package com.example.base.ui.util
+package com.example.base.util
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.base.kxt.findFirstVisibleItemPosition

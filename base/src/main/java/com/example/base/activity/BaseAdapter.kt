@@ -1,4 +1,4 @@
-package com.example.base.ui.activity
+package com.example.base.activity
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

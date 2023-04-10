@@ -1,32 +1,22 @@
 package com.example.servicecreate.ui.home.gateway
 
-import android.app.Activity
-import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothManager
-import android.bluetooth.le.BluetoothLeScanner
-import android.content.Context.BLUETOOTH_SERVICE
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.Nullable
-import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import cn.wandersnail.bluetooth.*
-import cn.wandersnail.bluetooth.DiscoveryListener.*
 import cn.wandersnail.commons.observer.Observe
 import cn.wandersnail.commons.poster.RunOn
 import cn.wandersnail.commons.poster.Tag
 import cn.wandersnail.commons.poster.ThreadMode
 import com.example.base.kxt.toast
-import com.example.base.ui.activity.BaseFragment
+import com.example.base.activity.BaseFragment
 import com.example.servicecreate.R
+import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.FragmentGatewayBinding
 import com.example.servicecreate.logic.db.model.MyDevice
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
@@ -47,13 +37,10 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
     private lateinit var connection: Connection
     private lateinit var macDialog: MessageDialog
     private lateinit var addWifi: MessageDialog
-    private lateinit var bluetoothAdapter: BluetoothAdapter
-    private lateinit var scanner: BluetoothLeScanner
     private lateinit var adapter: BlueRecyclerAdapter
     private var bluelist = mutableListOf<MyDevice>()
     private var isScanning = false
-
-    private val TAG = "blue"
+    private var showMac = 0
 
     internal val mViewModel: GatewayViewModel by lazy {
         ViewModelProvider(
@@ -71,6 +58,10 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
 
         BTManager.getInstance().addDiscoveryListener(this@GatewayFragment);
         BTManager.getInstance().registerObserver(this@GatewayFragment);
+
+        if(ServiceCreateApplication.sp.getBoolean(ServiceCreateApplication.isGateAay, false)){
+            gatewayAdded.visibility = View.VISIBLE
+        }
 
         gatewayAdd.setOnClickListener {
             if(isScanning){
@@ -129,7 +120,6 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
             .setCancelTextInfo(dialogCancelInfo(requireContext()))
             .setOkButton { dialog, v ->
                 if(mViewModel.hasBytes()){
-                    Log.e("data", mViewModel.WIFIName + " " + mViewModel.WIFIPassword)
                     val data = mViewModel.WIFIName +","+ mViewModel.WIFIPassword
                     val bytes = data.encodeToByteArray()
                     Log.e("data", bytes.toString() + bytes.decodeToString())
@@ -142,11 +132,15 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
             }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun sendData(bytes: ByteArray){
         connection.write("phone", bytes
         ) { device, tag, value, result ->
             if (result) {
                 Log.e("writeData", "${device.name}: 数据写入成功")
+                GlobalScope.launch(Dispatchers.Main) {
+                    addWifi.dismiss()
+                }
             } else {
                 Log.e("writeData", "${device.name}: 数据写入失败")
             }
@@ -154,6 +148,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
     }
 
     private fun showMACDialog() {
+        showMac ++
         macDialog = MessageDialog.show(
             "请输入网关设备上的MAC地址和密码",
             "",
@@ -184,7 +179,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
                 true
             }
             .setCancelButton { _, _ ->
-                false
+                true
             }
     }
 
@@ -196,6 +191,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
                     requireContext().toast(response.msg + response.data)
                     macDialog.dismiss()
                     binding.gatewayAdded.visibility = View.VISIBLE
+                    ServiceCreateApplication.sp.edit().putBoolean(ServiceCreateApplication.isGateAay, true).apply()
                 }else{
                     requireContext().toast(response.msg)
                 }
@@ -215,6 +211,8 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
 
     override fun onDiscoveryStop() {
         "搜索结束".toast()
+        binding.gatewayAdd
+            .text = "点击搜索网关设备"
     }
 
     override fun onDeviceFound(device: BluetoothDevice, rssi: Int) {
@@ -235,7 +233,9 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
         Log.e("receiveData", device?.name + value.decodeToString())
         BTManager.getInstance().disconnectConnection(device, UUIDWrapper.useDefault())
         addWifi.dismiss()
-        showMACDialog()
+        if(showMac == 0){
+            showMACDialog()
+        }
     }
 
     override fun onWrite(

@@ -10,12 +10,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import com.example.base.`interface`.BaseBinding
 import com.example.base.kxt.getViewBinding
 import com.example.base.kxt.toast
-import com.example.base.ui.util.StatusUtil
-import com.example.base.ui.util.StatusUtil.checkNetWork
+import com.example.base.util.StatusUtil
+import com.example.base.util.StatusUtil.checkNetWork
 import com.example.base.util.NetWorkReceiver
 
 /**

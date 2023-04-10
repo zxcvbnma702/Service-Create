@@ -70,6 +70,8 @@
     <string name="append_room">添加房间</string>
     <string name="append_room_tip">请输入房间名</string>
     <string name="append_device_to">添加设备到</string>
+    <string name="append_no_gateway_title">请添加网关</string>
+    <string name="append_no_gateway_title_content">点击我的->网关管理->打开蓝牙后添加网关</string>
 
     <!--    SettingFragment -->
     <string name="setting_person_text">账户管理</string>
@@ -81,6 +83,12 @@
     <string name="wisdom_indoor_text">一键回家</string>
     <string name="wisdom_outdoor_text">一键离家</string>
     <string name="wisdom_sleep_text">一键睡眠</string>
+    <string name="wisdom_indoor_title">开启一键回家模式</string>
+    <string name="wisdom_outdoor_title">开启一键一键离家</string>
+    <string name="wisdom_sleep_title">开启一键一键睡眠</string>
+    <string name="wisdom_indoor_content">一键回家模式de描述</string>
+    <string name="wisdom_outdoor_content">一键一键离家de描述</string>
+    <string name="wisdom_sleep_content">一键一键睡眠de描述</string>
 
     <string name="device_name">请输入设备名</string>
     <string name="device_delete_title">设备删除</string>

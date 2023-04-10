@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.base.kxt.toast
-import com.example.base.ui.activity.BaseFragment
+import com.example.base.activity.BaseFragment
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentExhibitBinding
 import com.example.servicecreate.logic.network.model.DeviceListResponse

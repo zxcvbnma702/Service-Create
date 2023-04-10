@@ -185,6 +185,27 @@ object Repository {
         }
     }
 
+    fun controllerSleep(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.controllerSleep(token)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun controllerIndoor(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.controllerIndoor(token)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun controllerOutDoor(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.controllerOutDoor(token)
+        run {
+            Result.success(response)
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

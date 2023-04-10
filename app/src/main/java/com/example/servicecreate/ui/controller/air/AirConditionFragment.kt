@@ -1,22 +1,16 @@
 package com.example.servicecreate.ui.controller.air
 
 import android.animation.LayoutTransition
-import android.os.Bundle
 import android.transition.Transition
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.base.kxt.toast
-import com.example.base.ui.activity.BaseFragment
+import com.example.base.activity.BaseFragment
 import com.example.servicecreate.R
-import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.FragmentAirConditionBinding
 import com.example.servicecreate.logic.network.model.AirDetailResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
@@ -24,8 +18,6 @@ import com.example.servicecreate.ui.toast
 import com.google.android.material.tabs.TabLayout
 import com.jaygoo.widget.OnRangeChangedListener
 import com.jaygoo.widget.RangeSeekBar
-import com.seosh817.circularseekbar.callbacks.OnAnimationEndListener
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt

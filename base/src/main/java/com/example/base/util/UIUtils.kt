@@ -1,4 +1,4 @@
-package com.example.base.ui.util
+package com.example.base.util
 
 import android.annotation.SuppressLint
 import android.content.res.Resources

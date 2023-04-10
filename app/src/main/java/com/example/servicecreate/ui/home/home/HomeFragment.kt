@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.base.kxt.toast
-import com.example.base.ui.activity.BaseFragment
+import com.example.base.activity.BaseFragment
 import com.example.servicecreate.R
 import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.FragmentHomeBinding

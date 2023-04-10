@@ -1,8 +1,7 @@
 package com.example.servicecreate.ui.home.setting
 
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
-import com.example.base.ui.activity.BaseFragment
+import com.example.base.activity.BaseFragment
 import com.example.servicecreate.databinding.FragmentSettingBinding
 import com.example.servicecreate.ui.auth.AuthActivity
 import com.example.servicecreate.ui.home.MainListener

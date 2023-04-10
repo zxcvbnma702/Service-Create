@@ -1,4 +1,4 @@
-package com.example.base.ui.activity
+package com.example.base.activity
 
 import android.os.Build
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.base.`interface`.BaseBinding
 import com.example.base.kxt.getViewBinding
-import com.example.base.ui.util.StatusUtil
+import com.example.base.util.StatusUtil
 
 /**
  * @author:SunShibo

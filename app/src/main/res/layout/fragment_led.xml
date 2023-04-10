@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.controller.led.LedFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.servicecreate.ui.controller.led.LedViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:paddingTop="20dp"
+        tools:context=".ui.controller.led.ledFragment">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/led_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/led_icon"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/RoundedStyle"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+
+                <TextView
+                    android:id="@+id/led_device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="电源: 开"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/led_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/led_device_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Bedroom"
+                    android:textColor="@color/icon_color"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/led_icon"
+                    app:layout_constraintTop_toBottomOf="@id/led_device_name" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/led_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTextPadding="1dp"
+                    app:thumbTint="@color/white"
+                    app:track="@drawable/switch_bg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/led"
+            android:layout_width="80dp"
+            android:layout_marginBottom="80dp"
+            app:tint="@color/main_color_primary_variant"
+            android:src="@drawable/ic_twotone_wb_incandescent_24"
+            app:layout_constraintBottom_toTopOf="@id/bright_picker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="80dp"/>
+
+        <com.github.gzuliyujiang.colorpicker.BrightnessGradientView
+            android:id="@+id/bright_picker"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/led_cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.github.gzuliyujiang.colorpicker.ColorGradientView
+            app:layout_constraintTop_toBottomOf="@id/bright_picker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/color_picker"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="确定"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:background="@drawable/retangle_bg"
+            app:layout_constraintTop_toBottomOf="@id/color_picker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/color_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

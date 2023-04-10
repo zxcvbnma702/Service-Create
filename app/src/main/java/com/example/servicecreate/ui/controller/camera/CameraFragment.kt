@@ -3,15 +3,10 @@ package com.example.servicecreate.ui.controller.camera
 import android.content.res.Configuration
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import com.example.base.ui.activity.BaseFragment
+import com.example.base.activity.BaseFragment
 import com.example.servicecreate.databinding.FragmentCameraBinding
-import com.example.servicecreate.ui.controller.light.LightViewModel
-import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
-import com.shuyu.gsyvideoplayer.model.VideoOptionModel
-import com.shuyu.gsyvideoplayer.utils.GSYVideoType
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
-import tv.danmaku.ijk.media.player.IjkMediaPlayer
 
 
 class CameraFragment(id: Long) : BaseFragment<FragmentCameraBinding>() {

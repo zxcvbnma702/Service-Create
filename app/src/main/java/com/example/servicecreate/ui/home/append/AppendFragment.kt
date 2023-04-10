@@ -13,14 +13,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.base.kxt.toast
 import com.example.servicecreate.R
+import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.FragmentAppendBinding
 import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
+import com.example.servicecreate.ui.auth.AuthActivity
+import com.example.servicecreate.ui.dialogMessageInfo
+import com.example.servicecreate.ui.dialogOkInfo
+import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.adapter.AppendDefaultRecyclerAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.kongzue.dialogx.dialogs.MessageDialog
 
 /**
  * @author:SunShibo
@@ -79,22 +85,35 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
             ))
 
             appendSearch.setOnClickListener {
-                if(check){
-                    appendSearchAnim.visibility = View.GONE
-                    appendSearchAnim.cancelAnimation()
-                    appendSearchTip.text = getString(R.string.append_search_tip)
-                    appendSearch.text = getString(R.string.append_search)
-                    appendRecycler.adapter = defaultAdapter
-                    check = ! check
+                if(ServiceCreateApplication.sp.getBoolean(ServiceCreateApplication.isGateAay, false)){
+                    if(check){
+                        appendSearchAnim.visibility = View.GONE
+                        appendSearchAnim.cancelAnimation()
+                        appendSearchTip.text = getString(R.string.append_search_tip)
+                        appendSearch.text = getString(R.string.append_search)
+                        appendRecycler.adapter = defaultAdapter
+                        check = ! check
+                    }else{
+                        appendSearchAnim.visibility = View.VISIBLE
+                        appendSearchAnim.playAnimation()
+                        appendSearchTip.text = getString(R.string.append_search_running)
+                        appendSearch.text = getString(R.string.append_search_cancel)
+                        mViewModel.findDevice()
+                        appendRecycler.adapter = netAdapter
+                        check = ! check
+                    }
                 }else{
-                    appendSearchAnim.visibility = View.VISIBLE
-                    appendSearchAnim.playAnimation()
-                    appendSearchTip.text = getString(R.string.append_search_running)
-                    appendSearch.text = getString(R.string.append_search_cancel)
-                    mViewModel.findDevice()
-                    appendRecycler.adapter = netAdapter
-                    check = ! check
+                    MessageDialog.show(getString(R.string.append_no_gateway_title), getString(R.string.append_no_gateway_title_content), "确定")
+                        .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
+                        .setCancelable(false)
+                        .setTitleTextInfo(dialogTitleInfo(requireContext()))
+                        .setOkTextInfo(dialogOkInfo(requireContext()))
+                        .setMessageTextInfo(dialogMessageInfo(requireContext()))
+                        .setOkButton { _, _ ->
+                            false
+                        }
                 }
+
             }
         }
         mViewModel.getRoomList()

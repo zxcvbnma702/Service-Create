@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.base.activity.BaseActivity
 import com.example.base.kxt.toast
-import com.example.base.ui.util.StatusUtil.countDownCoroutines
+import com.example.base.util.StatusUtil.countDownCoroutines
 import com.example.servicecreate.ui.home.MainActivity
 import com.example.servicecreate.R
 import com.example.servicecreate.ServiceCreateApplication

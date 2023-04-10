@@ -3,7 +3,7 @@ package com.example.servicecreate.ui.home.adapter
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
-import com.example.base.ui.activity.BaseAdapter
+import com.example.base.activity.BaseAdapter
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ItemHomeRoomCardBinding
 import com.example.servicecreate.logic.network.model.RoomData

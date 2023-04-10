@@ -1,10 +1,8 @@
-package com.example.base.ui.util
+package com.example.base.util
 
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Build
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
@@ -13,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.example.base.kxt.toast
-import com.example.base.util.NetWorkReceiver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

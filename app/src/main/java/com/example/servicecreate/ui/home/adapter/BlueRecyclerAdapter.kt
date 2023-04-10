@@ -1,7 +1,6 @@
 package com.example.servicecreate.ui.home.adapter
 
-import android.bluetooth.BluetoothDevice
-import com.example.base.ui.activity.BaseAdapter
+import com.example.base.activity.BaseAdapter
 import com.example.servicecreate.databinding.ItemBlueDeviceBinding
 import com.example.servicecreate.logic.db.model.MyDevice
 import com.example.servicecreate.ui.home.gateway.GatewayFragment

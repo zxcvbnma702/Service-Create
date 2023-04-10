@@ -103,6 +103,15 @@ object NetworkCenter {
     suspend fun controllerRoomAllDevice(token: String, request: Map<String, String>)
             = controllerServer.controllerRoomAllDevice(token, request).await()
 
+    suspend fun controllerSleep(token: String)
+            = controllerServer.controllerSleep(token).await()
+
+    suspend fun controllerIndoor(token: String)
+            = controllerServer.controllerIndoor(token).await()
+
+    suspend fun controllerOutDoor(token: String)
+            = controllerServer.controllerOutdoor(token).await()
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

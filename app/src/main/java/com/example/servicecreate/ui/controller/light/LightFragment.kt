@@ -1,24 +1,15 @@
 package com.example.servicecreate.ui.controller.light
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.base.kxt.toast
-import com.example.base.ui.activity.BaseFragment
-import com.example.servicecreate.R
+import com.example.base.activity.BaseFragment
 import com.example.servicecreate.databinding.FragmentLightBinding
 import com.example.servicecreate.logic.network.model.LampDetailResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
-import com.example.servicecreate.ui.controller.air.AirConditionViewModel
 import com.example.servicecreate.ui.toast
 import com.google.android.exoplayer2.util.Log
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 

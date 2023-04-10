@@ -1,6 +1,6 @@
 package com.example.servicecreate.ui.home.adapter
 
-import com.example.base.ui.activity.BaseAdapter
+import com.example.base.activity.BaseAdapter
 import com.example.servicecreate.databinding.ItemAppendDeviceCardBinding
 import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.ui.home.append.AppendFragment

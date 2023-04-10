@@ -29,6 +29,7 @@ class ServiceCreateApplication : Application(){
         const val userID = "userId"
         const val isLogin = "isLogin"
         const val isStore = "isStore"
+        const val isGateAay = "hasGateway"
     }
 
     override fun onCreate() {

@@ -1,25 +1,17 @@
 package com.example.servicecreate.ui.home.adapter
 
-import android.view.View
-import android.widget.EditText
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.Glide
 import com.example.base.kxt.toast
-import com.example.base.ui.activity.BaseAdapter
+import com.example.base.activity.BaseAdapter
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ItemAppendDeviceCardBinding
-import com.example.servicecreate.logic.db.model.AppendItem
 import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.ui.dialogCancelInfo
-import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.append.AppendFragment
 import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.InputDialog
-import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.dialogs.PopMenu
-import com.kongzue.dialogx.interfaces.OnBindView
 
 
 /**
