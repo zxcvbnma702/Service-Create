@@ -7,6 +7,12 @@ plugins {
 android {
     compileSdk rootProject.ext.android["compileSdkVersion"]
 
+    sourceSets{
+        main{
+            jniLibs.srcDirs=['libs']
+        }
+    }
+
     defaultConfig {
         applicationId rootProject.ext.android["applicationId"]
         minSdk        rootProject.ext.android["minSdkVersion"]
@@ -23,7 +29,7 @@ android {
         }
 
         ndk{
-            abiFilters 'armeabi-v7a'
+            abiFilters 'armeabi-v7a', 'armeabi'
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -76,6 +82,7 @@ dependencies {
     implementation 'cn.wandersnail:widget-generic:1.1.0'
     implementation 'cn.wandersnail:classic-bluetooth:1.1.0'
     implementation 'com.github.gzu-liyujiang.AndroidPicker:ColorPicker:4.1.11'
+    implementation 'com.github.EthanCo:PasswordInput:1.5.5'
 
     annotationProcessor rootProject.ext.depsLibs["room-compiler" ]
     kapt(rootProject.ext.depsLibs["room-compiler" ])

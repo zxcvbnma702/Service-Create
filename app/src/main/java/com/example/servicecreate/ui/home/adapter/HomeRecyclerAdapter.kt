@@ -22,6 +22,7 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
 
     override fun ItemHomeRoomCardBinding.onBindViewHolder(bean: RoomData, position: Int) {
         // <100 类别列表 >100 房间列表
+        itemCardRoomSwitch.visibility = View.GONE
         if(bean.id < 100){
             itemCardHome.setOnClickListener {
                 fragment.mViewModel.jumpToExhibitPage(bean.id, bean.name)
@@ -31,7 +32,10 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                 2L -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
                 3L -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
                 4L -> Glide.with(context).load(R.drawable.ic_device_led).into(itemCardRoomImage)
-                5L -> Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
+                5L -> {
+                    itemCardRoomSwitch.visibility = View.GONE
+                    Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
+                }
             }
             itemCardRoomSwitch.setOnCheckedChangeListener { compoundButton, b ->
                 if(b){

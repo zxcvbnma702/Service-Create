@@ -64,31 +64,33 @@
 
     <!--    AppendFragment -->
     <string name="append_search">点击搜索设备</string>
-    <string name="append_search_tip">点击房间图标添加房间\n或点击搜索按钮添加设备</string>
+    <string name="append_search_tip_room">点击房间图标添加房间</string>
+    <string name="append_search_tip_device">点击搜索按钮添加设备</string>
     <string name="append_search_running">正在搜索中…</string>
     <string name="append_search_cancel">取消</string>
     <string name="append_room">添加房间</string>
     <string name="append_room_tip">请输入房间名</string>
     <string name="append_device_to">添加设备到</string>
-    <string name="append_no_gateway_title">请添加网关</string>
-    <string name="append_no_gateway_title_content">点击我的->网关管理->打开蓝牙后添加网关</string>
+    <string name="append_no_gateway_title">请配置网络</string>
+    <string name="append_no_gateway_title_content">点击我的->网络管理->打开蓝牙后选择网关设备配置网络</string>
 
     <!--    SettingFragment -->
     <string name="setting_person_text">账户管理</string>
-    <string name="setting_gateway_text">网关管理</string>
+    <string name="setting_gateway_text">网关配置</string>
     <string name="setting_wisdom_text">智慧生活</string>
     <string name="setting_logout_text">退出登录</string>
 
     <!--    WisdomFragment -->
-    <string name="wisdom_indoor_text">一键回家</string>
-    <string name="wisdom_outdoor_text">一键离家</string>
-    <string name="wisdom_sleep_text">一键睡眠</string>
-    <string name="wisdom_indoor_title">开启一键回家模式</string>
-    <string name="wisdom_outdoor_title">开启一键一键离家</string>
-    <string name="wisdom_sleep_title">开启一键一键睡眠</string>
-    <string name="wisdom_indoor_content">一键回家模式de描述</string>
-    <string name="wisdom_outdoor_content">一键一键离家de描述</string>
-    <string name="wisdom_sleep_content">一键一键睡眠de描述</string>
+    <string name="wisdom_indoor_text">回家</string>
+    <string name="wisdom_outdoor_text">离家</string>
+    <string name="wisdom_sleep_text">全屋睡眠</string>
+    <string name="wisdom_random_text">自定义</string>
+    <string name="wisdom_indoor_title">开启回家模式</string>
+    <string name="wisdom_outdoor_title">开启离家模式</string>
+    <string name="wisdom_sleep_title">开启全屋睡眠模式</string>
+    <string name="wisdom_indoor_content">打开全部空调和灯</string>
+    <string name="wisdom_outdoor_content">关闭所有设备,保障房屋安全</string>
+    <string name="wisdom_sleep_content">所有非灯设备低功率运行,呵护您的睡眠</string>
 
     <string name="device_name">请输入设备名</string>
     <string name="device_delete_title">设备删除</string>
@@ -97,7 +99,8 @@
     <string name="custom_input_device_name">密码</string>
     <string name="exhibit_kind_device_failure">设备获取失败</string>
 
-    <string name="gateway_add">点击添加新的网关</string>
+    <string name="gateway_add">点击搜索网关设备配网</string>
+    <string name="please_input_password">请输入新的门锁密码</string>
 
 
 </resources>

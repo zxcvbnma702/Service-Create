@@ -25,7 +25,7 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
         mViewModel.wisdomListener = this@WisdomFragment
 
         wisdomIndoor.setOnClickListener {
-            MessageDialog.show(getString(R.string.wisdom_indoor_title), getString(R.string.auth_state_abnormal_tip), "确定")
+            MessageDialog.show(getString(R.string.wisdom_indoor_title), getString(R.string.wisdom_indoor_content), "确定")
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
                 .setCancelable(false)
                 .setTitleTextInfo(dialogTitleInfo(requireContext()))
@@ -39,7 +39,7 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
         }
 
         wisdomOutdoor.setOnClickListener {
-            MessageDialog.show(getString(R.string.wisdom_indoor_title), getString(R.string.auth_state_abnormal_tip), "确定")
+            MessageDialog.show(getString(R.string.wisdom_outdoor_title), getString(R.string.wisdom_outdoor_content), "确定")
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
                 .setCancelable(false)
                 .setTitleTextInfo(dialogTitleInfo(requireContext()))
@@ -52,7 +52,7 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
         }
 
         wisdomSleep.setOnClickListener {
-            MessageDialog.show(getString(R.string.wisdom_indoor_title), getString(R.string.auth_state_abnormal_tip), "确定")
+            MessageDialog.show(getString(R.string.wisdom_sleep_title), getString(R.string.wisdom_sleep_content), "确定")
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
                 .setCancelable(false)
                 .setTitleTextInfo(dialogTitleInfo(requireContext()))
@@ -104,5 +104,4 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
             }
         }
     }
-
 }

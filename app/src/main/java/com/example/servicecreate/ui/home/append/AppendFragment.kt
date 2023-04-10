@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
+import android.widget.EditText
 import androidx.core.os.bundleOf
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +22,7 @@ import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import com.example.servicecreate.ui.auth.AuthActivity
+import com.example.servicecreate.ui.dialogCancelInfo
 import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogOkInfo
 import com.example.servicecreate.ui.dialogTitleInfo
@@ -27,17 +30,18 @@ import com.example.servicecreate.ui.home.adapter.AppendDefaultRecyclerAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kongzue.dialogx.dialogs.MessageDialog
+import com.kongzue.dialogx.interfaces.OnBindView
 
 /**
  * @author:SunShibo
  * @date:2023-03-21 21:54
  * @feature:
  */
-class AppendFragment: BottomSheetDialogFragment(), AppendListener {
+class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendListener {
+    private lateinit var macDialog: MessageDialog
     private lateinit var behavior: BottomSheetBehavior<View>
     private lateinit var binding: FragmentAppendBinding
     private lateinit var defaultAdapter: AppendDefaultRecyclerAdapter
-    private lateinit var netAdapter: AppendDefaultRecyclerAdapter
     private var check: Boolean = false
 
     internal val mViewModel: AppendViewModel by lazy {
@@ -76,22 +80,31 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
             designBottomSheet.layoutTransition = transition
 
             defaultAdapter = AppendDefaultRecyclerAdapter(this@AppendFragment)
-            netAdapter = AppendDefaultRecyclerAdapter(this@AppendFragment)
             appendRecycler.adapter = defaultAdapter
 
-            defaultAdapter.setData(
-                listOf(
-                    DeviceData("", 0L, 0, "添加房间", mutableListOf(), 0, "")
-            ))
+            when(i){
+                //添加房间
+                0 ->{
+                    appendSearch.visibility = View.GONE
+                    appendSearchTip.text = getString(R.string.append_search_tip_room)
+                    defaultAdapter.setData(
+                        listOf(
+                            DeviceData("", 0L, 0, "添加房间", mutableListOf(), 0, "")
+                        ))
+                }
+                //添加设备
+                1->{
+                    appendSearchTip.text = getString(R.string.append_search_tip_device)
+                }
+            }
 
             appendSearch.setOnClickListener {
                 if(ServiceCreateApplication.sp.getBoolean(ServiceCreateApplication.isGateAay, false)){
                     if(check){
                         appendSearchAnim.visibility = View.GONE
                         appendSearchAnim.cancelAnimation()
-                        appendSearchTip.text = getString(R.string.append_search_tip)
+                        appendSearchTip.text = getString(R.string.append_search_tip_device)
                         appendSearch.text = getString(R.string.append_search)
-                        appendRecycler.adapter = defaultAdapter
                         check = ! check
                     }else{
                         appendSearchAnim.visibility = View.VISIBLE
@@ -99,7 +112,6 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
                         appendSearchTip.text = getString(R.string.append_search_running)
                         appendSearch.text = getString(R.string.append_search_cancel)
                         mViewModel.findDevice()
-                        appendRecycler.adapter = netAdapter
                         check = ! check
                     }
                 }else{
@@ -136,6 +148,41 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         }
     }
 
+    internal fun showMACDialog() {
+        macDialog = MessageDialog.show(
+            "请输入网关设备上的MAC地址和密码",
+            "",
+            "确定",
+            "取消",
+            " "
+        )
+            .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
+            .setCancelable(false)
+            .setCustomView(object: OnBindView<MessageDialog>(R.layout.item_extend_view){
+                override fun onBind(dialog: MessageDialog?, v: View?) {
+                    val deviceId = v?.findViewById<EditText>(R.id.custom_input_device_id)
+                    deviceId?.doAfterTextChanged {
+                        mViewModel.MACAccount =  it.toString()
+                    }
+                    val deviceName = v?.findViewById<EditText>(R.id.custom_input_device_name)
+                    deviceName?.doAfterTextChanged {
+                        mViewModel.MACPassword =  it.toString()
+                    }
+                }
+
+            })
+            .setCancelTextInfo(dialogCancelInfo(requireContext()))
+            .setOkButton { dialog, v ->
+                if(mViewModel.hasMacs()){
+                    mViewModel.sendUserMac()
+                }
+                true
+            }
+            .setCancelButton { _, _ ->
+                false
+            }
+    }
+
     override fun onAddRoom(result: LiveData<Result<SendVerifiedResponse>>) {
         result.observe(this){ re ->
             val responses = re.getOrNull()
@@ -160,7 +207,7 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
         result.observe(this){ re ->
             val responses = re.getOrNull()
             if (responses != null) {
-                netAdapter.roomList.putAll(responses.data.associate {
+                defaultAdapter.roomList.putAll(responses.data.associate {
                         it.name to it.id
                     })
                 }
@@ -191,7 +238,7 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
             if (responses != null) {
                 when(responses.code){
                     1-> {
-                        netAdapter.setData(responses.data)
+                        defaultAdapter.setData(responses.data)
                     }
                     else ->{
                         responses.msg?.let { requireContext().toast(it) }
@@ -204,5 +251,19 @@ class AppendFragment: BottomSheetDialogFragment(), AppendListener {
     private fun senResult(){
         val result = "result"
         setFragmentResult("refreshKey", bundleOf("bundleKey" to result))
+    }
+
+    override fun onSendMac(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast(response.msg + response.data)
+                    macDialog.dismiss()
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
     }
 }

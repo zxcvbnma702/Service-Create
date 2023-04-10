@@ -15,4 +15,5 @@ interface AppendListener {
     fun onAddRoom(result: LiveData<Result<SendVerifiedResponse>>)
     fun onAddDeviceToRoom(result: LiveData<Result<SendVerifiedResponse>>)
     fun onFindDevice(result: LiveData<Result<DeviceListResponse>>)
+    fun onSendMac(result: LiveData<Result<SendVerifiedResponse>>)
 }

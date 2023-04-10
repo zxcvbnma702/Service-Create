@@ -24,7 +24,7 @@
           app:layout_constraintEnd_toEndOf="parent"
           android:background="@color/white"
           app:navigationIconTint="@color/main_color_primary_secondary"
-          app:title="网关管理"
+          app:title="网关配置"
           app:titleCentered="true"
           android:elevation="@dimen/ui_elevation_height"
           app:navigationContentDescription="返回上一级"

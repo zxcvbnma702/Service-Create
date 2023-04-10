@@ -9,5 +9,4 @@ import com.example.servicecreate.logic.network.model.SendVerifiedResponse
  * @feature:
  */
 interface GatewayListener {
-    fun onSendMac(result: LiveData<Result<SendVerifiedResponse>>)
 }

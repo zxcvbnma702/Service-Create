@@ -21,6 +21,9 @@ class AppendViewModel: ViewModel() {
 
     private val token = ServiceCreateApplication.appSecret
 
+    internal var MACPassword: String = ""
+    internal var MACAccount: String = ""
+
     fun addRoom(roomName: String){
         val response = repository.addRoom(token, roomName)
         appendListener?.onAddRoom(response)
@@ -47,6 +50,23 @@ class AppendViewModel: ViewModel() {
             return false
         }
         return true
+    }
+
+    fun hasMacs(): Boolean{
+        if(MACAccount.isBlank() || MACAccount.isEmpty()){
+            "MAC账号不能为空".toast()
+            return false
+        }
+        if(MACPassword.isBlank() || MACPassword.isEmpty()){
+            "MAC密码不能为空".toast()
+            return false
+        }
+        return true
+    }
+
+    fun sendUserMac() {
+        val result = repository.sendMac(token, MACAccount, MACPassword)
+        appendListener?.onSendMac(result)
     }
 
 

@@ -20,11 +20,8 @@ class GatewayViewModel: ViewModel() {
 
     internal var WIFIName: String = ""
     internal var WIFIPassword: String = ""
-    internal var MACPassword: String = ""
-    internal var MACAccount: String = ""
 
     internal var deviceList: MutableList<MyDevice> = arrayListOf()
-
 
     fun hasBytes(): Boolean{
         if(WIFIName.isBlank() || WIFIName.isEmpty()){
@@ -36,23 +33,6 @@ class GatewayViewModel: ViewModel() {
             return false
         }
         return true
-    }
-
-    fun hasMacs(): Boolean{
-        if(MACAccount.isBlank() || MACAccount.isEmpty()){
-            "MAC账号不能为空".toast()
-            return false
-        }
-        if(MACPassword.isBlank() || MACPassword.isEmpty()){
-            "MAC密码不能为空".toast()
-            return false
-        }
-        return true
-    }
-
-    fun sendUserMac() {
-        val result = repository.sendMac(token, MACAccount, MACPassword)
-        gatewayListener?.onSendMac(result)
     }
 
 }

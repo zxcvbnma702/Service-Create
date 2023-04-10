@@ -22,6 +22,7 @@ import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.DevicesRecyclerAdapter
 import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
+import com.example.servicecreate.ui.home.append.AppendFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 
@@ -52,14 +53,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
         homeUsername.text = "Hello, ${ServiceCreateApplication.appSecret.split(".")}"
         Log.e("token", ServiceCreateApplication.appSecret.toString())
 
+        homeNotification.apply {
+            setOnClickListener {
+                if(mViewModel.isRoom){
+                    AppendFragment(0).show(parentFragmentManager, "Append")
+                }else{
+                    AppendFragment(1).show(parentFragmentManager, "Append")
+                }
+            }
+        }
+
         homeTablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if(tab?.position == 0){
                     homeRecyclerview.adapter = roomAdapter
                     homeMode.visibility = View.GONE
+                    mViewModel.isRoom = true
                 }else{
                     homeRecyclerview.adapter = deviceAdapter
                     homeMode.visibility = View.VISIBLE
+                    mViewModel.isRoom = false
                 }
             }
 

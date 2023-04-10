@@ -1,5 +1,8 @@
 package com.example.servicecreate.ui.home.adapter
 
+import android.view.View
+import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
 import com.bumptech.glide.Glide
 import com.example.base.kxt.toast
 import com.example.base.activity.BaseAdapter
@@ -11,7 +14,9 @@ import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.append.AppendFragment
 import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.InputDialog
+import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.dialogs.PopMenu
+import com.kongzue.dialogx.interfaces.OnBindView
 
 
 /**
@@ -71,6 +76,7 @@ class AppendDefaultRecyclerAdapter(
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
+                Glide.with(context).load(R.drawable.ic_device_air).into(itemCardDeviceImage)
             }
             2 -> {
                 itemCardAppend.setOnClickListener {
@@ -81,6 +87,7 @@ class AppendDefaultRecyclerAdapter(
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
+                Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardDeviceImage)
             }
             3 -> {
                 itemCardAppend.setOnClickListener {
@@ -91,6 +98,7 @@ class AppendDefaultRecyclerAdapter(
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
+                Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardDeviceImage)
             }
             4 -> {
                 itemCardAppend.setOnClickListener {
@@ -101,6 +109,7 @@ class AppendDefaultRecyclerAdapter(
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
+                Glide.with(context).load(R.drawable.ic_device_led).into(itemCardDeviceImage)
             }
             5 -> {
                 itemCardAppend.setOnClickListener {
@@ -111,7 +120,14 @@ class AppendDefaultRecyclerAdapter(
                             false
                         }.menuTextInfo = dialogTitleInfo(context)
                 }
+                Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardDeviceImage)
             }
+            255->{
+                itemCardAppend.setOnClickListener {
+                    fragment.showMACDialog()
+                }
+            }
+
         }
     }
 
@@ -152,4 +168,5 @@ class AppendDefaultRecyclerAdapter(
                 false
             }
     }
+
 }

@@ -20,6 +20,7 @@ class HomeViewModel : ViewModel() {
 
     private val token = ServiceCreateApplication.appSecret
 
+    internal var isRoom: Boolean = true
     private var v: Boolean = false
 
     internal var roomName: String = "默认房间"

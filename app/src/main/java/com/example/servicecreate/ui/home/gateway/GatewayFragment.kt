@@ -147,58 +147,6 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
         }
     }
 
-    private fun showMACDialog() {
-        showMac ++
-        macDialog = MessageDialog.show(
-            "请输入网关设备上的MAC地址和密码",
-            "",
-            "确定",
-            "取消",
-            " "
-        )
-            .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
-            .setCancelable(false)
-            .setCustomView(object: OnBindView<MessageDialog>(R.layout.item_extend_view){
-                override fun onBind(dialog: MessageDialog?, v: View?) {
-                    val deviceId = v?.findViewById<EditText>(R.id.custom_input_device_id)
-                    deviceId?.doAfterTextChanged {
-                        mViewModel.MACAccount =  it.toString()
-                    }
-                    val deviceName = v?.findViewById<EditText>(R.id.custom_input_device_name)
-                    deviceName?.doAfterTextChanged {
-                        mViewModel.MACPassword =  it.toString()
-                    }
-                }
-
-            })
-            .setCancelTextInfo(dialogCancelInfo(requireContext()))
-            .setOkButton { dialog, v ->
-                if(mViewModel.hasMacs()){
-                    mViewModel.sendUserMac()
-                }
-                true
-            }
-            .setCancelButton { _, _ ->
-                true
-            }
-    }
-
-    override fun onSendMac(result: LiveData<Result<SendVerifiedResponse>>) {
-        result.observe(this){ re ->
-            val response = re.getOrNull()
-            if (response != null) {
-                if(response.code == 1){
-                    requireContext().toast(response.msg + response.data)
-                    macDialog.dismiss()
-                    binding.gatewayAdded.visibility = View.VISIBLE
-                    ServiceCreateApplication.sp.edit().putBoolean(ServiceCreateApplication.isGateAay, true).apply()
-                }else{
-                    requireContext().toast(response.msg)
-                }
-            }
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         BTManager.getInstance().removeDiscoveryListener(this);
@@ -233,9 +181,8 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
         Log.e("receiveData", device?.name + value.decodeToString())
         BTManager.getInstance().disconnectConnection(device, UUIDWrapper.useDefault())
         addWifi.dismiss()
-        if(showMac == 0){
-            showMACDialog()
-        }
+        binding.gatewayAdded.visibility = View.VISIBLE
+        ServiceCreateApplication.sp.edit().putBoolean(ServiceCreateApplication.isGateAay, true).apply()
     }
 
     override fun onWrite(

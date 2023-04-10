@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:elevation="@dimen/ui_elevation_height"
-                android:text="@string/append_search_tip"
+                android:text="@string/append_search_tip_room"
                 android:textColor="@color/main_color_primary_secondary"
                 android:textSize="20sp"
                 android:textStyle="bold"
