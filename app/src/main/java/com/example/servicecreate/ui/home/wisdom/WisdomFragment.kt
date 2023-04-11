@@ -24,6 +24,10 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
         binding.viewModel = mViewModel
         mViewModel.wisdomListener = this@WisdomFragment
 
+        wisdomToolbar.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         wisdomIndoor.setOnClickListener {
             MessageDialog.show(getString(R.string.wisdom_indoor_title), getString(R.string.wisdom_indoor_content), "确定")
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))

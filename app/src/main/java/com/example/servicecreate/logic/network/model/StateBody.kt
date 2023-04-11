@@ -39,4 +39,21 @@ data class LampStateData(
     val updateTime: String
 )
 
+data class DoorLockDetailResponse(
+    val code: Int,
+    val `data`: Data,
+    val map: Map,
+    val msg: Any
+)
+
+data class Data(
+    val createTime: String,
+    val id: Long,
+    val isDeleted: Int,
+    val password: String,
+    val status: Int,
+    val updateTime: String
+)
+
+
 

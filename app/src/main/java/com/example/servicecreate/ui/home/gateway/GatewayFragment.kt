@@ -63,6 +63,10 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
             gatewayAdded.visibility = View.VISIBLE
         }
 
+        gatewayToolbar.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         gatewayAdd.setOnClickListener {
             if(isScanning){
                 BTManager.getInstance().stopDiscovery()

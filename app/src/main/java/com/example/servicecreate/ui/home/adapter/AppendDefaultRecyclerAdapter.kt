@@ -33,9 +33,6 @@ class AppendDefaultRecyclerAdapter(
 
     override fun ItemAppendDeviceCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
         itemCardDeviceName.text = bean.name
-        itemCardAppend.setOnClickListener {
-
-        }
 
         when (bean.type) {
             0 -> {
@@ -127,7 +124,6 @@ class AppendDefaultRecyclerAdapter(
                     fragment.showMACDialog()
                 }
             }
-
         }
     }
 

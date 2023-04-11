@@ -52,9 +52,18 @@ class ExhibitViewModel :ViewModel(){
     }
 
     fun airState(id: Int, state: Int){
-        val result = repository.airController(token, id, state,
-            0, 0, 0, 0)
+        val result = repository.airControllerState(token, id, state)
         exhibitListener?.onSendAirState(result)
+    }
+
+    fun doorLockState(id: Int, state: Int){
+        val result = repository.doorLockController(token, id, state)
+        exhibitListener?.onSendDoorLockData(result)
+    }
+
+    fun controllerAllDeviceByKind(roomId: Long, kindData: Int, state: Int){
+        val result = repository.controllerRoomAllDevice(token, roomId.toString(), kindData.toString(), state.toString())
+        exhibitListener?.onControllerByKind(result)
     }
 
 

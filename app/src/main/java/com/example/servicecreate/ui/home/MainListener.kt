@@ -18,4 +18,5 @@ interface MainListener {
     fun onSendLampState(result: LiveData<Result<SendVerifiedResponse>>) {}
     fun onSendAirState(result: LiveData<Result<SendVerifiedResponse>>) {}
     fun onControllerResult(result: LiveData<Result<SendVerifiedResponse>>) {}
+    fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>) {}
 }

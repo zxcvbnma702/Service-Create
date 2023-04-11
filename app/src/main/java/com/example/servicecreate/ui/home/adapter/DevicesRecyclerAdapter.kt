@@ -64,11 +64,13 @@ class DevicesRecyclerAdapter(private val fragment: HomeFragment):
                 when(bean.type){
                     1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 1)
                     2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 1)
+                    3 -> fragment.mViewModel.doorLockState(bean.id.toInt().absoluteValue, 1)
                 }
             }else{
                 when(bean.type){
                     1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 0)
                     2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 0)
+                    3 -> fragment.mViewModel.doorLockState(bean.id.toInt().absoluteValue, 0)
                 }
             }
         }

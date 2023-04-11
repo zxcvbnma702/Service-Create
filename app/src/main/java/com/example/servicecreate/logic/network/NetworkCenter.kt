@@ -91,6 +91,9 @@ object NetworkCenter {
     suspend fun getLampDetail(token: String, id: Int)
             = deviceServer.getLampState(token, id).await()
 
+    suspend fun getDoorLockDetail(token: String, id: Int)
+            = deviceServer.getDoorLockState(token, id).await()
+
     /**
      * Controller
      */
@@ -99,6 +102,12 @@ object NetworkCenter {
 
     suspend fun lampController(token: String, request: Map<String, Int>)
             = controllerServer.lampController(token, request).await()
+
+    suspend fun doorLockController(token: String, request: Map<String, Int>)
+            = controllerServer.doorLockController(token, request).await()
+
+    suspend fun doorLockPawdController(token: String, request: Map<String, String>)
+            = controllerServer.doorLockControllerPawd(token, request).await()
 
     suspend fun controllerRoomAllDevice(token: String, request: Map<String, String>)
             = controllerServer.controllerRoomAllDevice(token, request).await()

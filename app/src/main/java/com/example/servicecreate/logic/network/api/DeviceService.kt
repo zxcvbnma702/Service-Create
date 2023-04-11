@@ -37,4 +37,7 @@ interface DeviceService {
 
     @GET("equipment/led")
     fun getLampState(@Header("token") token: String, @Query("id") id: Int): Call<LampDetailResponse>
+
+    @GET("equipment/gate")
+    fun getDoorLockState(@Header("token") token: String, @Query("id") id: Int): Call<DoorLockDetailResponse>
 }

@@ -101,6 +101,8 @@
 
     <string name="gateway_add">点击搜索网关设备配网</string>
     <string name="please_input_password">请输入新的门锁密码</string>
+    <string name="exhibit_toolbar_menu">房间控制</string>
+    <string name="exhibit_toolbar_menu_edit">修改房间信息</string>
 
 
 </resources>

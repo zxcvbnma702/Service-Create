@@ -28,11 +28,7 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
             2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
             3 -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
         }
-        if(bean.roomList.isNotEmpty()){
-            itemCardRoomNumber.text = bean.roomList.first().name
-        }else{
-            itemCardRoomNumber.text = "默认房间"
-        }
+
 
         itemCardExhibit.setOnClickListener {
             if(bean.roomList.isNotEmpty()){
@@ -54,6 +50,8 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
                     .setCancelButton{_, _ ->
                         false
                     }
+            }else{
+
             }
 
             false
@@ -64,11 +62,13 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
                 when(bean.type){
                     1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 1)
                     2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 1)
+                    3 -> fragment.mViewModel.doorLockState(bean.id.toInt().absoluteValue, 1)
                 }
             }else{
                 when(bean.type){
                     1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 0)
                     2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 0)
+                    3 -> fragment.mViewModel.doorLockState(bean.id.toInt().absoluteValue, 0)
                 }
             }
         }

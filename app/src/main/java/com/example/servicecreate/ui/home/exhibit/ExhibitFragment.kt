@@ -1,18 +1,25 @@
 package com.example.servicecreate.ui.home.exhibit
 
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.base.kxt.toast
 import com.example.base.activity.BaseFragment
+import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentExhibitBinding
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
+import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.adapter.ExhibitRecyclerAdapter
+import com.example.servicecreate.ui.toast
+import com.kongzue.dialogx.dialogs.PopMenu
+import com.kongzue.dialogx.interfaces.OnIconChangeCallBack
+import com.kongzue.dialogx.interfaces.OnMenuItemClickListener
 import kotlinx.coroutines.launch
+
 
 class ExhibitFragment(internal val l: Long, private val roomName: String) : BaseFragment<FragmentExhibitBinding>() , ExhibitListener{
 
@@ -40,8 +47,22 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             4L -> exhibitToolbar.title = "所有的彩灯"
             5L -> exhibitToolbar.title = "所有的摄像头"
             else ->{
-                exhibitToolbar.title = roomName
-                exhibitToolbar.subtitle = l.toString()
+                exhibitToolbar.apply{
+                    title = roomName
+                    subtitle = l.toString()
+                    inflateMenu(R.menu.exhibit_menu);
+                    setOnMenuItemClickListener {
+                        when(it.itemId){
+                            R.id.exhibit_more -> {
+                                roomController()
+                                false
+                            }
+                            else -> {
+                                false
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -60,6 +81,11 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true);
+    }
+
     private fun initData() {
         if(l < 100){
             mViewModel.getDeviceListByType(l.toInt())
@@ -67,7 +93,6 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             mViewModel.getRoomDetail(l)
             mViewModel.getRoomDevices(l)
         }
-
         Log.e("id", l.toString())
     }
 
@@ -93,6 +118,7 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             if(response != null){
                 if(response.code == 1){
                     roomsDeviceAdapter.setData(response.data)
+                    Log.e("ff", response.data.toString())
                 }else{
                     requireContext().toast(R.string.exhibit_room_device_failure)
                 }
@@ -155,5 +181,88 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
                 }
             }
         }
+    }
+
+    override fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast("门锁: ${response.data}")
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
+    override fun onControllerByKind(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast(response.data)
+                    mViewModel.refreshExhibitPage()
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
+    private fun roomController(){
+        PopMenu.
+        show(arrayOf("打开所有灯", "关闭所有灯", "打开所有空调", "关闭所有空调"))
+            .setRadius(15f)
+            .setMenuTextInfo(dialogTitleInfo(requireContext()))
+            .setOnMenuItemClickListener { dialog, text, index ->
+                when (index) {
+                    0 -> mViewModel.controllerAllDeviceByKind(l, 2, 1)
+                    1 -> mViewModel.controllerAllDeviceByKind(l, 2, 0)
+                    2 -> mViewModel.controllerAllDeviceByKind(l, 1, 1)
+                    3 -> mViewModel.controllerAllDeviceByKind(l, 1, 0)
+                }
+                false
+            }
+            .onIconChangeCallBack =
+            object : OnIconChangeCallBack<PopMenu?>(true) {
+                override fun getIcon(dialog: PopMenu?, index: Int, menuText: String): Int {
+                    return when (index) {
+                        0 -> R.drawable.lamp_state
+                        1 -> R.drawable.lamp_state
+                        2 -> R.drawable.air_state
+                        3 -> R.drawable.air_state
+                        else -> 0
+                    }
+                }
+            }
+    }
+
+    private fun roomDeviceSelect(){
+        PopMenu.
+        show(arrayOf("移动到其他房间", "删除设备"))
+            .setRadius(15f)
+            .setMenuTextInfo(dialogTitleInfo(requireContext()))
+            .setOnMenuItemClickListener { dialog, text, index ->
+                when (index) {
+                    0 -> mViewModel.controllerAllDeviceByKind(l, 2, 1)
+                    1 -> mViewModel.controllerAllDeviceByKind(l, 2, 0)
+                    2 -> mViewModel.controllerAllDeviceByKind(l, 1, 1)
+                    3 -> mViewModel.controllerAllDeviceByKind(l, 1, 0)
+                }
+                false
+            }
+            .onIconChangeCallBack =
+            object : OnIconChangeCallBack<PopMenu?>(true) {
+                override fun getIcon(dialog: PopMenu?, index: Int, menuText: String): Int {
+                    return when (index) {
+                        0 -> R.drawable.lamp_state
+                        1 -> R.drawable.lamp_state
+                        2 -> R.drawable.air_state
+                        3 -> R.drawable.air_state
+                        else -> 0
+                    }
+                }
+            }
     }
 }

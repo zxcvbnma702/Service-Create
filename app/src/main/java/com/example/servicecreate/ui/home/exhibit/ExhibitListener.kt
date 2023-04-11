@@ -17,5 +17,8 @@ interface ExhibitListener {
     fun onDeleteDevice(result: LiveData<Result<SendVerifiedResponse>>)
     fun onSendLampState(result: LiveData<Result<SendVerifiedResponse>>)
     fun onSendAirState(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onControllerByKind(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>)
+
 
 }

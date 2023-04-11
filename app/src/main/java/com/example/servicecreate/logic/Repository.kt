@@ -158,6 +158,12 @@ object Repository {
         }
     }
 
+    fun getDoorLockDetail(token: String, id: Int) = fire(Dispatchers.IO){
+        val response = NetworkCenter.getDoorLockDetail(token, id)
+        run {
+            Result.success(response)
+        }
+    }
     /**
      * "id": 2722, "state": 1, "mode": 1, "grade": 0, "temp": 20, "scaveng": 0
      */
@@ -169,9 +175,33 @@ object Repository {
         }
     }
 
+    fun airControllerState(token: String, id: Int, state: Int) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "state" to state)
+        val response = NetworkCenter.airController(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
     fun lampController(token: String,  id: Int, state: Int)= fire(Dispatchers.IO){
         val request = mapOf("id" to id, "state" to state)
         val response = NetworkCenter.lampController(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun doorLockController(token: String,  id: Int, state: Int) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "state" to state)
+        val response = NetworkCenter.doorLockController(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun doorLockPawdController(token: String,  id: String, pawd: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "password" to pawd)
+        val response = NetworkCenter.doorLockPawdController(token, request)
         run {
             Result.success(response)
         }

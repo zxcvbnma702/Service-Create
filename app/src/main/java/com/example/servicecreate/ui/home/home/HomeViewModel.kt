@@ -96,9 +96,13 @@ class HomeViewModel : ViewModel() {
     }
 
     fun airState(id: Int, state: Int){
-        val result = repository.airController(token, id, state,
-            0, 0, 0, 0)
+        val result = repository.airControllerState(token, id, state)
         mainListener?.onSendAirState(result)
+    }
+
+    fun doorLockState(id: Int, state: Int){
+        val result = repository.doorLockController(token, id, state)
+        mainListener?.onSendDoorLockData(result)
     }
 
     fun controllerRoomAllDevice(roomId: String, kindData: String, state: String){

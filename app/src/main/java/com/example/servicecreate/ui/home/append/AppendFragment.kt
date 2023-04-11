@@ -169,7 +169,6 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                         mViewModel.MACPassword =  it.toString()
                     }
                 }
-
             })
             .setCancelTextInfo(dialogCancelInfo(requireContext()))
             .setOkButton { dialog, v ->

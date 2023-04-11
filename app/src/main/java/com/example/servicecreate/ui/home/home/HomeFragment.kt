@@ -3,6 +3,7 @@ package com.example.servicecreate.ui.home.home
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -11,8 +12,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.base.kxt.toast
 import com.example.base.activity.BaseFragment
+import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.FragmentHomeBinding
@@ -25,6 +26,8 @@ import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
 import com.example.servicecreate.ui.home.append.AppendFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
+import java.lang.String.format
+import java.text.MessageFormat.format
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -53,6 +56,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
         homeUsername.text = "Hello, ${ServiceCreateApplication.appSecret.split(".")}"
         Log.e("token", ServiceCreateApplication.appSecret.toString())
 
+        homeCardViewDate.text = DateFormat.format("yyyy-MM-dd EEEE", System.currentTimeMillis())
+
+        homeTips.text = "点击添加新房间->"
+
         homeNotification.apply {
             setOnClickListener {
                 if(mViewModel.isRoom){
@@ -69,10 +76,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
                     homeRecyclerview.adapter = roomAdapter
                     homeMode.visibility = View.GONE
                     mViewModel.isRoom = true
+                    homeTips.text = "点击添加新房间->"
                 }else{
                     homeRecyclerview.adapter = deviceAdapter
                     homeMode.visibility = View.VISIBLE
                     mViewModel.isRoom = false
+                    homeTips.text = "点击添加新设备->"
                 }
             }
 
@@ -219,6 +228,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
             if (response != null) {
                 if(response.code == 1){
                     requireContext().toast("空调: ${response.data}")
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
+    override fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast("门锁: ${response.data}")
                 }else{
                     requireContext().toast(response.msg)
                 }
