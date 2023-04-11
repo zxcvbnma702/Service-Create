@@ -183,6 +183,19 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
         }
     }
 
+    override fun onSendLedState(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast("led: ${response.data}")
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
     override fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>) {
         result.observe(this){ re ->
             val response = re.getOrNull()

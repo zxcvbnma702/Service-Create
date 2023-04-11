@@ -19,6 +19,7 @@ interface ExhibitListener {
     fun onSendAirState(result: LiveData<Result<SendVerifiedResponse>>)
     fun onControllerByKind(result: LiveData<Result<SendVerifiedResponse>>)
     fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onSendLedState(result: LiveData<Result<SendVerifiedResponse>>)
 
 
 }

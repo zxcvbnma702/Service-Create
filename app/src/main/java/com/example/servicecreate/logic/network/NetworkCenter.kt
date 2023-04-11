@@ -109,6 +109,9 @@ object NetworkCenter {
     suspend fun doorLockPawdController(token: String, request: Map<String, String>)
             = controllerServer.doorLockControllerPawd(token, request).await()
 
+    suspend fun ledController(token: String, request: Map<String, String>)
+            = controllerServer.ledController(token, request).await()
+
     suspend fun controllerRoomAllDevice(token: String, request: Map<String, String>)
             = controllerServer.controllerRoomAllDevice(token, request).await()
 

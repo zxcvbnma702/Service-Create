@@ -103,6 +103,9 @@
     <string name="please_input_password">请输入新的门锁密码</string>
     <string name="exhibit_toolbar_menu">房间控制</string>
     <string name="exhibit_toolbar_menu_edit">修改房间信息</string>
+    <string name="controllerGateway_error">网关设备不支持编辑</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
 
 
 </resources>

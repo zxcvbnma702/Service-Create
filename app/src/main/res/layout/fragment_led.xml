@@ -89,53 +89,24 @@
             android:layout_marginBottom="100dp"
             app:tint="@android:color/transparent"
             android:src="@drawable/ic_twotone_wb_incandescent_24"
-            app:layout_constraintBottom_toTopOf="@id/color_cardView"
+            app:layout_constraintBottom_toTopOf="@id/led_change_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="80dp"/>
 
-        <com.google.android.material.card.MaterialCardView
-            app:cardCornerRadius="30dp"
-            android:id="@+id/color_cardView"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/led_cardView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.github.gzuliyujiang.colorpicker.BrightnessGradientView
-                    android:id="@+id/bright_picker"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
-
-                <com.github.gzuliyujiang.colorpicker.ColorGradientView
-                    android:id="@+id/color_picker"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </com.google.android.material.card.MaterialCardView>
-
         <androidx.appcompat.widget.AppCompatButton
-            android:text="确定"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:background="@drawable/retangle_bg"
-            app:layout_constraintTop_toBottomOf="@id/color_cardView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/color_button"
+            android:backgroundTint="@color/main_color_primary_variant"
+            android:textColor="@color/white"
+            android:text="点击修改灯的颜色"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/retangle_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/led_change_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="30dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

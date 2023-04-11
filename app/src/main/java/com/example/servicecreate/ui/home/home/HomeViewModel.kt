@@ -105,6 +105,11 @@ class HomeViewModel : ViewModel() {
         mainListener?.onSendDoorLockData(result)
     }
 
+    fun ledState(id: Int, state: Int) {
+        val result = repository.ledControllerState(token, id.toString(), state.toString())
+        mainListener?.onSendLedState(result)
+    }
+
     fun controllerRoomAllDevice(roomId: String, kindData: String, state: String){
         val result = repository.controllerRoomAllDevice(token, roomId, kindData, state)
         mainListener?.onControllerResult(result)

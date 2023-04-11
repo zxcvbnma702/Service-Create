@@ -1,5 +1,6 @@
 package com.example.servicecreate.ui.home.adapter
 
+import android.view.View
 import com.bumptech.glide.Glide
 import com.example.base.activity.BaseAdapter
 import com.example.servicecreate.R
@@ -27,15 +28,18 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
             1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
             2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
             3 -> Glide.with(context).load(R.drawable.ic_device_door_lock).into(itemCardRoomImage)
-        }
-
-
-        itemCardExhibit.setOnClickListener {
-            if(bean.roomList.isNotEmpty()){
-                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, bean.roomList.first().name)
-            }else{
-                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "默认房间")
+            4 -> Glide.with(context).load(R.drawable.ic_device_led).into(itemCardRoomImage)
+            5 -> {
+                itemCardRoomSwitch.visibility = View.GONE
+                Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
             }
+        }
+        itemCardExhibit.setOnClickListener {
+//            if(bean.roomList.isNotEmpty()){
+                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "")
+//            }else{
+//                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "默认房间")
+//            }
         }
 
         itemCardExhibit.setOnLongClickListener {
@@ -63,12 +67,14 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
                     1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 1)
                     2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 1)
                     3 -> fragment.mViewModel.doorLockState(bean.id.toInt().absoluteValue, 1)
+                    4 -> fragment.mViewModel.ledState(bean.id.toInt().absoluteValue, 1)
                 }
             }else{
                 when(bean.type){
                     1 -> fragment.mViewModel.airState(bean.id.toInt().absoluteValue, 0)
                     2 -> fragment.mViewModel.lampState(bean.id.toInt().absoluteValue, 0)
                     3 -> fragment.mViewModel.doorLockState(bean.id.toInt().absoluteValue, 0)
+                    4 -> fragment.mViewModel.ledState(bean.id.toInt().absoluteValue, 0)
                 }
             }
         }

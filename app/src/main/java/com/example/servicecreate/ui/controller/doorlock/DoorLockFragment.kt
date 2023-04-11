@@ -28,7 +28,6 @@ import kotlin.math.absoluteValue
 class DoorLockFragment(private val id: Long) : BaseFragment<FragmentDoorLockBinding>(), DoorLockListener {
 
     private lateinit var pawdDialog: MessageDialog
-    private lateinit var builder: PasswordDialog.Builder
     private val mViewModel: DoorLockViewModel by lazy {
         ViewModelProvider(
             this,

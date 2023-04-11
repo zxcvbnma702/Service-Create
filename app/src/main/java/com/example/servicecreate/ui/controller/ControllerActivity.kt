@@ -12,6 +12,7 @@ import com.example.servicecreate.ui.controller.camera.CameraFragment
 import com.example.servicecreate.ui.controller.doorlock.DoorLockFragment
 import com.example.servicecreate.ui.controller.led.LedFragment
 import com.example.servicecreate.ui.controller.light.LightFragment
+import com.example.servicecreate.ui.toast
 
 
 class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
@@ -46,6 +47,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
             2 -> setCurrentFragment(lightFragment)
             3 -> setCurrentFragment(doorLockFragment)
             4 -> setCurrentFragment(ledFragment)
+            255 -> {getString(R.string.controllerGateway_error).toast()}
             else ->{
                 setCurrentFragment(cameraFragment)
             }
@@ -68,7 +70,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
         lightFragment = LightFragment(mViewModel.id)
         doorLockFragment = DoorLockFragment(mViewModel.id)
         cameraFragment = CameraFragment(mViewModel.id)
-        ledFragment = LedFragment()
+        ledFragment = LedFragment(mViewModel.id)
     }
 
     /*

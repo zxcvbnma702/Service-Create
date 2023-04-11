@@ -199,9 +199,25 @@ object Repository {
         }
     }
 
-    fun doorLockPawdController(token: String,  id: String, pawd: String) = fire(Dispatchers.IO){
+    fun doorLockPawdController(token: String, id: String, pawd: String) = fire(Dispatchers.IO){
         val request = mapOf("id" to id, "password" to pawd)
         val response = NetworkCenter.doorLockPawdController(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun ledControllerColor(token: String, id: String, r: String, g: String, b: String, light: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "r" to r, "g" to g, "b" to b, "light" to light)
+        val response = NetworkCenter.ledController(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun ledControllerState(token: String, id: String, state: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "state" to state)
+        val response = NetworkCenter.ledController(token, request)
         run {
             Result.success(response)
         }

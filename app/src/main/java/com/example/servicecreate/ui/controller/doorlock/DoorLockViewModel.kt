@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
  * @feature:
  */
 class DoorLockViewModel: ViewModel() {
-
     internal var doorLockListener: DoorLockListener?= null
 
     private val repository =  Repository
