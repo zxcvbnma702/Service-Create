@@ -34,7 +34,7 @@ interface ControllerService {
     @POST("controller/gate/password")
     fun doorLockControllerPawd(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
-    @POST("device/RGBled")
+    @POST("controller/led/RGB")
     fun ledController(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
 

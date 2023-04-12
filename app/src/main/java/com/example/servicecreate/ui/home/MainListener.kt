@@ -10,7 +10,6 @@ import com.example.servicecreate.logic.network.model.*
  */
 interface MainListener {
     fun onGetRoomList(result: LiveData<Result<RoomListResponse>>){}
-    fun refreshHomepage(){}
     fun onDeleteRoom(result: LiveData<Result<SendVerifiedResponse>>){}
     fun onGetDeviceKindList(result: LiveData<Result<RoomListResponse>>) {}
     fun onGetDeviceList(result: LiveData<Result<DeviceListResponse>>) {}
@@ -20,4 +19,5 @@ interface MainListener {
     fun onControllerResult(result: LiveData<Result<SendVerifiedResponse>>) {}
     fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>) {}
     fun onSendLedState(result: LiveData<Result<SendVerifiedResponse>>) {}
+    fun onWeather(result: LiveData<Result<WeatherResponse>>) {}
 }

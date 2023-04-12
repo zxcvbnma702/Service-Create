@@ -28,7 +28,7 @@ class AppendDefaultRecyclerAdapter(
     private val fragment: AppendFragment,
 ) : BaseAdapter<DeviceData, ItemAppendDeviceCardBinding>() {
 
-    internal var roomList: MutableMap<String, Long> = mutableMapOf("默认房间" to 0L)
+    internal var roomList: MutableMap<String, Long> = mutableMapOf("全屋" to 0L)
     private val context = fragment.requireContext()
 
     override fun ItemAppendDeviceCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {

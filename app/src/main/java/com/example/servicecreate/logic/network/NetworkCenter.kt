@@ -1,10 +1,7 @@
 package com.example.servicecreate.logic.network
 
 import android.util.Log
-import com.example.servicecreate.logic.network.api.AuthService
-import com.example.servicecreate.logic.network.api.ControllerService
-import com.example.servicecreate.logic.network.api.DeviceService
-import com.example.servicecreate.logic.network.api.RoomService
+import com.example.servicecreate.logic.network.api.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +21,7 @@ object NetworkCenter {
     private val roomServer = ServiceCreator.create<RoomService>()
     private val deviceServer = ServiceCreator.create<DeviceService>()
     private val controllerServer = ServiceCreator.create<ControllerService>()
+    private val weatherController = ServiceCreator.create<WeatherService>()
 
     /**
      * Auth
@@ -123,6 +121,10 @@ object NetworkCenter {
 
     suspend fun controllerOutDoor(token: String)
             = controllerServer.controllerOutdoor(token).await()
+
+
+    suspend fun getWeather()
+            = weatherController.weather().await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

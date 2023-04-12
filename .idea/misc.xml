@@ -46,7 +46,7 @@
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_door_lock.xml" value="0.20051303976058144" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_exhibit.xml" value="0.20051303976058144" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_gateway.xml" value="0.20051303976058144" />
-        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_home.xml" value="0.17747898590732267" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_home.xml" value="0.26621847886098404" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_led.xml" value="0.17747898590732267" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_light.xml" value="0.17271078875793291" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_personage.xml" value="0.10462962962962963" />
@@ -59,6 +59,7 @@
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/item_exhibit_room_card.xml" value="0.20051303976058144" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/item_extend_view.xml" value="0.20051303976058144" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/item_home_room_card.xml" value="0.26621847886098404" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/item_weather.xml" value="0.20051303976058144" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/menu/exhibit_menu.xml" value="0.19623770842240273" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/menu/nav_menu.xml" value="0.1" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.107" />

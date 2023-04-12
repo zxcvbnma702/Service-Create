@@ -115,4 +115,9 @@ class HomeViewModel : ViewModel() {
         mainListener?.onControllerResult(result)
     }
 
+    fun getWeather(){
+        val result = repository.getWeather()
+        mainListener?.onWeather(result)
+    }
+
 }

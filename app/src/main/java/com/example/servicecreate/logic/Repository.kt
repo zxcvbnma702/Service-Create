@@ -252,6 +252,13 @@ object Repository {
         }
     }
 
+    fun getWeather() = fire(Dispatchers.IO){
+        val response = NetworkCenter.getWeather()
+        run {
+            Result.success(response)
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

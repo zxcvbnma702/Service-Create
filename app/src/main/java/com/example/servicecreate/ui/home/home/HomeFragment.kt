@@ -20,10 +20,12 @@ import com.example.servicecreate.databinding.FragmentHomeBinding
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
+import com.example.servicecreate.logic.network.model.WeatherResponse
 import com.example.servicecreate.ui.home.MainListener
 import com.example.servicecreate.ui.home.adapter.DevicesRecyclerAdapter
 import com.example.servicecreate.ui.home.adapter.HomeRecyclerAdapter
 import com.example.servicecreate.ui.home.append.AppendFragment
+import com.example.servicecreate.ui.toast
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 import java.lang.String.format
@@ -146,6 +148,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
         mViewModel.getRoomList()
         mViewModel.getDeviceKind()
         mViewModel.getDeviceList()
+        mViewModel.getWeather()
     }
 
     override fun onRefresh() {
@@ -256,6 +259,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
                     requireContext().toast("房间or classify: ${response.data}")
                 }else{
                     requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
+    override fun onWeather(result: LiveData<Result<WeatherResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.success == "1"){
+                    Log.e("r", response.result.toString())
+                    binding.homeCardViewTem.text = response.result.realTime.wtNm + "   " + response.result.realTime.wtTemp + "℃"
+                    binding.homeCardViewDate.text = response.result.realTime.week
+                    binding.homeCardViewQuality.text = response.result.realTime.wtAqi + " AQI" + "\n PM2.5"
+                    binding.homeCardViewHumidity.text = response.result.realTime.wtHumi + " %" + "\n 空气湿度"
+                    binding.homeCardViewVisibility.text = response.result.realTime.wtVisibility + "\n 能见度"
+                }else{
+                    binding.homeCardViewTem.text = "天气数据初始化失败"
                 }
             }
         }
