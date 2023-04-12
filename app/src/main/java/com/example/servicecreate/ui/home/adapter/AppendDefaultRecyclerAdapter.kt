@@ -120,6 +120,7 @@ class AppendDefaultRecyclerAdapter(
                 Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardDeviceImage)
             }
             255->{
+                Glide.with(context).load(R.drawable.ic_device_router).into(itemCardDeviceImage)
                 itemCardAppend.setOnClickListener {
                     fragment.showMACDialog()
                 }

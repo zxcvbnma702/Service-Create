@@ -1,6 +1,7 @@
 package com.example.servicecreate.ui.home.wisdom
 
 import androidx.lifecycle.LiveData
+import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 
 /**
@@ -12,4 +13,5 @@ interface WisdomListener {
     fun onIndoorController(result: LiveData<Result<SendVerifiedResponse>>)
     fun onOutdoorController(result: LiveData<Result<SendVerifiedResponse>>)
     fun onSleepController(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onGetDeviceList(result: LiveData<Result<DeviceListResponse>>)
 }

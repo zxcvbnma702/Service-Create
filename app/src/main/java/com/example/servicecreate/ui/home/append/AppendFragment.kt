@@ -259,6 +259,8 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                 if(response.code == 1){
                     requireContext().toast(response.msg + response.data)
                     macDialog.dismiss()
+                    //依赖后端刷新
+                    mViewModel.findDevice()
                 }else{
                     requireContext().toast(response.msg)
                 }

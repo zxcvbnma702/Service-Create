@@ -19,7 +19,7 @@ class CameraViewModel: ViewModel() {
 
     internal var isPause: Boolean = false
     internal var isPlay: Boolean = false
-    internal var title: String? = "jjjjjj"
+    internal var title: String? = "实时监控"
     internal var url = "rtmp://43.136.23.171/:1935/test/test"
     internal lateinit var orient: OrientationUtils
 

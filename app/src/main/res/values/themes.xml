@@ -40,4 +40,9 @@
         <item name="colorControlActivated">@color/second_color_variant</item>
     </style>
 
+    <style name="editTextLineTransparent" parent="Theme.Material3.Light">
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="colorControlActivated">@android:color/transparent</item>
+    </style>
+
 </resources>

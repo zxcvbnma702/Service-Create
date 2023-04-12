@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:hint="@string/custom_input_device_id"
         android:textCursorDrawable="@null"
-        android:inputType="number"
         android:textColor="@color/main_color_primary_variant"
         android:textColorHint="@color/second_color_variant"
         android:theme="@style/editTextLine"

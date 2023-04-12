@@ -61,6 +61,9 @@
     <!--    Exhibition -->
     <string name="exhibit_room_detail_failure">房间信息获取失败</string>
     <string name="exhibit_room_device_failure">房间设备获取失败</string>
+    <string name="exhibit_kind_device_failure">设备获取失败</string>
+    <string name="exhibit_toolbar_menu">房间控制</string>
+    <string name="exhibit_toolbar_menu_edit">修改房间信息</string>
 
     <!--    AppendFragment -->
     <string name="append_search">点击搜索设备</string>
@@ -91,18 +94,20 @@
     <string name="wisdom_indoor_content">打开全部空调和灯</string>
     <string name="wisdom_outdoor_content">关闭所有设备,保障房屋安全</string>
     <string name="wisdom_sleep_content">所有非灯设备低功率运行,呵护您的睡眠</string>
+    <string name="wisdom_custom_add_title">自定义定时任务</string>
+    <string name="wisdom_custom_add_task_name">请输入自定义定时任务名</string>
+    <string name="wisdom_custom_add_task_time">任务执行时间</string>
+    <string name="wisdom_custom_add_task_tog_once">一次</string>
+    <string name="wisdom_custom_add_task_tog_everyday">每日</string>
 
     <string name="device_name">请输入设备名</string>
     <string name="device_delete_title">设备删除</string>
 
     <string name="custom_input_device_id">账号</string>
     <string name="custom_input_device_name">密码</string>
-    <string name="exhibit_kind_device_failure">设备获取失败</string>
 
     <string name="gateway_add">点击搜索网关设备配网</string>
     <string name="please_input_password">请输入新的门锁密码</string>
-    <string name="exhibit_toolbar_menu">房间控制</string>
-    <string name="exhibit_toolbar_menu_edit">修改房间信息</string>
     <string name="controllerGateway_error">网关设备不支持编辑</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>

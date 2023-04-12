@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="700dp"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:gravity="center"
+        android:id="@+id/dialog_custom_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/wisdom_custom_add_task_name"
+        android:textColor="@color/main_color_primary_variant"
+        android:textColorHint="@color/icon_color"
+        android:textCursorDrawable="@null"
+        android:theme="@style/editTextLineTransparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:gravity="center"
+        android:text="@string/wisdom_custom_add_task_time"
+        android:id="@+id/dialog_custom_task_time"
+        android:textSize="18sp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@id/wisdom_custom_add_task_toggle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_custom_task_name" />
+
+    <RadioGroup
+        android:gravity="center"
+        android:id="@+id/wisdom_custom_add_task_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dialog_custom_task_time"
+        app:layout_constraintTop_toBottomOf="@id/dialog_custom_task_name">
+
+        <RadioButton
+            android:textColor="@color/main_color_primary_variant"
+            android:id="@+id/wisdom_custom_add_task_toggle_once"
+            android:background="@drawable/circle_bg"
+            android:text="@string/wisdom_custom_add_task_tog_once">
+        </RadioButton>
+
+        <RadioButton
+            android:textColor="@color/main_color_primary_variant"
+            android:id="@+id/wisdom_custom_add_task_toggle_everyday"
+            android:text="@string/wisdom_custom_add_task_tog_everyday"
+            android:background="@drawable/circle_bg">
+        </RadioButton>
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_custom_task_time"
+        android:id="@+id/dialog_custom_task_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dialog_custom_cancel"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:text="@string/cancel"
+        android:elevation="0dp"
+        android:textColor="@color/main_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dialog_custom_ok"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:text="@string/confirm"
+        android:elevation="0dp"
+        android:textColor="@color/main_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

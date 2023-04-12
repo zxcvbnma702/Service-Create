@@ -38,3 +38,5 @@ data class AirControllerData(
 )
 
 data class MyDevice(val device: BluetoothDevice, var rssi: Int)
+
+data class CustomDeviceData(val deviceName: String, val deviceId: String)

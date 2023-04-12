@@ -269,7 +269,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
             val response = re.getOrNull()
             if (response != null) {
                 if(response.success == "1"){
-                    Log.e("r", response.result.toString())
+//                    Log.e("r", response.result.toString())
                     binding.homeCardViewTem.text = response.result.realTime.wtNm + "   " + response.result.realTime.wtTemp + "℃"
                     binding.homeCardViewDate.text = response.result.realTime.week
                     binding.homeCardViewQuality.text = response.result.realTime.wtAqi + " AQI" + "\n PM2.5"

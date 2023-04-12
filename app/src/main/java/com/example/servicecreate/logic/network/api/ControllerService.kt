@@ -55,4 +55,7 @@ interface ControllerService {
     @POST("controller/sleep")
     fun controllerSleep(@Header("token") token: String): Call<SendVerifiedResponse>
 
+    @POST("controller/scheduledOpen")
+    fun scheduleOpen(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
+
 }
