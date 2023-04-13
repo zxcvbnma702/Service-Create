@@ -88,13 +88,17 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
             //假的adapter
             fakeAdapter.setData(
                 listOf(
-                    DeviceData("", 0L, 1, "空调", mutableListOf(), 1, ""),
-                    DeviceData("", 0L, 1, "日光灯", mutableListOf(), 2, ""),
-                    DeviceData("", 0L, 1, "智能门锁", mutableListOf(), 3, ""),
-                    DeviceData("", 0L, 1, "Led灯", mutableListOf(), 4, ""),
-                    DeviceData("", 0L, 1, "摄像头", mutableListOf(), 5, ""),
-                    DeviceData("", 0L, 1, "窗帘", mutableListOf(), 6, ""),
-                    DeviceData("", 0L, 1, "窗帘", mutableListOf(), 255, ""),
+                    DeviceData("", 0L, 1, "空调", mutableListOf(), 1, false, ""),
+                    DeviceData("", 0L, 1, "日光灯", mutableListOf(), 2, false, ""),
+                    DeviceData("", 0L, 1, "智能门锁", mutableListOf(), 3, false, ""),
+                    DeviceData("", 0L, 1, "Led灯", mutableListOf(), 4, false, ""),
+                    DeviceData("", 0L, 1, "摄像头", mutableListOf(), 5, false, ""),
+                    DeviceData("", 0L, 1, "窗帘", mutableListOf(), 6, false, ""),
+                    DeviceData("", 0L, 1, "窗帘", mutableListOf(), 255, false, ""),
+                    DeviceData("", 0L, 1, "智能厨具", mutableListOf(), 88, false, ""),
+                    DeviceData("", 0L, 1, "智能开关", mutableListOf(), 89, false, ""),
+                    DeviceData("", 0L, 1, "智能微波炉", mutableListOf(), 90, false, ""),
+                    DeviceData("", 0L, 1, "智能插座", mutableListOf(), 91, false, ""),
                 ))
             appendRecycler.adapter = defaultAdapter
 
@@ -105,7 +109,7 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                     appendSearchTip.text = getString(R.string.append_search_tip_room)
                     defaultAdapter.setData(
                         listOf(
-                            DeviceData("", 0L, 0, "添加房间", mutableListOf(), 0, "")
+                            DeviceData("", 0L, 0, "添加房间", mutableListOf(), 0, false, "")
                         ))
                 }
                 //添加设备

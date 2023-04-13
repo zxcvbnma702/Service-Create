@@ -24,7 +24,8 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
     override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
         itemCardRoomName.text = bean.name
         itemCardRoomDescription.text = "上次使用: ${bean.updateTime}"
-        itemCardRoomNumber.text = "设备id: " + bean.id.toString()
+        itemCardRoomNumber.text = "设备id: " + bean.id.toString()  + "    设备状态:"
+        itemCardRoomSwitch.isChecked = bean.state
         when(bean.type){
             1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
             2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)

@@ -45,9 +45,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         setCurrentFragment(homeFragment)
 
-        floatButton.setOnClickListener {
-            AppendFragment(0).show(supportFragmentManager, "Append")
-        }
+//        floatButton.setOnClickListener {
+//            AppendFragment(0).show(supportFragmentManager, "Append")
+//        }
 
         bottomNavigationView.apply {
             background = null

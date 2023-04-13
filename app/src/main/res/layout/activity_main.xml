@@ -50,19 +50,6 @@
 
             </com.google.android.material.bottomappbar.BottomAppBar>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/float_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/main_color"
-                android:backgroundTint="@color/main_color"
-                android:backgroundTintMode="screen"
-                android:contentDescription="@string/float_add_device"
-                android:outlineProvider="none"
-                android:src="@drawable/ic_round_add_24"
-                app:hideMotionSpec="@anim/ps_anim_album_dismiss"
-                app:borderWidth="0dp"
-                app:layout_anchor="@id/bottomAppBar"/>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </FrameLayout>
 </layout>

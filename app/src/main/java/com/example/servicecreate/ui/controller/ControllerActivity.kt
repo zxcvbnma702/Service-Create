@@ -46,7 +46,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
 
         when(mViewModel.type){
             1 -> setCurrentFragment(airFragment)
-            2 -> setCurrentFragment(curtainFragment)
+            2 -> setCurrentFragment(lightFragment)
             3 -> setCurrentFragment(doorLockFragment)
             4 -> setCurrentFragment(ledFragment)
             5 -> setCurrentFragment(cameraFragment)

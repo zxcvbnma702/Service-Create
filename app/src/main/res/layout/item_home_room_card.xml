@@ -76,9 +76,19 @@
                 android:text="No Comsumption"
                 android:textColor="@color/icon_color"
                 android:textSize="14sp"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_card_room_number"/>
+
+            <View
+                android:id="@+id/item_card_state"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/item_card_room_number"
+                app:layout_constraintTop_toBottomOf="@+id/item_card_room_name"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/green"
+                android:layout_width="7dp"
+                android:layout_height="7dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

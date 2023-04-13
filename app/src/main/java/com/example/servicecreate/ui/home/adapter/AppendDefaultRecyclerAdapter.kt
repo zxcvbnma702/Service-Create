@@ -128,6 +128,10 @@ class AppendDefaultRecyclerAdapter(
                     fragment.showMACDialog()
                 }
             }
+            88 -> Glide.with(context).load(R.drawable.ic_device_pot).into(itemCardDeviceImage)
+            89 -> Glide.with(context).load(R.drawable.ic_device_wall).into(itemCardDeviceImage)
+            90 -> Glide.with(context).load(R.drawable.ic_device_microwave).into(itemCardDeviceImage)
+            91 -> Glide.with(context).load(R.drawable.ic_device_socket).into(itemCardDeviceImage)
         }
 
         if(bean.isDeleted == 1){

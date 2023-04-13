@@ -19,6 +19,7 @@ data class DeviceData(
     val name: String,
     val roomList: List<RoomData>,
     val type: Int,
+    val state: Boolean,
     val updateTime: String
 )
 

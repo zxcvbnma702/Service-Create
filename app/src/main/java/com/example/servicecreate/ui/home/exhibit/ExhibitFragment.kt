@@ -216,6 +216,7 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
                 if(response.code == 1){
                     requireContext().toast(response.data)
                     mViewModel.refreshExhibitPage()
+                    roomsDeviceAdapter.notifyDataSetChanged()
                 }else{
                     requireContext().toast(response.msg)
                 }
