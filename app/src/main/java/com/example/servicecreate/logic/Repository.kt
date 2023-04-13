@@ -1,7 +1,10 @@
 package com.example.servicecreate.logic
 
+import android.app.DownloadManager
 import androidx.lifecycle.liveData
 import com.example.servicecreate.logic.network.NetworkCenter
+import com.example.servicecreate.logic.network.model.AddDeviceToRoomRequest
+import com.example.servicecreate.logic.network.model.ChangeDeviceRoomRequest
 import com.example.servicecreate.logic.network.model.DeviceKindData
 import com.example.servicecreate.logic.network.model.ScheduleBody
 import kotlinx.coroutines.Dispatchers
@@ -109,8 +112,16 @@ object Repository {
     }
 
     fun addDeviceToRoom(token: String, deviceId: String, roomId: String, deviceType: Int, deviceName: String) = fire(Dispatchers.IO){
-        val request = mapOf("roomIdList" to roomId, "id" to deviceId, "type" to deviceType.toString(), "name" to deviceName)
+        val request = AddDeviceToRoomRequest(deviceId, deviceName, listOf(roomId), deviceType)
         val response = NetworkCenter.addDeviceToRoom(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun changeDeviceRoom(token: String, deviceId: String, roomId: String) = fire(Dispatchers.IO){
+        val request = ChangeDeviceRoomRequest(deviceId, listOf(roomId))
+        val response = NetworkCenter.changeDeviceRoom(token, request)
         run {
             Result.success(response)
         }

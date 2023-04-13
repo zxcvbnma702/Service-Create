@@ -24,7 +24,7 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
     override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
         itemCardRoomName.text = bean.name
         itemCardRoomDescription.text = "上次使用: ${bean.updateTime}"
-        itemCardRoomNumber.visibility = View.GONE
+        itemCardRoomNumber.text = "设备id: " + bean.id.toString()
         when(bean.type){
             1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
             2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
@@ -33,6 +33,9 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
             5 -> {
                 itemCardRoomSwitch.visibility = View.GONE
                 Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
+            }
+            6 -> {
+                Glide.with(context).load(R.drawable.ic_device_curtain).into(itemCardRoomImage)
             }
         }
         itemCardExhibit.setOnClickListener {
@@ -51,7 +54,7 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
                         false
                     }
             }else{
-
+                fragment.roomDeviceSelect(bean.id)
             }
 
             false

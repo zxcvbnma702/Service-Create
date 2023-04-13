@@ -18,7 +18,7 @@ interface DeviceService {
     fun addDevice(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
     @POST("equipment/add")
-    fun addDeviceToRoom(@Header("token") token: String, @Body requestBody: Map<String, String>):  Call<SendVerifiedResponse>
+    fun addDeviceToRoom(@Header("token") token: String, @Body requestBody: AddDeviceToRoomRequest):  Call<SendVerifiedResponse>
 
     @GET("equipment/find")
     fun findDevice(@Header("token") token: String): Call<DeviceListResponse>

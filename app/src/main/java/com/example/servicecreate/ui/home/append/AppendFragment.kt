@@ -21,6 +21,7 @@ import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
+import com.example.servicecreate.ui.*
 import com.example.servicecreate.ui.auth.AuthActivity
 import com.example.servicecreate.ui.dialogCancelInfo
 import com.example.servicecreate.ui.dialogMessageInfo
@@ -29,6 +30,7 @@ import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.adapter.AppendDefaultRecyclerAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.kongzue.dialogx.dialogs.InputDialog
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.interfaces.OnBindView
 
@@ -38,10 +40,12 @@ import com.kongzue.dialogx.interfaces.OnBindView
  * @feature:
  */
 class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendListener {
+    private lateinit var inputDialog: MessageDialog
     private lateinit var macDialog: MessageDialog
     private lateinit var behavior: BottomSheetBehavior<View>
     private lateinit var binding: FragmentAppendBinding
     private lateinit var defaultAdapter: AppendDefaultRecyclerAdapter
+    private lateinit var fakeAdapter: AppendDefaultRecyclerAdapter
     private var check: Boolean = false
 
     internal val mViewModel: AppendViewModel by lazy {
@@ -80,6 +84,18 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
             designBottomSheet.layoutTransition = transition
 
             defaultAdapter = AppendDefaultRecyclerAdapter(this@AppendFragment)
+            fakeAdapter = AppendDefaultRecyclerAdapter(this@AppendFragment)
+            //假的adapter
+            fakeAdapter.setData(
+                listOf(
+                    DeviceData("", 0L, 1, "空调", mutableListOf(), 1, ""),
+                    DeviceData("", 0L, 1, "日光灯", mutableListOf(), 2, ""),
+                    DeviceData("", 0L, 1, "智能门锁", mutableListOf(), 3, ""),
+                    DeviceData("", 0L, 1, "Led灯", mutableListOf(), 4, ""),
+                    DeviceData("", 0L, 1, "摄像头", mutableListOf(), 5, ""),
+                    DeviceData("", 0L, 1, "窗帘", mutableListOf(), 6, ""),
+                    DeviceData("", 0L, 1, "窗帘", mutableListOf(), 255, ""),
+                ))
             appendRecycler.adapter = defaultAdapter
 
             when(i){
@@ -95,6 +111,7 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                 //添加设备
                 1->{
                     appendSearchTip.text = getString(R.string.append_search_tip_device)
+                    appendRecycler.adapter = fakeAdapter
                 }
             }
 
@@ -105,12 +122,14 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                         appendSearchAnim.cancelAnimation()
                         appendSearchTip.text = getString(R.string.append_search_tip_device)
                         appendSearch.text = getString(R.string.append_search)
+                        appendRecycler.adapter = fakeAdapter
                         check = ! check
                     }else{
                         appendSearchAnim.visibility = View.VISIBLE
                         appendSearchAnim.playAnimation()
                         appendSearchTip.text = getString(R.string.append_search_running)
                         appendSearch.text = getString(R.string.append_search_cancel)
+                        appendRecycler.adapter = defaultAdapter
                         mViewModel.findDevice()
                         check = ! check
                     }
@@ -222,6 +241,7 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                     1-> {
                         requireContext().toast(responses.data)
                         mViewModel.findDevice()
+                        inputDialog.dismiss()
                     }
                     else ->{
                         requireContext().toast(responses.msg)
@@ -238,6 +258,8 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                 when(responses.code){
                     1-> {
                         defaultAdapter.setData(responses.data)
+//                        binding.appendSearchAnim.visibility = View.GONE
+//                        binding.appendSearchAnim.cancelAnimation()
                     }
                     else ->{
                         responses.msg?.let { requireContext().toast(it) }
@@ -266,5 +288,40 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                 }
             }
         }
+    }
+
+    internal fun addDevice(deviceId: String, roomId: Long?, text: CharSequence, deviceType: Int) {
+        inputDialog = InputDialog.show(
+            requireContext().getString(R.string.append_device_to) + " " + text,
+            "请输入设备名",
+            "确定",
+            "取消",
+            " "
+        )
+            .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
+            .setCancelable(false)
+            .setCancelTextInfo(dialogCancelInfo(requireContext()))
+            .setOkButton { dialog, v , input->
+                if (mViewModel.checkString(input)) {
+                    if(roomId == 0L){
+                        // TODO: 添加设备到默认房间
+                        mViewModel.addDeviceToRoom(deviceId, "", input, deviceType)
+                        return@setOkButton false
+                    }else{
+                        when {
+                            roomId != null -> {
+                                mViewModel.addDeviceToRoom(deviceId, roomId.toString(), input, deviceType)
+                            }
+                            else -> {
+                                "未知错误".toast()
+                            }
+                        }
+                    }
+                }
+                true
+            }
+            .setCancelButton { _, _ ->
+                false
+            }
     }
 }

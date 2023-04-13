@@ -10,6 +10,7 @@
         android:padding="5dp"
         android:layout_height="200dp"
         android:elevation="@dimen/ui_elevation_height"
+        android:background="#B62525"
         style="@style/MaterialAlertDialog.Material3">
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -36,6 +36,9 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                     itemCardRoomSwitch.visibility = View.GONE
                     Glide.with(context).load(R.drawable.ic_device_monitor).into(itemCardRoomImage)
                 }
+                6L -> {
+                    Glide.with(context).load(R.drawable.ic_device_curtain).into(itemCardRoomImage)
+                }
                 255L -> Glide.with(context).load(R.drawable.ic_device_router).into(itemCardRoomImage)
             }
             itemCardRoomSwitch.setOnCheckedChangeListener { compoundButton, b ->

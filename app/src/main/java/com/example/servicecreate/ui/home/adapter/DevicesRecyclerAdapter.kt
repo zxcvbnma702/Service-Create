@@ -23,6 +23,7 @@ class DevicesRecyclerAdapter(private val fragment: HomeFragment):
     override fun ItemHomeRoomCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
         itemCardRoomName.text = bean.name
         itemCardRoomDescription.text = "上次使用: ${bean.updateTime}"
+        itemCardRoomNumber.text = bean.id.toString()
         when(bean.type){
             1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
             2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)

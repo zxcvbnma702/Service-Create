@@ -68,7 +68,8 @@
     <!--    AppendFragment -->
     <string name="append_search">点击搜索设备</string>
     <string name="append_search_tip_room">点击房间图标添加房间</string>
-    <string name="append_search_tip_device">点击搜索按钮添加设备</string>
+    <string name="append_search_tip_device">点击搜索按钮添加设备 \n
+        或点击图标手动添加设备</string>
     <string name="append_search_running">正在搜索中…</string>
     <string name="append_search_cancel">取消</string>
     <string name="append_room">添加房间</string>

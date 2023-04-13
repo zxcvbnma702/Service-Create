@@ -68,6 +68,7 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <com.airbnb.lottie.LottieAnimationView
+                android:elevation="-1dp"
                 android:id="@+id/append_search_anim"
                 android:layout_width="250dp"
                 android:layout_height="250dp"

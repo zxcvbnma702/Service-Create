@@ -28,4 +28,16 @@ data class DeviceKindData(
     val name: String
 )
 
+data class AddDeviceToRoomRequest(
+    val id: String,
+    val name: String,
+    val roomIdList: List<String>,
+    val type: Int
+)
+
+data class ChangeDeviceRoomRequest(
+    val equipmentId: String,
+    val roomIdList: List<String>
+)
+
 

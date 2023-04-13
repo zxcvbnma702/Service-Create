@@ -20,11 +20,19 @@ class ExhibitViewModel :ViewModel(){
 
     private val token = ServiceCreateApplication.appSecret
 
+    internal var roomList: MutableMap<String, Long> = mutableMapOf()
+
     val _refresh = MutableSharedFlow<Int>()
+    internal var deviceId: Int = 0
 
     fun getRoomDetail(id : Long){
         val result = repository.getRoomDetail(token, id)
         exhibitListener?.onRoomDetail(result)
+    }
+
+    fun getRoomList(){
+        val result = repository.getRoomList(token)
+        exhibitListener?.onGetRoomList(result)
     }
 
     fun getRoomDevices(id: Long){
@@ -71,5 +79,9 @@ class ExhibitViewModel :ViewModel(){
         exhibitListener?.onControllerByKind(result)
     }
 
+    fun changeDeviceRoom(deviceId: String, roomId: String){
+        val result = repository.changeDeviceRoom(token, deviceId, roomId)
+        exhibitListener?.onChangeDeviceRoom(result)
+    }
 
 }

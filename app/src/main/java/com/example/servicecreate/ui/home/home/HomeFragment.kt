@@ -55,7 +55,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
         devicesAdapter = DevicesRecyclerAdapter(this@HomeFragment)
         homeRecyclerview.adapter = roomAdapter
 
-        homeUsername.text = "Hello, ${ServiceCreateApplication.appSecret.split(".")}"
+//        homeUsername.text = "Hello, ${ServiceCreateApplication.appSecret.split(".")}"
         Log.e("token", ServiceCreateApplication.appSecret.toString())
 
         homeCardViewDate.text = DateFormat.format("yyyy-MM-dd EEEE", System.currentTimeMillis())
@@ -273,6 +273,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
                     binding.homeCardViewQuality.text = response.result.realTime.wtAqi + " AQI" + "\n PM2.5"
                     binding.homeCardViewHumidity.text = response.result.realTime.wtHumi + " %" + "\n 空气湿度"
                     binding.homeCardViewVisibility.text = response.result.realTime.wtVisibility + "\n 能见度"
+
+                    val tem = response.result.realTime.wtTemp.toInt()
+                    binding.homeCardViewQuality2.text = (tem - 4 .. tem + 2).random().toString() + " ℃" + "\n 房屋温度"
+                    binding.homeCardViewHumidity2.text = (60..68).random().toString() + " %" + "\n 房屋湿度"
+                    binding.homeCardViewVisibility2.text = (200..400).random().toString()  + " lx" + "\n 房屋光照"
                 }else{
                     binding.homeCardViewTem.text = "天气数据初始化失败"
                 }

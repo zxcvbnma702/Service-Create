@@ -223,6 +223,33 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
         }
     }
 
+    override fun onGetRoomList(result: LiveData<Result<RoomListResponse>>) {
+        result.observe(this){ re ->
+            val responses = re.getOrNull()
+            if (responses?.code == 1) {
+                mViewModel.roomList.putAll(responses.data.associate {
+                    it.name to it.id
+                })
+                showChangeDeviceRoomDialog()
+            }else{
+                "数据异常".toast()
+            }
+        }
+    }
+
+    override fun onChangeDeviceRoom(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast(response.data)
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
     private fun roomController(){
         PopMenu.
         show(arrayOf("打开所有灯", "关闭所有灯", "打开所有空调", "关闭所有空调"))
@@ -251,17 +278,16 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             }
     }
 
-    private fun roomDeviceSelect(){
+    internal fun roomDeviceSelect(id: Long) {
+        mViewModel.deviceId = id.toInt()
         PopMenu.
         show(arrayOf("移动到其他房间", "删除设备"))
             .setRadius(15f)
             .setMenuTextInfo(dialogTitleInfo(requireContext()))
             .setOnMenuItemClickListener { dialog, text, index ->
                 when (index) {
-                    0 -> mViewModel.controllerAllDeviceByKind(l, 2, 1)
-                    1 -> mViewModel.controllerAllDeviceByKind(l, 2, 0)
-                    2 -> mViewModel.controllerAllDeviceByKind(l, 1, 1)
-                    3 -> mViewModel.controllerAllDeviceByKind(l, 1, 0)
+                    0 -> mViewModel.getRoomList()
+                    1 -> mViewModel.deleteDevice(mViewModel.deviceId.toString())
                 }
                 false
             }
@@ -269,13 +295,21 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             object : OnIconChangeCallBack<PopMenu?>(true) {
                 override fun getIcon(dialog: PopMenu?, index: Int, menuText: String): Int {
                     return when (index) {
-                        0 -> R.drawable.lamp_state
-                        1 -> R.drawable.lamp_state
-                        2 -> R.drawable.air_state
-                        3 -> R.drawable.air_state
+                        0 -> R.drawable.ic_baseline_swap_horiz_24
+                        1 -> R.drawable.ic_outline_delete_24
                         else -> 0
                     }
                 }
             }
     }
+
+    private fun showChangeDeviceRoomDialog(){
+        PopMenu.show(mViewModel.roomList.keys.toList())
+            .setRadius(15f)
+            .setOnMenuItemClickListener { dialog, text, index ->
+                mViewModel.changeDeviceRoom(mViewModel.deviceId.toString(), mViewModel.roomList[text].toString())
+                false
+            }.menuTextInfo = dialogTitleInfo(requireContext())
+    }
+
 }

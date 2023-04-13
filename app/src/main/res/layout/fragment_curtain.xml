@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        tools:context=".ui.controller.curtain.CurtainFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/curtain_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_show_curtains"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/curtain_image"
+            android:id="@+id/toggleGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnOpen"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:text="打开"
+                android:textColor="@color/main_color"
+                app:iconTint="@color/main_color"
+                app:icon="@drawable/ic_outline_play_arrow_24" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStop"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:text="暂停"
+                android:textColor="@color/main_color"
+                app:iconTint="@color/main_color"
+                app:icon="@drawable/ic_outline_pause_24" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClose"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:text="关闭"
+                android:textColor="@color/main_color"
+                app:iconTint="@color/main_color"
+                app:icon="@drawable/ic_outline_stop_24" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

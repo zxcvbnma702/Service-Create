@@ -2,6 +2,7 @@ package com.example.servicecreate.logic.network.api
 
 import androidx.room.Delete
 import com.example.servicecreate.ServiceCreateApplication
+import com.example.servicecreate.logic.network.model.ChangeDeviceRoomRequest
 import com.example.servicecreate.logic.network.model.DeviceListResponse
 import com.example.servicecreate.logic.network.model.RoomListResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
@@ -30,6 +31,9 @@ interface RoomService {
 
     @POST("room/equipment/list")
     fun getRoomDevices(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<DeviceListResponse>
+
+    @HTTP(method = "PUT", path = "room/equipment/changeBatchRoomToEquipment", hasBody = true)
+    fun changeDeviceRoom(@Header("token") token: String, @Body requestBody: ChangeDeviceRoomRequest): Call<SendVerifiedResponse>
 
 //    @GET("room")
 //    fun getRoomDevices(@Query("id") id: String):

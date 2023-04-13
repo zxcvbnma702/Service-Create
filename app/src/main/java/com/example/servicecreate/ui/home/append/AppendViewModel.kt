@@ -1,5 +1,6 @@
 package com.example.servicecreate.ui.home.append
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.logic.Repository
@@ -44,7 +45,7 @@ class AppendViewModel: ViewModel() {
         appendListener?.onAddDeviceToRoom(result)
     }
 
-    fun checkString(): Boolean{
+    fun checkString(deviceName :String): Boolean{
         if(deviceName.isBlank() || deviceName.isEmpty()){
             "设备名不能为空".toast()
             return false

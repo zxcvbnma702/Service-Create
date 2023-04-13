@@ -9,6 +9,7 @@ import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ActivityControllerBinding
 import com.example.servicecreate.ui.controller.air.AirConditionFragment
 import com.example.servicecreate.ui.controller.camera.CameraFragment
+import com.example.servicecreate.ui.controller.curtain.CurtainFragment
 import com.example.servicecreate.ui.controller.doorlock.DoorLockFragment
 import com.example.servicecreate.ui.controller.led.LedFragment
 import com.example.servicecreate.ui.controller.light.LightFragment
@@ -22,6 +23,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
     private lateinit var lightFragment: LightFragment
     private lateinit var doorLockFragment: DoorLockFragment
     private lateinit var cameraFragment: CameraFragment
+    private lateinit var curtainFragment: CurtainFragment
 
     internal val mViewModel: ControllerViewModel by lazy {
         ViewModelProvider(
@@ -44,13 +46,12 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
 
         when(mViewModel.type){
             1 -> setCurrentFragment(airFragment)
-            2 -> setCurrentFragment(lightFragment)
+            2 -> setCurrentFragment(curtainFragment)
             3 -> setCurrentFragment(doorLockFragment)
             4 -> setCurrentFragment(ledFragment)
+            5 -> setCurrentFragment(cameraFragment)
+            6 -> setCurrentFragment(curtainFragment)
             255 -> {getString(R.string.controllerGateway_error).toast()}
-            else ->{
-                setCurrentFragment(cameraFragment)
-            }
         }
 
         controllerToolbar.apply {
@@ -71,6 +72,7 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
         doorLockFragment = DoorLockFragment(mViewModel.id)
         cameraFragment = CameraFragment(mViewModel.id)
         ledFragment = LedFragment(mViewModel.id)
+        curtainFragment = CurtainFragment()
     }
 
     /*

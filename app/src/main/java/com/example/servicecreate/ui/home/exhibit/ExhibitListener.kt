@@ -20,6 +20,8 @@ interface ExhibitListener {
     fun onControllerByKind(result: LiveData<Result<SendVerifiedResponse>>)
     fun onSendDoorLockData(result: LiveData<Result<SendVerifiedResponse>>)
     fun onSendLedState(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onGetRoomList(result: LiveData<Result<RoomListResponse>>)
+    fun onChangeDeviceRoom(result: LiveData<Result<SendVerifiedResponse>>)
 
 
 }

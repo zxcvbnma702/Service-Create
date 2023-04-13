@@ -3,6 +3,8 @@ package com.example.servicecreate.logic.network
 import android.location.LocationRequest
 import android.util.Log
 import com.example.servicecreate.logic.network.api.*
+import com.example.servicecreate.logic.network.model.AddDeviceToRoomRequest
+import com.example.servicecreate.logic.network.model.ChangeDeviceRoomRequest
 import com.example.servicecreate.logic.network.model.ScheduleBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -61,6 +63,9 @@ object NetworkCenter {
     suspend fun getRoomDevices(token: String, request: Map<String, String>)
             = roomServer.getRoomDevices(token, request).await()
 
+    suspend fun changeDeviceRoom(token: String, request: ChangeDeviceRoomRequest)
+            = roomServer.changeDeviceRoom(token, request).await()
+
     /**
      * Device
      */
@@ -70,7 +75,7 @@ object NetworkCenter {
     suspend fun addDevice(token: String, request: Map<String, String>)
             = deviceServer.addDevice(token, request).await()
 
-    suspend fun addDeviceToRoom(token: String, request: Map<String, String>)
+    suspend fun addDeviceToRoom(token: String, request: AddDeviceToRoomRequest)
             = deviceServer.addDeviceToRoom(token, request).await()
 
     suspend fun findDevice(token: String)
