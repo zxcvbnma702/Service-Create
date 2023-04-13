@@ -1,7 +1,9 @@
 package com.example.servicecreate.logic.network
 
+import android.location.LocationRequest
 import android.util.Log
 import com.example.servicecreate.logic.network.api.*
+import com.example.servicecreate.logic.network.model.ScheduleBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -122,6 +124,14 @@ object NetworkCenter {
     suspend fun controllerOutDoor(token: String)
             = controllerServer.controllerOutdoor(token).await()
 
+    suspend fun controllerScheduledOpen(token: String, request: ScheduleBody)
+            = controllerServer.scheduleOpen(token, request).await()
+
+    suspend fun getScheduleList(token: String)
+            = controllerServer.scheduleList(token).await()
+
+    suspend fun deleteSchedule(token: String, request: Map<String, String>)
+            = controllerServer.deleteSchedule(token, request).await()
 
     suspend fun getWeather()
             = weatherController.weather().await()

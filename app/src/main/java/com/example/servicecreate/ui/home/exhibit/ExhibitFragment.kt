@@ -49,7 +49,7 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             else ->{
                 exhibitToolbar.apply{
                     title = roomName
-                    subtitle = l.toString()
+//                    subtitle = l.toString()
                     inflateMenu(R.menu.exhibit_menu);
                     setOnMenuItemClickListener {
                         when(it.itemId){
@@ -90,7 +90,7 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
         if(l < 100){
             mViewModel.getDeviceListByType(l.toInt())
         }else{
-            mViewModel.getRoomDetail(l)
+//            mViewModel.getRoomDetail(l)
             mViewModel.getRoomDevices(l)
         }
         Log.e("id", l.toString())
@@ -118,7 +118,7 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
             if(response != null){
                 if(response.code == 1){
                     roomsDeviceAdapter.setData(response.data)
-                    Log.e("ff", response.data.toString())
+//                    Log.e("ff", response.data.toString())
                 }else{
                     requireContext().toast(R.string.exhibit_room_device_failure)
                 }

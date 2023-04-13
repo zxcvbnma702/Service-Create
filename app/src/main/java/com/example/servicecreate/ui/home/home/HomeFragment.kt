@@ -112,8 +112,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainListener, SwipeRef
         with(mViewModel){
             lifecycleScope.launch {
                 _refresh.collect{
-                    //todo: delete this
-                    homeUsername.text = it.toString()
                     initData()
                 }
             }

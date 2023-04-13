@@ -3,6 +3,7 @@ package com.example.servicecreate.logic
 import androidx.lifecycle.liveData
 import com.example.servicecreate.logic.network.NetworkCenter
 import com.example.servicecreate.logic.network.model.DeviceKindData
+import com.example.servicecreate.logic.network.model.ScheduleBody
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
@@ -247,6 +248,28 @@ object Repository {
 
     fun controllerOutDoor(token: String) = fire(Dispatchers.IO){
         val response = NetworkCenter.controllerOutDoor(token)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun controllerScheduleOpen(token: String, schedule: ScheduleBody) = fire(Dispatchers.IO){
+        val response = NetworkCenter.controllerScheduledOpen(token, schedule)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun getScheduleList(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.getScheduleList(token)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun deleteSchedule(token: String, name: String) = fire(Dispatchers.IO){
+        val request = mapOf("name" to name)
+        val response = NetworkCenter.deleteSchedule(token, request)
         run {
             Result.success(response)
         }

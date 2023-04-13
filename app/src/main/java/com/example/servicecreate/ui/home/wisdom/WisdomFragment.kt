@@ -3,6 +3,7 @@ package com.example.servicecreate.ui.home.wisdom
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.widget.doAfterTextChanged
@@ -16,28 +17,28 @@ import com.example.base.kxt.toast
 import com.example.servicecreate.R
 import com.example.servicecreate.databinding.FragmentWisdomBinding
 import com.example.servicecreate.logic.db.model.CustomDeviceData
-import com.example.servicecreate.logic.network.model.DeviceData
-import com.example.servicecreate.logic.network.model.DeviceListResponse
-import com.example.servicecreate.logic.network.model.SendVerifiedResponse
+import com.example.servicecreate.logic.network.model.*
+import com.example.servicecreate.ui.*
 import com.example.servicecreate.ui.dialogCancelInfo
 import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogOkInfo
 import com.example.servicecreate.ui.dialogTitleInfo
 import com.example.servicecreate.ui.home.adapter.AddCustomTaskRecyclerAdapter
+import com.example.servicecreate.ui.home.adapter.ShowCustomTaskRecyclerAdapter
 import com.kongzue.dialogx.dialogs.BottomDialog
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.dialogs.PopMenu
 import com.kongzue.dialogx.interfaces.OnBindView
-import com.kongzue.dialogx.interfaces.OnIconChangeCallBack
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 
 class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
 
+    private lateinit var bottomDialog: BottomDialog
     private lateinit var addCustomTaskRecyclerAdapter: AddCustomTaskRecyclerAdapter
+    private lateinit var showCustomTaskRecyclerAdapter: ShowCustomTaskRecyclerAdapter
 
     internal val mViewModel: WisdomViewModel by lazy {
         ViewModelProvider(
@@ -52,6 +53,9 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
 
         addCustomTaskRecyclerAdapter = AddCustomTaskRecyclerAdapter(this@WisdomFragment)
         addCustomTaskRecyclerAdapter.setData(mViewModel.selectedDeviceList)
+
+        showCustomTaskRecyclerAdapter = ShowCustomTaskRecyclerAdapter(this@WisdomFragment)
+        wisdomRandomList.adapter = showCustomTaskRecyclerAdapter
 
         wisdomToolbar.setNavigationOnClickListener {
             parentFragmentManager.popBackStack()
@@ -112,7 +116,7 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
         }
 
         wisdomRandomAdd.setOnClickListener {
-            BottomDialog.show(getString(R.string.wisdom_custom_add_title),
+            bottomDialog = BottomDialog.show(getString(R.string.wisdom_custom_add_title),
                 object : OnBindView<BottomDialog?>(R.layout.layout_dialog_custom) {
                     override fun onBind(dialog: BottomDialog?, v: View) {
                         initDialogView(v)
@@ -134,11 +138,11 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
                 }
             }
         }
-
     }
 
     private fun initData() {
         mViewModel.getDeviceList()
+        mViewModel.getScheduleList()
     }
 
     private fun initDialogView(v: View) {
@@ -146,13 +150,28 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
         val time = v.findViewById<TextView>(R.id.dialog_custom_task_time)
         val list = v.findViewById<RecyclerView>(R.id.dialog_custom_task_list)
         val confirm = v.findViewById<AppCompatButton>(R.id.dialog_custom_ok)
+        val cancel = v.findViewById<AppCompatButton>(R.id.dialog_custom_cancel)
+        val once = v.findViewById<RadioButton>(R.id.wisdom_custom_add_task_toggle_once)
+        val everyday = v.findViewById<RadioButton>(R.id.wisdom_custom_add_task_toggle_everyday)
 
         name.doAfterTextChanged {
             mViewModel.taskName = it.toString()
         }
 
         confirm.setOnClickListener {
+            mViewModel.checkValid()
+        }
 
+        once.setOnClickListener {
+            mViewModel.onceOrEvery = 0
+        }
+
+        everyday.setOnClickListener {
+            mViewModel.onceOrEvery = 1
+        }
+
+        cancel.setOnClickListener {
+            bottomDialog.dismiss()
         }
 
         list.adapter = addCustomTaskRecyclerAdapter
@@ -181,6 +200,7 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
     private fun refreshPage(){
         addCustomTaskRecyclerAdapter.setData(mViewModel.selectedDeviceList)
         addCustomTaskRecyclerAdapter.notifyDataSetChanged()
+        showCustomTaskRecyclerAdapter.notifyDataSetChanged()
     }
 
     internal fun showAllDeviceDialog(){
@@ -251,6 +271,50 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
                 }
             }
         }
+
+    override fun onScheduleOpen(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast("保存成功")
+                    mViewModel.getScheduleList()
+                    bottomDialog.dismiss()
+                }
+            }else{
+                requireContext().toast("数据异常")
+            }
+        }
+    }
+
+    override fun onGetScheduleList(result: LiveData<Result<ScheduleTaskResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    showCustomTaskRecyclerAdapter.setData(response.data)
+                    showCustomTaskRecyclerAdapter.notifyDataSetChanged()
+                }
+            }else{
+                requireContext().toast("数据异常")
+            }
+        }
+    }
+
+    override fun onDeleteSchedule(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    "删除成功".toast()
+                    mViewModel.getScheduleList()
+                    mViewModel.refreshHomePage()
+                }
+            }else{
+                requireContext().toast("数据异常")
+            }
+        }
+    }
 
 
 }

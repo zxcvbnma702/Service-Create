@@ -24,6 +24,7 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
     override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
         itemCardRoomName.text = bean.name
         itemCardRoomDescription.text = "上次使用: ${bean.updateTime}"
+        itemCardRoomNumber.visibility = View.GONE
         when(bean.type){
             1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
             2 -> Glide.with(context).load(R.drawable.ic_device_lamp).into(itemCardRoomImage)
@@ -35,13 +36,8 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
             }
         }
         itemCardExhibit.setOnClickListener {
-//            if(bean.roomList.isNotEmpty()){
                 ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "")
-//            }else{
-//                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "默认房间")
-//            }
         }
-
         itemCardExhibit.setOnLongClickListener {
             if(fragment.l< 100){
                 MessageDialog.show(context.getString(R.string.device_delete_title), context.getString(R.string.home_delete_device_content), "确定", "取消")

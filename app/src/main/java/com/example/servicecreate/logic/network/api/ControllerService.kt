@@ -1,5 +1,7 @@
 package com.example.servicecreate.logic.network.api
 
+import com.example.servicecreate.logic.network.model.ScheduleBody
+import com.example.servicecreate.logic.network.model.ScheduleTaskResponse
 import com.example.servicecreate.logic.network.model.SendVerifiedResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -56,6 +58,11 @@ interface ControllerService {
     fun controllerSleep(@Header("token") token: String): Call<SendVerifiedResponse>
 
     @POST("controller/scheduledOpen")
-    fun scheduleOpen(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
+    fun scheduleOpen(@Header("token") token: String, @Body requestBody: ScheduleBody): Call<SendVerifiedResponse>
 
+    @POST("scheduled/list")
+    fun scheduleList(@Header("token") token: String): Call<ScheduleTaskResponse>
+
+    @HTTP(method = "DELETE", path = "scheduled", hasBody = true)
+    fun deleteSchedule(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 }
