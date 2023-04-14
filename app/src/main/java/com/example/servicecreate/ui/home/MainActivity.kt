@@ -51,7 +51,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         bottomNavigationView.apply {
             background = null
-            menu.getItem(1).isEnabled = false
             setOnItemSelectedListener {
                 when(it.itemId){
                     R.id.nav_home ->{

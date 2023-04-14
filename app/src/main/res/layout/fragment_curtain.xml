@@ -10,20 +10,81 @@
         android:paddingTop="20dp"
         tools:context=".ui.controller.curtain.CurtainFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/curtain_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_device_curtain"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/curtain_cardView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/light_icon"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/RoundedStyle"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+
+                <TextView
+                    android:id="@+id/light_device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="电源: 开"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/light_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/light_device_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Bedroom"
+                    android:textColor="@color/icon_color"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/light_icon"
+                    app:layout_constraintTop_toBottomOf="@id/light_device_name" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/light_switch"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTextPadding="1dp"
+                    app:thumbTint="@color/white"
+                    app:track="@drawable/switch_bg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/curtain_image"
+            app:layout_constraintTop_toBottomOf="@id/curtain_cardView"
             android:id="@+id/toggleGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +95,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
-                android:text="打开"
+                android:text="张开"
                 android:textColor="@color/main_color"
                 app:iconTint="@color/main_color"
                 app:icon="@drawable/ic_outline_play_arrow_24" />
@@ -54,7 +115,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
-                android:text="关闭"
+                android:text="收拢"
                 android:textColor="@color/main_color"
                 app:iconTint="@color/main_color"
                 app:icon="@drawable/ic_outline_stop_24" />

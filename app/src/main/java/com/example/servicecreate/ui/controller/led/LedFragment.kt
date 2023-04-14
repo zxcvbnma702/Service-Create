@@ -15,7 +15,7 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import kotlinx.coroutines.launch
 
 
-class LedFragment(private val id: Long) : BaseFragment<FragmentLedBinding>(), LedListener {
+class LedFragment(private val id: Long, private val roomName: String) : BaseFragment<FragmentLedBinding>(), LedListener {
 
     private val mViewModel: LedViewModel by lazy {
         ViewModelProvider(
@@ -30,12 +30,16 @@ class LedFragment(private val id: Long) : BaseFragment<FragmentLedBinding>(), Le
 
         initData()
 
+        ledDeviceRoom.text = roomName
+
         ledSwitch.setOnCheckedChangeListener { p0, p1 ->
             if (!p1) {
                 mViewModel.state = 0
+                ledDeviceName.text = "电源: 关"
                 mViewModel.sendLedController()
             } else {
                 mViewModel.state = 1
+                ledDeviceName.text = "电源: 开"
                 mViewModel.sendLedController()
             }
         }
@@ -78,7 +82,7 @@ class LedFragment(private val id: Long) : BaseFragment<FragmentLedBinding>(), Le
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-                    requireContext().toast("颜色修改: " + response.msg + response.data)
+                    requireContext().toast("颜色修改: " + response.data)
                 }else{
                     requireContext().toast(response.msg)
                 }
@@ -91,7 +95,7 @@ class LedFragment(private val id: Long) : BaseFragment<FragmentLedBinding>(), Le
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-                    requireContext().toast(response.msg + response.data)
+                    requireContext().toast(response.data)
                 }else{
                     requireContext().toast(response.msg)
                 }

@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
-class AirConditionFragment(private val id: Long) : BaseFragment<FragmentAirConditionBinding>(), AirConditionListener{
+class AirConditionFragment(private val id: Long, private val roomName: String) : BaseFragment<FragmentAirConditionBinding>(), AirConditionListener{
 
     private val mViewModel: AirConditionViewModel by lazy {
         ViewModelProvider(
@@ -49,16 +49,18 @@ class AirConditionFragment(private val id: Long) : BaseFragment<FragmentAirCondi
                 }
             }
         }
-
+        binding.airDeviceRoom.text = roomName
         /**
          * Air Switch
          */
         airSwitch.setOnCheckedChangeListener { _, b ->
             if(b){
                 mViewModel.airControllerData.state = 1
+                airDeviceName.text = "电源: 开"
                 mViewModel.sendAirController()
             }else{
                 mViewModel.airControllerData.state = 0
+                airDeviceName.text = "电源: 关"
                 mViewModel.sendAirController()
             }
         }
@@ -212,7 +214,7 @@ class AirConditionFragment(private val id: Long) : BaseFragment<FragmentAirCondi
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-                    requireContext().toast(response.msg + response.data)
+                    requireContext().toast(response.data)
                 }else{
                     requireContext().toast(response.msg)
                 }
@@ -227,6 +229,7 @@ class AirConditionFragment(private val id: Long) : BaseFragment<FragmentAirCondi
                 if(response.code == 1){
                     with(binding){
                         airSwitch.isChecked = response.data.state == 1
+                        if(!airSwitch.isChecked) airDeviceName.text = "电源: 关"
                         airCirProgress.text = response.data.temp.toString()
                         airCirSeekbar.progress = response.data.temp.toFloat()
                         airModeShift.getTabAt(response.data.mode)?.select()

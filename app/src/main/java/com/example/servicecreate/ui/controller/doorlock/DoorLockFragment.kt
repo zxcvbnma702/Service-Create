@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
 
-class DoorLockFragment(private val id: Long) : BaseFragment<FragmentDoorLockBinding>(), DoorLockListener {
+class DoorLockFragment(private val id: Long, private val roomName: String) : BaseFragment<FragmentDoorLockBinding>(), DoorLockListener {
 
     private lateinit var pawdDialog: MessageDialog
     private val mViewModel: DoorLockViewModel by lazy {
@@ -41,12 +41,16 @@ class DoorLockFragment(private val id: Long) : BaseFragment<FragmentDoorLockBind
 
         initData()
 
+        doorlockDeviceRoom.text = roomName
+
         doorlockSwitch.setOnCheckedChangeListener { p0, p1 ->
             if (!p1) {
                 mViewModel.state = 0
+                doorlockDeviceName.text = "电源: 关"
                 mViewModel.sendDoorLockController()
             } else {
                 mViewModel.state = 1
+                doorlockDeviceName.text = "电源: 开"
                 mViewModel.sendDoorLockController()
             }
         }
@@ -102,7 +106,7 @@ class DoorLockFragment(private val id: Long) : BaseFragment<FragmentDoorLockBind
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-                    requireContext().toast(response.msg + response.data)
+                    requireContext().toast(response.data)
                 }else{
                     requireContext().toast(response.msg)
                 }
@@ -117,6 +121,9 @@ class DoorLockFragment(private val id: Long) : BaseFragment<FragmentDoorLockBind
                 if(response.code == 1){
                     with(binding){
                         doorlockSwitch.isChecked = response.data.status == 1
+                        if(!doorlockSwitch.isChecked) {
+                            doorlockDeviceName.text = "电源: 关"
+                        }
                         doorlockPassword.text = response.data.password
                     }
                 }else{
@@ -131,7 +138,7 @@ class DoorLockFragment(private val id: Long) : BaseFragment<FragmentDoorLockBind
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-                    requireContext().toast(response.msg + response.data)
+                    requireContext().toast(response.data)
                     pawdDialog.dismiss()
                 }else{
                     requireContext().toast(response.msg)

@@ -86,6 +86,11 @@ class ExhibitFragment(internal val l: Long, private val roomName: String) : Base
         setHasOptionsMenu(true);
     }
 
+    override fun onResume() {
+        super.onResume()
+        initData()
+    }
+
     private fun initData() {
         if(l < 100){
             mViewModel.getDeviceListByType(l.toInt())

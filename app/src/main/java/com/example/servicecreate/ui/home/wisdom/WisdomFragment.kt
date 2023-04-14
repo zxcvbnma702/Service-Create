@@ -64,23 +64,23 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
         initData()
 
         wisdomIndoor.setOnClickListener {
-            MessageDialog.show(getString(R.string.wisdom_indoor_title), getString(R.string.wisdom_indoor_content), "确定")
+            MessageDialog.show(getString(R.string.wisdom_indoor_title), getString(R.string.wisdom_indoor_content), "确定", "取消")
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
-                .setCancelable(false)
                 .setTitleTextInfo(dialogTitleInfo(requireContext()))
                 .setOkTextInfo(dialogOkInfo(requireContext()))
                 .setMessageTextInfo(dialogMessageInfo(requireContext()))
                 .setOkButton { _, _ ->
                     mViewModel.controllerIndoor()
                     false
-
+                }
+                .setCancelButton{_,_->
+                    false
                 }
         }
 
         wisdomOutdoor.setOnClickListener {
-            MessageDialog.show(getString(R.string.wisdom_outdoor_title), getString(R.string.wisdom_outdoor_content), "确定")
+            MessageDialog.show(getString(R.string.wisdom_outdoor_title), getString(R.string.wisdom_outdoor_content), "确定", "取消")
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
-                .setCancelable(false)
                 .setTitleTextInfo(dialogTitleInfo(requireContext()))
                 .setOkTextInfo(dialogOkInfo(requireContext()))
                 .setMessageTextInfo(dialogMessageInfo(requireContext()))
@@ -88,17 +88,22 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
                     mViewModel.controllerOutdoor()
                     false
                 }
+                .setCancelButton{_,_->
+                    false
+                }
         }
 
         wisdomSleep.setOnClickListener {
-            MessageDialog.show(getString(R.string.wisdom_sleep_title), getString(R.string.wisdom_sleep_content), "确定")
+            MessageDialog.show(getString(R.string.wisdom_sleep_title), getString(R.string.wisdom_sleep_content), "确定", "取消")
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
-                .setCancelable(false)
                 .setTitleTextInfo(dialogTitleInfo(requireContext()))
                 .setOkTextInfo(dialogOkInfo(requireContext()))
                 .setMessageTextInfo(dialogMessageInfo(requireContext()))
                 .setOkButton { _, _ ->
                     mViewModel.controllerSleep()
+                    false
+                }
+                .setCancelButton{_,_->
                     false
                 }
         }

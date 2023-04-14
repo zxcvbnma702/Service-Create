@@ -227,8 +227,8 @@ object Repository {
         }
     }
 
-    fun ledControllerState(token: String, id: String, state: String) = fire(Dispatchers.IO){
-        val request = mapOf("id" to id, "state" to state)
+    fun ledControllerState(token: String, id: String, state: String, light: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "state" to state, "light" to light)
         val response = NetworkCenter.ledController(token, request)
         run {
             Result.success(response)

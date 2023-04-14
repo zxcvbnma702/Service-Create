@@ -67,11 +67,11 @@ class ControllerActivity :BaseActivity<ActivityControllerBinding>() {
    Init all fragment
     */
     private fun initFragment() {
-       airFragment = AirConditionFragment(mViewModel.id)
-        lightFragment = LightFragment(mViewModel.id)
-        doorLockFragment = DoorLockFragment(mViewModel.id)
-        cameraFragment = CameraFragment(mViewModel.id)
-        ledFragment = LedFragment(mViewModel.id)
+       airFragment = AirConditionFragment(mViewModel.id, mViewModel.roomName)
+        lightFragment = LightFragment(mViewModel.id,  mViewModel.roomName)
+        doorLockFragment = DoorLockFragment(mViewModel.id,  mViewModel.roomName)
+        cameraFragment = CameraFragment(mViewModel.id,  mViewModel.roomName)
+        ledFragment = LedFragment(mViewModel.id,  mViewModel.roomName)
         curtainFragment = CurtainFragment()
     }
 

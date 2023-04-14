@@ -8,6 +8,7 @@ import com.example.servicecreate.R
 import com.example.servicecreate.databinding.ItemHomeRoomCardBinding
 import com.example.servicecreate.logic.network.model.RoomData
 import com.example.servicecreate.ui.home.home.HomeFragment
+import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.MessageDialog
 
 /**
@@ -26,7 +27,11 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
         itemCardState.visibility = View.GONE
         if(bean.id < 300){
             itemCardHome.setOnClickListener {
-                fragment.mViewModel.jumpToExhibitPage(bean.id, bean.name)
+                if(bean.id == 255L){
+                    "不允许的操作".toast()
+                }else{
+                    fragment.mViewModel.jumpToExhibitPage(bean.id, bean.name)
+                }
             }
             when(bean.id){
                 1L -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)

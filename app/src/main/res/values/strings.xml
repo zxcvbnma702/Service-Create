@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ServiceCreate</string>
+    <string name="app_name">智能云家</string>
     <string name="nav_message">场景</string>
     <string name="nav_setting">设置</string>
     <string name="nav_null">" "</string>
@@ -46,7 +46,7 @@
     <string name="auth_verified_login_success">登录成功</string>
     <string name="auth_verified_login_failure">登陆失败,请重试</string>
     <string name="auth_state_abnormal">登录状态异常</string>
-    <string name="auth_state_abnormal_tip">请重新登陆</string>
+    <string name="auth_state_abnormal_tip">请登录后使用智能云居</string>
 
     <!--    airCondition -->
     <string name="air_mode_tab1">制热</string>

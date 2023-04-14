@@ -9,7 +9,7 @@ import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 
 
-class CameraFragment(id: Long) : BaseFragment<FragmentCameraBinding>() {
+class CameraFragment(id: Long, roomName: String) : BaseFragment<FragmentCameraBinding>() {
 
     private val mViewModel: CameraViewModel by lazy {
         ViewModelProvider(

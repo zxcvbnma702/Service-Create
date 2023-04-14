@@ -13,7 +13,7 @@ import com.google.android.exoplayer2.util.Log
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
-class LightFragment(private val id: Long) : BaseFragment<FragmentLightBinding>(), LightListener{
+class LightFragment(private val id: Long, private val roomName: String) : BaseFragment<FragmentLightBinding>(), LightListener{
     private val mViewModel: LightViewModel by lazy {
         ViewModelProvider(
             this,
@@ -31,14 +31,18 @@ class LightFragment(private val id: Long) : BaseFragment<FragmentLightBinding>()
 
         initData()
 
+        lightDeviceRoom.text = roomName
+
         lightSwitch.setOnCheckedChangeListener { p0, p1 ->
             if (!p1) {
                 mViewModel.state = 0
                 mViewModel.sendLampController()
+                lightDeviceName.text = "电源: 关"
                 lightAnim.cancelAnimation()
             } else {
                 mViewModel.state = 1
                 mViewModel.sendLampController()
+                lightDeviceName.text = "电源: 开"
                 lightAnim.playAnimation()
             }
         }
@@ -64,7 +68,7 @@ class LightFragment(private val id: Long) : BaseFragment<FragmentLightBinding>()
             val response = re.getOrNull()
             if (response != null) {
                 if(response.code == 1){
-                    requireContext().toast(response.msg + response.data)
+                    requireContext().toast(response.data)
                 }else{
                     requireContext().toast(response.msg)
                 }
@@ -79,6 +83,9 @@ class LightFragment(private val id: Long) : BaseFragment<FragmentLightBinding>()
                 if(response.code == 1){
                     with(binding){
                         lightSwitch.isChecked = response.data.state == 1
+                        if(!lightSwitch.isChecked){
+                            lightDeviceName.text = "电源: 关"
+                        }
                     }
                 }else{
                     "灯信息初始化失败".toast()

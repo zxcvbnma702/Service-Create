@@ -8,6 +8,7 @@ import com.example.servicecreate.databinding.ItemExhibitRoomCardBinding
 import com.example.servicecreate.logic.network.model.DeviceData
 import com.example.servicecreate.ui.controller.ControllerActivity
 import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
+import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.MessageDialog
 import kotlin.math.absoluteValue
 
@@ -24,7 +25,12 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
     override fun ItemExhibitRoomCardBinding.onBindViewHolder(bean: DeviceData, position: Int) {
         itemCardRoomName.text = bean.name
         itemCardRoomDescription.text = "上次使用: ${bean.updateTime}"
-        itemCardRoomNumber.text = "设备id: " + bean.id.toString()  + "    设备状态:"
+        if(bean.roomList.isNullOrEmpty()){
+            itemCardRoomNumber.text = "设备id: " + bean.id.toString()  + "    设备状态:"
+        }else{
+            itemCardRoomNumber.text = "设备id: " + bean.id.toString()  + "    设备状态:" + "\n" + "所属房间: ${bean.roomList.first().name}"
+        }
+
         itemCardRoomSwitch.isChecked = bean.state
         when(bean.type){
             1 -> Glide.with(context).load(R.drawable.ic_device_air).into(itemCardRoomImage)
@@ -38,9 +44,19 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
             6 -> {
                 Glide.with(context).load(R.drawable.ic_device_curtain).into(itemCardRoomImage)
             }
+            255 -> Glide.with(context).load(R.drawable.ic_device_router).into(itemCardRoomImage)
         }
         itemCardExhibit.setOnClickListener {
-                ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "")
+            if(bean.type == 255){
+                "不允许的操作".toast()
+            }else{
+                if(bean.roomList.isNullOrEmpty()){
+                    ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, "")
+                }else{
+                    ControllerActivity.startActivity(context, bean.type, bean.id, bean.name, bean.roomList.first().name)
+                }
+            }
+
         }
         itemCardExhibit.setOnLongClickListener {
             if(fragment.l< 100){
@@ -78,6 +94,5 @@ class ExhibitRecyclerAdapter(private val fragment: ExhibitFragment):
                 }
             }
         }
-
     }
 }

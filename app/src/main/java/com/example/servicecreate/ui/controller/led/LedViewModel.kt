@@ -37,7 +37,7 @@ class LedViewModel: ViewModel() {
     }
 
     fun sendStateControllerToNet() {
-        val result = repository.ledControllerState(token, id.toString(), state.toString())
+        val result = repository.ledControllerState(token, id.toString(), state.toString(), (0..255).random().toString())
         ledListener?.onSendStateControllerData(result)
     }
 
