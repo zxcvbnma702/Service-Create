@@ -82,8 +82,9 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                     fragment.mViewModel.controllerRoomAllDevice(bean.id.toString(), "", "0")
                 }
             }
-
+            itemCardLightNumber.visibility = View.VISIBLE
             itemCardRoomNumber.text = "设备数: ${bean.equipmentNum}"
+            itemCardLightNumber.text = "光源数: ${bean.openLightNum}"
             itemCardRoomDescription.text = "上次操作时间: ${bean.updateTime}"
             /**
              * Load random image

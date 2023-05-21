@@ -13,4 +13,5 @@ interface DoorLockListener {
     fun onSendControllerData(result: LiveData<Result<SendVerifiedResponse>>)
     fun onDoorLockDetailData(result: LiveData<Result<DoorLockDetailResponse>>)
     fun onChangePawd(result: LiveData<Result<SendVerifiedResponse>>)
+    fun onSendVerified(result: LiveData<Result<SendVerifiedResponse>>)
 }

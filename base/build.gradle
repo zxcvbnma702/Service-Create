@@ -24,12 +24,13 @@ android {
         enabled = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.ext.android["compatibility"]
+        targetCompatibility rootProject.ext.android["compatibility"]
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.ext.android["jvmTarget"]
     }
+    namespace 'com.example.base'
 }
 
 dependencies {

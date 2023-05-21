@@ -70,7 +70,7 @@ class ExhibitViewModel :ViewModel(){
     }
 
     fun ledState(id: Int, state: Int) {
-        val result = repository.ledControllerState(token, id.toString(), state.toString(), (0..255).random().toString())
+        val result = repository.ledControllerState(token, id.toString(), state.toString())
         exhibitListener?.onSendLedState(result)
     }
 

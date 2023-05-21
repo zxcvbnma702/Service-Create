@@ -18,6 +18,7 @@ import com.example.servicecreate.ui.home.exhibit.ExhibitFragment
 import com.example.servicecreate.ui.home.gateway.GatewayFragment
 import com.example.servicecreate.ui.home.home.HomeFragment
 import com.example.servicecreate.ui.home.home.HomeViewModel
+import com.example.servicecreate.ui.home.person.PersonFragment
 import com.example.servicecreate.ui.home.setting.SettingFragment
 import com.example.servicecreate.ui.home.wisdom.WisdomFragment
 import com.example.servicecreate.ui.toast
@@ -89,6 +90,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
                 }
             }
+            lifecycleScope.launch{
+                mViewModel._jumpToPerson.collect{
+                    when(it){
+                        1 -> personFragment()
+                    }
+                }
+            }
         }
     }
 
@@ -156,13 +164,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     /**
-     * Jump to GateWayFragment
+     * Jump to WisdomFragment
      */
     private fun wisdomFragment() {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.top_container, WisdomFragment())
             setReorderingAllowed(true)
             addToBackStack("wisdom")
+        }.commit()
+    }
+
+    /**
+     * Jump to PersonFragment
+     */
+    private fun personFragment() {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.top_container, PersonFragment())
+            setReorderingAllowed(true)
+            addToBackStack("person")
         }.commit()
     }
 

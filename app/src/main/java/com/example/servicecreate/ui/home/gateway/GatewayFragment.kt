@@ -1,5 +1,6 @@
 package com.example.servicecreate.ui.home.gateway
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
 import android.util.Log
 import android.view.View
@@ -98,6 +99,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
         })
     }
 
+    @SuppressLint("MissingPermission")
     private fun showWIFIDialog(device: BluetoothDevice) {
         addWifi = MessageDialog.show(
             "请向网关设备: ${device.name} 输入您的WIFI账户和密码",
@@ -136,6 +138,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
             }
     }
 
+    @SuppressLint("MissingPermission")
     @OptIn(DelicateCoroutinesApi::class)
     private fun sendData(bytes: ByteArray){
         connection.write("phone", bytes
@@ -167,6 +170,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
             .text = "点击搜索网关设备"
     }
 
+    @SuppressLint("MissingPermission")
     override fun onDeviceFound(device: BluetoothDevice, rssi: Int) {
         bluelist.add(MyDevice(device, rssi))
         adapter.setData(bluelist)
@@ -179,6 +183,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
 
     }
 
+    @SuppressLint("MissingPermission")
     @Observe
     override fun onRead(device: BluetoothDevice, wrapper: UUIDWrapper, value: ByteArray) {
         super.onRead(device, wrapper, value)
@@ -189,6 +194,7 @@ class GatewayFragment: BaseFragment<FragmentGatewayBinding>(),GatewayListener, D
         ServiceCreateApplication.sp.edit().putBoolean(ServiceCreateApplication.isGateAay, true).apply()
     }
 
+    @SuppressLint("MissingPermission")
     override fun onWrite(
         device: BluetoothDevice,
         wrapper: UUIDWrapper,

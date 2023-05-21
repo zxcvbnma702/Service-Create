@@ -24,6 +24,7 @@ class DoorLockViewModel: ViewModel() {
     internal var id: Int = 2723
     internal var state: Int = 0
     internal var newPawd: String = ""
+    internal var code: String = ""
 
     internal val _doorLockController = MutableSharedFlow<Int>()
 
@@ -38,12 +39,22 @@ class DoorLockViewModel: ViewModel() {
             "请输入四位密码".toast()
             return false
         }
+        if (code.length != 4) {
+            "请输入四位验证码".toast()
+            return false
+        }
         return true
     }
 
     fun changePawd(){
-        val result = repository.doorLockPawdController(token, id.toString(), newPawd)
+        val result = repository.doorLockPawdController(token, id.toString(), newPawd, code)
         doorLockListener?.onChangePawd(result)
+    }
+
+
+    fun sendCommonVerified(){
+        val result = repository.sendCommonVerified(token)
+        doorLockListener?.onSendVerified(result)
     }
 
     fun sendControllerToNet(){

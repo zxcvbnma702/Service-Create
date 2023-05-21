@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -53,6 +52,7 @@
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_home.xml" value="0.26621847886098404" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_led.xml" value="0.17747898590732267" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_light.xml" value="0.17271078875793291" />
+        <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_person.xml" value="0.20051303976058144" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_personage.xml" value="0.10462962962962963" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_scene.xml" value="0.10462962962962963" />
         <entry key="..\:/StudyItem/ServiceCreate/app/src/main/res/layout/fragment_setting.xml" value="0.17747898590732267" />
@@ -74,7 +74,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

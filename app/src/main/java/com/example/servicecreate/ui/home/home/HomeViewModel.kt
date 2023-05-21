@@ -29,6 +29,7 @@ class HomeViewModel : ViewModel() {
 
     val _jumpToExhibit = MutableSharedFlow<Long>()
     val _jumpTogateWay = MutableSharedFlow<Int>()
+    val _jumpToPerson = MutableSharedFlow<Int>()
     val _jumpToWisdom = MutableSharedFlow<Int>()
 
     val _modeShift = MutableSharedFlow<Boolean>()
@@ -50,6 +51,12 @@ class HomeViewModel : ViewModel() {
         roomName = name
         viewModelScope.launch {
             _jumpToExhibit.emit(jump)
+        }
+    }
+
+    fun jumpToPersonPage(random: Int = 0) {
+        viewModelScope.launch {
+            _jumpToPerson.emit(random)
         }
     }
 
@@ -106,7 +113,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun ledState(id: Int, state: Int) {
-        val result = repository.ledControllerState(token, id.toString(), state.toString(), (0..255).random().toString())
+        val result = repository.ledControllerState(token, id.toString(), state.toString())
         mainListener?.onSendLedState(result)
     }
 

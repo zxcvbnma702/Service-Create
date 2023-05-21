@@ -32,7 +32,13 @@ interface AuthService {
     @POST("user/register")
     fun register(@Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
 
+    @POST("user/changePassword")
+    fun changePassword(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
+
     @POST("userMAC")
     fun sendMac(@Header("token") token: String, @Body requestBody: Map<String, String>): Call<SendVerifiedResponse>
+
+    @POST("common/sendMsg")
+    fun commonVerified(@Header("token") token: String): Call<SendVerifiedResponse>
 
 }

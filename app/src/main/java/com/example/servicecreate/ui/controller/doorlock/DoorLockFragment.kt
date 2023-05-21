@@ -1,16 +1,13 @@
 package com.example.servicecreate.ui.controller.doorlock
 
-import android.content.Context
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.ethanco.lib.PasswordDialog
 import com.ethanco.lib.PasswordInput
-import com.ethanco.lib.abs.ICheckPasswordFilter
 import com.example.base.activity.BaseFragment
 import com.example.base.kxt.toast
 import com.example.servicecreate.R
@@ -61,24 +58,31 @@ class DoorLockFragment(private val id: Long, private val roomName: String) : Bas
                 "",
                 "确定",
                 "取消",
-                " "
+                "发送验证码 "
             )
                 .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
                 .setCancelable(false)
-                .setCustomView(object: OnBindView<MessageDialog>(R.layout.doorlock_dialog){
+                .setCustomView(object : OnBindView<MessageDialog>(R.layout.item_door_lock_dialog) {
                     override fun onBind(dialog: MessageDialog?, v: View?) {
-                        val pawd = v?.findViewById<PasswordInput>(R.id.pwdInput_dialog)
+                        val pawd = v?.findViewById<EditText>(R.id.custom_input_pwd)
                         pawd?.doAfterTextChanged {
                             mViewModel.newPawd = it.toString()
+                        }
+                        val code = v?.findViewById<EditText>(R.id.custom_input_code)
+                        code?.doAfterTextChanged {
+                            mViewModel.code = it.toString()
                         }
                     }
                 })
                 .setCancelTextInfo(dialogCancelInfo(requireContext()))
                 .setOkButton { dialog, v ->
-                    Log.e("pawd", mViewModel.newPawd)
-                    if(mViewModel.checkPawd()){
+                    if (mViewModel.checkPawd()) {
                         mViewModel.changePawd()
                     }
+                    true
+                }
+                .setOtherButton { dialog, v ->
+                    mViewModel.sendCommonVerified()
                     true
                 }
                 .setCancelButton { _, _ ->
@@ -86,9 +90,9 @@ class DoorLockFragment(private val id: Long, private val roomName: String) : Bas
                 }
         }
 
-        with(mViewModel){
-            lifecycleScope.launch{
-                _doorLockController.collect{
+        with(mViewModel) {
+            lifecycleScope.launch {
+                _doorLockController.collect {
                     mViewModel.sendControllerToNet()
                     Log.e("doorLockState", mViewModel.state.toString())
                 }
@@ -140,6 +144,19 @@ class DoorLockFragment(private val id: Long, private val roomName: String) : Bas
                 if(response.code == 1){
                     requireContext().toast(response.data)
                     pawdDialog.dismiss()
+                }else{
+                    requireContext().toast(response.msg)
+                }
+            }
+        }
+    }
+
+    override fun onSendVerified(result: LiveData<Result<SendVerifiedResponse>>) {
+        result.observe(this){ re ->
+            val response = re.getOrNull()
+            if (response != null) {
+                if(response.code == 1){
+                    requireContext().toast(response.msg + response.data)
                 }else{
                     requireContext().toast(response.msg)
                 }

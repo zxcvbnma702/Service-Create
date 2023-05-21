@@ -114,6 +114,20 @@
     <string name="cancel">取消</string>
     <string name="wisdom_custom_delete_title">删除定时任务</string>
     <string name="wisdom_custom_content">确定删除定时任务</string>
+    <string name="wisdom_wisdom_title">开启温馨回家模式</string>
+    <string name="wisdom_wisdom_content">摄像头检测到您回家时,会自动为您开启全屋灯光并打开空调</string>
+    <string name="wisdom_wisdom2_title">开启轻松离家模式</string>
+    <string name="wisdom_wisdom2_content">
+        摄像头检测到您离家时,会自动为您关闭全屋灯光并调低空调功率
+    </string>
+
+    <string name="person_change_password">修改密码</string>
+    <string name="person_change_content">请输入新的密码</string>
+    <string name="custom_input_oldpwd">请输入旧密码</string>
+    <string name="custom_input_newpwd">请输入新密码</string>
+    <string name="custom_input_verified">请输入验证码</string>
+    <string name="please_input_verifiedCode">请输入安全验证码</string>
+    <string name="custom_input_doorLockPwd">请输入新的门锁密码</string>
 
 
 </resources>

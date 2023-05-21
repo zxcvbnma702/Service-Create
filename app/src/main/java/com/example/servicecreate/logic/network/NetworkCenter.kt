@@ -45,6 +45,12 @@ object NetworkCenter {
     suspend fun sendMac(token: String, request: Map<String, String>)
         = authServer.sendMac(token, request).await()
 
+    suspend fun changePassword(token: String, request: Map<String, String>)
+        = authServer.changePassword(token, request).await()
+
+    suspend fun sendCommonVerified(token: String)
+        = authServer.commonVerified(token).await()
+
     /**
      * Room
      */

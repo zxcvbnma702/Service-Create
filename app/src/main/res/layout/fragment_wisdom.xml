@@ -207,7 +207,7 @@
             app:layout_goneMarginTop="1dp"
             android:elevation="@dimen/ui_elevation_height"
             android:background="@color/white"
-            android:id="@+id/wisdom_random"
+            android:id="@+id/wisdom_wisdom"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:paddingStart="20dp"
@@ -215,6 +215,127 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/wisdom_sleep"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/wisdom_wisdom_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:elevation="@dimen/ui_elevation_height"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/background_color"
+                app:tint="@color/main_color_primary_variant"
+                android:src="@drawable/ic_outline_bedtime_24"
+                app:shapeAppearance="@style/RoundedStyle"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp"/>
+
+            <TextView
+                android:textSize="19sp"
+                android:text="温馨回家"
+                android:textColor="@color/black"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/wisdom_wisdom_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/wisdom_wisdom_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/wisdom_wisdom_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:thumbTextPadding="1dp"
+                app:thumbTint="@color/white"
+                app:track="@drawable/switch_bg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/icon_color"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:shapeAppearance="@style/RoundedStyle"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_goneMarginTop="1dp"
+            android:elevation="@dimen/ui_elevation_height"
+            android:background="@color/white"
+            android:id="@+id/wisdom_wisdom2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/wisdom_wisdom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/wisdom_wisdom2_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:elevation="@dimen/ui_elevation_height"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/background_color"
+                app:tint="@color/main_color_primary_variant"
+                android:src="@drawable/ic_outline_home_work_24"
+                app:shapeAppearance="@style/RoundedStyle"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp"/>
+
+            <TextView
+                android:textSize="19sp"
+                android:text="轻松离家"
+                android:textColor="@color/black"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/wisdom_wisdom2_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/wisdom_wisdom2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/wisdom_wisdom2_next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/icon_color"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:shapeAppearance="@style/RoundedStyle"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:thumbTextPadding="1dp"
+                app:thumbTint="@color/white"
+                app:track="@drawable/switch_bg" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_goneMarginTop="1dp"
+            android:elevation="@dimen/ui_elevation_height"
+            android:background="@color/white"
+            android:id="@+id/wisdom_random"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/wisdom_wisdom2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 

@@ -10,6 +10,7 @@ import com.example.servicecreate.ui.dialogInputInfo
 import com.example.servicecreate.ui.dialogMessageInfo
 import com.example.servicecreate.ui.dialogOkInfo
 import com.example.servicecreate.ui.dialogTitleInfo
+import com.hjy.bluetooth.HBluetooth
 import com.kongzue.dialogx.DialogX
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.style.MaterialStyle
@@ -44,6 +45,7 @@ class ServiceCreateApplication : Application(){
 
         BTManager.getInstance().initialize(this);
         BTManager.isDebugMode = true //开启日志打印
+        HBluetooth.init(this)
 
     }
 

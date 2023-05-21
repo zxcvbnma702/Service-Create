@@ -28,6 +28,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), MainListener {
             mViewModel.jumpToWisdomPage(1)
         }
 
+        settingPerson.setOnClickListener {
+            mViewModel.jumpToPersonPage(1)
+        }
+
         settingLogout.setOnClickListener {
             AuthActivity.startActivity(requireContext())
             requireActivity().finish()

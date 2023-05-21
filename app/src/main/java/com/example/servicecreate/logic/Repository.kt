@@ -57,6 +57,21 @@ object Repository {
         }
     }
 
+    fun changePassword(token: String, oldPwd: String, newPwd: String, verifiedCode: String) = fire(Dispatchers.IO){
+        val request = mapOf("password" to oldPwd, "newPassword" to newPwd, "code" to verifiedCode)
+        val response = NetworkCenter.changePassword(token, request)
+        run {
+            Result.success(response)
+        }
+    }
+
+    fun sendCommonVerified(token: String) = fire(Dispatchers.IO){
+        val response = NetworkCenter.sendCommonVerified(token)
+        run {
+            Result.success(response)
+        }
+    }
+
     fun getRoomList(token: String) = fire(Dispatchers.IO){
         val response = NetworkCenter.getRoomList(token)
         run {
@@ -211,8 +226,8 @@ object Repository {
         }
     }
 
-    fun doorLockPawdController(token: String, id: String, pawd: String) = fire(Dispatchers.IO){
-        val request = mapOf("id" to id, "password" to pawd)
+    fun doorLockPawdController(token: String, id: String, pawd: String, code: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "password" to pawd, "code" to code)
         val response = NetworkCenter.doorLockPawdController(token, request)
         run {
             Result.success(response)
@@ -227,8 +242,8 @@ object Repository {
         }
     }
 
-    fun ledControllerState(token: String, id: String, state: String, light: String) = fire(Dispatchers.IO){
-        val request = mapOf("id" to id, "state" to state, "light" to light)
+    fun ledControllerState(token: String, id: String, state: String) = fire(Dispatchers.IO){
+        val request = mapOf("id" to id, "state" to state)
         val response = NetworkCenter.ledController(token, request)
         run {
             Result.success(response)

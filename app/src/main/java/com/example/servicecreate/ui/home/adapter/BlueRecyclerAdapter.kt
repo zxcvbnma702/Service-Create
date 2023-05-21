@@ -1,5 +1,6 @@
 package com.example.servicecreate.ui.home.adapter
 
+import android.annotation.SuppressLint
 import com.example.base.activity.BaseAdapter
 import com.example.servicecreate.databinding.ItemBlueDeviceBinding
 import com.example.servicecreate.logic.db.model.MyDevice
@@ -11,6 +12,7 @@ import com.example.servicecreate.ui.home.gateway.GatewayFragment
  * @feature:
  */
 class BlueRecyclerAdapter(private val fragment: GatewayFragment): BaseAdapter<MyDevice, ItemBlueDeviceBinding>(){
+    @SuppressLint("MissingPermission")
     override fun ItemBlueDeviceBinding.onBindViewHolder(bean: MyDevice, position: Int) {
         tvName.text = bean.device.name
         tvAddress.text = bean.device.address

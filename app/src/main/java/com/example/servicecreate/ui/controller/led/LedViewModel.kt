@@ -1,5 +1,6 @@
 package com.example.servicecreate.ui.controller.led
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.servicecreate.ServiceCreateApplication
@@ -37,7 +38,8 @@ class LedViewModel: ViewModel() {
     }
 
     fun sendStateControllerToNet() {
-        val result = repository.ledControllerState(token, id.toString(), state.toString(), (0..255).random().toString())
+        val result = repository.ledControllerState(token, id.toString(), state.toString())
+        Log.e("rrr", id.toString() + state.toString())
         ledListener?.onSendStateControllerData(result)
     }
 

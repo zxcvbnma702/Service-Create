@@ -17,7 +17,6 @@ data class SendVerifiedResponse(
     val msg: String
 )
 
-
 data class LoginResponse(
     val code: Int,
     val `data`: String,

@@ -94,7 +94,7 @@ class AppendFragment(private val i: Int) : BottomSheetDialogFragment(), AppendLi
                     DeviceData("", 0L, 1, "Led灯", mutableListOf(), 4, false, ""),
                     DeviceData("", 0L, 1, "摄像头", mutableListOf(), 5, false, ""),
                     DeviceData("", 0L, 1, "窗帘", mutableListOf(), 6, false, ""),
-                    DeviceData("", 0L, 1, "窗帘", mutableListOf(), 255, false, ""),
+                    DeviceData("", 0L, 1, "网关", mutableListOf(), 255, false, ""),
                     DeviceData("", 0L, 1, "智能厨具", mutableListOf(), 88, false, ""),
                     DeviceData("", 0L, 1, "智能开关", mutableListOf(), 89, false, ""),
                     DeviceData("", 0L, 1, "智能微波炉", mutableListOf(), 90, false, ""),

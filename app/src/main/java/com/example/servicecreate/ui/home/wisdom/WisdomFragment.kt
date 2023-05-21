@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.base.activity.BaseFragment
 import com.example.base.kxt.toast
 import com.example.servicecreate.R
+import com.example.servicecreate.ServiceCreateApplication
 import com.example.servicecreate.databinding.FragmentWisdomBinding
 import com.example.servicecreate.logic.db.model.CustomDeviceData
 import com.example.servicecreate.logic.network.model.*
@@ -108,6 +109,34 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
                 }
         }
 
+        wisdomWisdom.setOnClickListener {
+            MessageDialog.show(getString(R.string.wisdom_wisdom_title), getString(R.string.wisdom_wisdom_content), "确定", "取消")
+                .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
+                .setTitleTextInfo(dialogTitleInfo(requireContext()))
+                .setOkTextInfo(dialogOkInfo(requireContext()))
+                .setMessageTextInfo(dialogMessageInfo(requireContext()))
+                .setOkButton { _, _ ->
+                    false
+                }
+                .setCancelButton{_,_->
+                    false
+                }
+        }
+
+        wisdomWisdom2.setOnClickListener {
+            MessageDialog.show(getString(R.string.wisdom_wisdom2_title), getString(R.string.wisdom_wisdom2_content), "确定", "取消")
+                .setMaskColor(requireContext().getColor(com.kongzue.dialogx.R.color.black30))
+                .setTitleTextInfo(dialogTitleInfo(requireContext()))
+                .setOkTextInfo(dialogOkInfo(requireContext()))
+                .setMessageTextInfo(dialogMessageInfo(requireContext()))
+                .setOkButton { _, _ ->
+                    false
+                }
+                .setCancelButton{_,_->
+                    false
+                }
+        }
+
         wisdomRandom.setOnClickListener {
             if(mViewModel.random){
                 wisdomRandomList.visibility = View.VISIBLE
@@ -136,6 +165,26 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
             }
         }
 
+        wisdomWisdom2Next.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                "开启成功".toast()
+                ServiceCreateApplication.sp.edit().putBoolean("wisdom2", true).apply()
+            }else{
+                "关闭成功".toast()
+                ServiceCreateApplication.sp.edit().putBoolean("wisdom2", false).apply()
+            }
+        }
+
+        wisdomWisdomNext.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                "开启成功".toast()
+                ServiceCreateApplication.sp.edit().putBoolean("wisdom1", true).apply()
+            }else{
+                "关闭成功".toast()
+                ServiceCreateApplication.sp.edit().putBoolean("wisdom1", false).apply()
+            }
+        }
+
         with(mViewModel){
             lifecycleScope.launch{
                 _refresh.collect(){
@@ -148,6 +197,9 @@ class WisdomFragment : BaseFragment<FragmentWisdomBinding>(), WisdomListener {
     private fun initData() {
         mViewModel.getDeviceList()
         mViewModel.getScheduleList()
+        binding.wisdomWisdomNext.isChecked = ServiceCreateApplication.sp.getBoolean("wisdom1", false)
+        binding.wisdomWisdom2Next.isChecked = ServiceCreateApplication.sp.getBoolean("wisdom2", false)
+
     }
 
     private fun initDialogView(v: View) {

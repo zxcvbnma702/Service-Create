@@ -1,13 +1,15 @@
 ext {
     android = [
-            "compileSdkVersion": 33,
-            "buildToolsVersion": "29.0.0",
-            "minSdkVersion"    : 23,
-            "targetSdkVersion" : 32,
-            "applicationId"    : "com.example.fish",
-            "versionCode"      : 1,
-            "versionName"      : '1.1',
-            "multiDexEnabled"  : true,
+            "compileSdkVersion"  : 33,
+            "buildToolsVersion"  : "29.0.0",
+            "minSdkVersion"      : 23,
+            "targetSdkVersion"   : 33,
+            "applicationId"      : "com.example.fish",
+            "versionCode"        : 1,
+            "versionName"        : '1.1',
+            "multiDexEnabled"    : true,
+            "compatibility"      : JavaVersion.VERSION_17,
+            "jvmTarget"          : '17'
     ]
 
     depsLibs = [
@@ -48,7 +50,5 @@ ext {
             "videocache"    : 'cn.yc:VideoCache:3.0.5',
             "colorPicker"   : 'com.github.skydoves:colorpickerview:2.2.4',
             "datetimepicker": 'com.github.loper7:DateTimePicker:0.6.2'
-
-
     ]
 }

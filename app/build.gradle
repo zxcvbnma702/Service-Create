@@ -46,12 +46,13 @@ android {
         enabled = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.ext.android["compatibility"]
+        targetCompatibility rootProject.ext.android["compatibility"]
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.ext.android["jvmTarget"]
     }
+    namespace 'com.example.servicecreate'
 }
 
 dependencies {
@@ -84,6 +85,7 @@ dependencies {
     implementation 'cn.wandersnail:widget-generic:1.1.0'
     implementation 'cn.wandersnail:classic-bluetooth:1.1.0'
     implementation 'com.github.EthanCo:PasswordInput:1.5.5'
+    implementation 'com.github.g-HJY:HBluetooth:V1.3.6'
 
     annotationProcessor rootProject.ext.depsLibs["room-compiler" ]
     kapt(rootProject.ext.depsLibs["room-compiler" ])
