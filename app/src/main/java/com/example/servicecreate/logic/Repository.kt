@@ -308,6 +308,13 @@ object Repository {
         }
     }
 
+    fun getBraceLet() = fire(Dispatchers.IO){
+        val response = NetworkCenter.bracelet()
+        run {
+            Result.success(response)
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

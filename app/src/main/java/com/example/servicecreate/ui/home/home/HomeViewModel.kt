@@ -31,6 +31,7 @@ class HomeViewModel : ViewModel() {
     val _jumpTogateWay = MutableSharedFlow<Int>()
     val _jumpToPerson = MutableSharedFlow<Int>()
     val _jumpToWisdom = MutableSharedFlow<Int>()
+    val _jumpToWatch = MutableSharedFlow<Int>()
 
     val _modeShift = MutableSharedFlow<Boolean>()
 
@@ -69,6 +70,12 @@ class HomeViewModel : ViewModel() {
     fun jumpToWisdomPage(random: Int = 0) {
         viewModelScope.launch {
             _jumpToWisdom.emit(random)
+        }
+    }
+
+    fun jumpToWatchPage(random: Int = 0) {
+        viewModelScope.launch {
+            _jumpToWatch.emit(random)
         }
     }
 

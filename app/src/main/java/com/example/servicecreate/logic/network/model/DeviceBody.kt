@@ -28,6 +28,20 @@ data class DeviceKindData(
     val id: Int,
     val name: String
 )
+data class BraceletResponse(
+    val code: Int,
+    val `data`: BraceData,
+    val map: Map,
+    val msg: Any
+)
+
+data class BraceData(
+    val heart: Int,
+    val higeper: Int,
+    val id: Int,
+    val lowper: Int,
+    val steps: Int
+)
 
 data class AddDeviceToRoomRequest(
     val id: String,

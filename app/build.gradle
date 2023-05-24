@@ -81,6 +81,7 @@ dependencies {
     implementation rootProject.ext.depsLibs["videoplayer"]
     implementation rootProject.ext.depsLibs["colorPicker"]
     implementation rootProject.ext.depsLibs["datetimepicker"]
+    implementation rootProject.ext.depsLibs["chart"]
     implementation 'cn.wandersnail:commons-android:1.3.5'
     implementation 'cn.wandersnail:widget-generic:1.1.0'
     implementation 'cn.wandersnail:classic-bluetooth:1.1.0'

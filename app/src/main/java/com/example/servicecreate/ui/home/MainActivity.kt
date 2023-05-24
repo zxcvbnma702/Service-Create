@@ -20,6 +20,7 @@ import com.example.servicecreate.ui.home.home.HomeFragment
 import com.example.servicecreate.ui.home.home.HomeViewModel
 import com.example.servicecreate.ui.home.person.PersonFragment
 import com.example.servicecreate.ui.home.setting.SettingFragment
+import com.example.servicecreate.ui.home.watch.WatchFragment
 import com.example.servicecreate.ui.home.wisdom.WisdomFragment
 import com.example.servicecreate.ui.toast
 import com.kongzue.dialogx.dialogs.MessageDialog
@@ -94,6 +95,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 mViewModel._jumpToPerson.collect{
                     when(it){
                         1 -> personFragment()
+                    }
+                }
+            }
+
+            lifecycleScope.launch{
+                mViewModel._jumpToWatch.collect{
+                    when(it){
+                        1 -> watchFragment()
                     }
                 }
             }
@@ -182,6 +191,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             replace(R.id.top_container, PersonFragment())
             setReorderingAllowed(true)
             addToBackStack("person")
+        }.commit()
+    }
+
+    /**
+     * Jump to WatchFragment
+     */
+    private fun watchFragment() {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.top_container, WatchFragment())
+            setReorderingAllowed(true)
+            addToBackStack("watch")
         }.commit()
     }
 

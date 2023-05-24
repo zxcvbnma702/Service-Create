@@ -128,6 +128,19 @@
     <string name="custom_input_verified">请输入验证码</string>
     <string name="please_input_verifiedCode">请输入安全验证码</string>
     <string name="custom_input_doorLockPwd">请输入新的门锁密码</string>
+    <string name="setting_watch_text">智能穿戴</string>
+    <string name="bracelet_card">交通卡</string>
+    <string name="bracelet_door_card">NFC</string>
+    <string name="bracelet_market">表盘中心</string>
+    <string name="bracelet_health">健康</string>
+    <string name="bracelet_sports">运动</string>
+    <string name="bracelet_notice">通知</string>
+    <string name="bracelet_alarm">闹钟</string>
+    <string name="bracelet_weather">天气</string>
+    <string name="bracelet_help">帮助</string>
+    <string name="watch_power">剩余电量</string>
+    <string name="watch_health_title">睡眠数据</string>
+    <string name="watch_health_sleeptime">睡眠时间</string>
 
 
 </resources>

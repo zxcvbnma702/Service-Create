@@ -4,10 +4,16 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="teal_500">#FF018843</color>
+    <color name="teal_700">#2EDA73</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_white">#F3F4F8</color>
+    <color name="icon_heart">#8FFF4242</color>
+    <color name="icon_run">#1BFDA2</color>
+    <color name="icon_volume">#0288D1</color>
+    <color name="icon_alarm">#39B9FF</color>
+    <color name="icon_cloud">#0BA2F4</color>
 
     <color name="main_color">#7F85F9</color>
     <color name="main_color_primary_variant">#8c92fb</color>

@@ -1,8 +1,10 @@
 package com.example.servicecreate.logic.network.api
 
+import com.example.servicecreate.logic.network.model.BraceletResponse
 import com.example.servicecreate.logic.network.model.WeatherResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 /**
@@ -18,4 +20,6 @@ interface WeatherService {
                 @Query("appkey")key: Int = 68788,
                 @Query("sign")sign:String ="c1fc0721510dba675f82ec8defa98de2",
                 @Query("format")format:String = "json"): Call<WeatherResponse>
+    @GET("bracelet")
+    fun bracelet(@Query("id") id: Int = 1): Call<BraceletResponse>
 }

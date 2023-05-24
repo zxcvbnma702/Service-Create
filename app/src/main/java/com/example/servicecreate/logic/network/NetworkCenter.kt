@@ -147,6 +147,9 @@ object NetworkCenter {
     suspend fun getWeather()
             = weatherController.weather().await()
 
+    suspend fun bracelet()
+            = weatherController.bracelet(1).await()
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

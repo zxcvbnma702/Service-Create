@@ -54,6 +54,7 @@ class HomeRecyclerAdapter(private val fragment: HomeFragment):
                     fragment.mViewModel.controllerRoomAllDevice("", bean.id.toString(), "0")
                 }
             }
+            itemCardRoomNumber.visibility = View.INVISIBLE
             itemCardRoomDescription.visibility = View.GONE
         }else{
             itemCardHome.setOnClickListener {
