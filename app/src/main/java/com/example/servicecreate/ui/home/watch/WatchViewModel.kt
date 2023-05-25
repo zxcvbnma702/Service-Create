@@ -31,26 +31,47 @@ class WatchViewModel: ViewModel() {
     internal var watchListener: WatchListener ?=null
     private val repository = Repository
 
+    private var startMS: String = ""
+    private var endMS: String = ""
+    private var startSS: String = ""
+    private var endSS: String = ""
+    internal var timeSleep = ""
+
     private val token = ServiceCreateApplication.appSecret
 
     fun braceLet(){
+        getTimeText()
         val result = repository.getBraceLet()
         watchListener?.onBraceLet(result)
     }
 
-    internal fun getTimeText(): String{
+    private fun getTimeText(){
         val startM = arrayListOf(22, 23, 24).random()
         val startS = Random.nextInt(0, 59)
         val endM = arrayListOf(6, 7, 8).random()
         val endS = Random.nextInt(0, 59)
         sleepTime = (endM * 60 + endS + (24 - startM) * 60 - startS) / 60
 
-        return if(startM == 24){
-            "${startM}:${startS} -- ${endM}:${endS}"
+        startMS = if(startM == 24){
+            "00"
         }else{
-            "0:${startS} -- ${endM}:${endS}"
+            startM.toString()
         }
 
+        startSS = if(startS < 10){
+            "0${startS}"
+        }else{
+            startS.toString()
+        }
+
+        endSS = if(endS < 10){
+            "0${endS}"
+        }else{
+            endS.toString()
+        }
+
+        endMS = endM.toString()
+        timeSleep = "${startMS}:${startSS} -- ${endMS}:${endSS}"
     }
 
     internal fun setData(count: Int, range: Float): PieData {

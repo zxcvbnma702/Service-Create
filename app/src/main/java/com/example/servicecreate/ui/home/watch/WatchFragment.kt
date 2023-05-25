@@ -96,14 +96,13 @@ class WatchFragment : BaseFragment<FragmentWatchBinding>(), WatchListener,
                 }
         }
 
-
         mViewModel.braceLet()
     }
 
     @SuppressLint("SetTextI18n")
     private fun initDialogView(v: View) {
         val sleepTime = v.findViewById<TextView>(R.id.watch_health_sleeptime_text)
-        sleepTime.text = mViewModel.getTimeText()
+        sleepTime.text = mViewModel.timeSleep
         val pie = v.findViewById<PieChart>(R.id.chart1)
         pie.apply {
             dragDecelerationFrictionCoef = 0.95f
@@ -138,7 +137,8 @@ class WatchFragment : BaseFragment<FragmentWatchBinding>(), WatchListener,
         line.apply {
 
             setBackgroundColor(Color.WHITE)
-
+            animateY(1400, Easing.EaseInOutQuad);
+            animateX(1400, Easing.EaseInOutQuad);
             description.isEnabled = true
 
             setTouchEnabled(true)
@@ -215,8 +215,8 @@ class WatchFragment : BaseFragment<FragmentWatchBinding>(), WatchListener,
     private fun setData(count: Int, range: Float, chart: LineChart) {
         val values = ArrayList<Entry>()
         for (i in 0 until count) {
-            val heart = Random.nextInt(50 .. 65)
-            values.add(Entry(i.toFloat(), heart.toFloat(), getDrawable(requireContext(), R.drawable.baseline_favorite_border_24)))
+            val heart = Random.nextInt(55 .. 65)
+            values.add(Entry(i+1.toFloat(), heart.toFloat(), getDrawable(requireContext(), R.drawable.baseline_favorite_border_24)))
         }
         val set1: LineDataSet
         if (chart.data != null &&
